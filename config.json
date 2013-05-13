@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "port": 3000,
+  "secret": "denise ruby 2649 raiden",
+
+  "test_key_length": 8,
+  "remote_key_length": 4,
+  "presentation_id_length": 9,
+  "max_unique_id_attempts": 20,
+
+  "presentation_directory": "/Users/hugoware/projects/codefollow/presentations/"
+
+}

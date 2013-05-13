@@ -1,0 +1,22 @@
+[title Presentation B]
+
+[description]
+desc for b
+
+--[title with comment]
+
+
+[slide content/slide_1.md]
+
+[slide]
+inline content
+
+[slide content/slide_2.md]
+
+[test content]
+
+[ranking]
+
+[slide]
+ending
+

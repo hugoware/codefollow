@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  form( method='post', action='/start' )
+    - if ( errors )
+      ul
+        - for ( e in errors )
+          li= errors[e]
+
+    input( name='name', type='text', value= name )
+    input( name='email', type='text', value= email )
+    select( name='presentation_id' )
+      - for ( var i in available )
+        option( value=available[ i ].id )= available[ i ].title
+    button( type='submit' ) Login

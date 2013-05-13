@@ -1,0 +1,10 @@
+[title test]
+[execute index.html]
+
+[explanation explanation.md]
+
+
+[zone name:script.js for:script syntax:javascript]
+
+[test functions.js]
+[test test.js]

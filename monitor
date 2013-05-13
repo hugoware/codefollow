@@ -1,0 +1,3 @@
+
+# sad... yes... 
+ls -R *.js */*.js */*/*.js */*/*/*.js | entr nodeunit ./tests/*
