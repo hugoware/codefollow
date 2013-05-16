@@ -11,7 +11,9 @@ module.exports = $$class = function Test( params, directory, expand ) {
     
     // the base directory
     , $directory = directory
-    , $path = $$path.join( $directory, $params.value, 'test' )
+    , $location = $params.value
+    , $source = $$path.join( $directory, $params.value )
+    , $path = $$path.join( $source, 'test' )
 
     // test details
     , $explanation = null
@@ -22,11 +24,14 @@ module.exports = $$class = function Test( params, directory, expand ) {
     ,
 
     // getters
+    _get_location = function() { return $location; },
     _get_title = function() { _expand(); return $title; },
     _get_explanation = function() { _expand(); return $explanation; },
     _get_execute = function() { _expand(); return $execute; },
     _get_zones = function() { _expand(); return $zones; },
     _get_tests = function() { _expand(); return $tests; },
+    _get_directory = function() { return $directory; },
+    _get_source = function() { return $source; },
 
     // including new content
     _add_test = function( section ) { $tests.push( section ); },
@@ -97,11 +102,14 @@ module.exports = $$class = function Test( params, directory, expand ) {
 
   __define( $this, {
     type: { get: function() { return 'test' }, enumerable: true },
+    location: { get: _get_location, enumerable: true },
     title: { get: _get_title, enumerable: true },
     explanation: { get: _get_explanation, enumerable: true },
     execute: { get: _get_execute, enumerable: true },
     zones: { get: _get_zones, enumerable: true },
-    tests: { get: _get_tests, enumerable: true }
+    tests: { get: _get_tests, enumerable: true },
+    directory: { get: _get_directory },
+    source: { get: _get_source }
   });
 
 };

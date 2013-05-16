@@ -6,14 +6,23 @@ module.exports = $$class = function Validator() {
 
     // checks if this contains errors
     _any = function() {
-      for( var any in $this ) break;
-      return !!any;
+      for( var p in $this )
+        if ( !/^has$/.test( p ) ) return true;
+      return false;
+    },
+
+    // checks if this contains errors
+    _has = function() {
+      for (var a in arguments)
+        if ( $this[ arguments[a] ]) return true;
+      return false;
     };
 
   // add a property to watch for errors
   __define( this, {
     any: { get: _any },
-    none: { get: function() { return !_any(); } }
+    none: { get: function() { return !_any(); } },
+    has: _has
   });
   
 };

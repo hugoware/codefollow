@@ -9,6 +9,7 @@ module.exports = $$class = function Presentation( key, params ) {
 
     // the presentation view everyone should be looking at
     , $users = [ ]
+    , $content = { }
     , $key = key
     , $id = null
     , $socket = null
@@ -39,6 +40,12 @@ module.exports = $$class = function Presentation( key, params ) {
     _get_index = function() { return $index; }
     _set_index = function( index ) {
       $index = Math.max( Math.min( index, $reader.views.length - 1 ), 0 );
+    },
+
+    // grabs user content if any
+    _get_content_for = function( user ) {
+      user = user instanceof User ? user.id : user;
+      return $content[ user ] || { };
     },
 
     _identity = function() { 
@@ -77,8 +84,13 @@ module.exports = $$class = function Presentation( key, params ) {
       if ( $users.length == 0 )
         $leader = user;
 
+      // clear existing (if any)
       _remove_user( user );
+      delete $content[ user.id ];
+
+      // add the new record
       $users.push( user );
+      $content[ user.id ] = { };
     },
 
     // drops something from the presentation
@@ -133,6 +145,9 @@ module.exports = $$class = function Presentation( key, params ) {
     // navigation
     next: _next,
     previous: _previous,
+
+    // content
+    content_for: _get_content_for,
 
     // other getters
     title: { get: _get_title },

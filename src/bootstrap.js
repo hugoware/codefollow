@@ -8,6 +8,7 @@ var includes = {
   // node modules
   '$$path': 'path',
   '$$fs': 'fs',
+  '$$process': 'child_process',
 
   // general
   '$$config': './config',
@@ -22,20 +23,25 @@ var includes = {
   'JoinPresentationRequest': './requests/join_presentation',
   'NavigatePresentationRequest': './requests/navigate_presentation',
   'StatusRequest': './requests/status',
+  'RunTestRequest': './requests/run_test',
+  'ServeTestRequest': './requests/serve_test',
 
+
+  // engines
+  'HtmlJsEngine': './engines/htmljs_engine',
 
   // models
   'Slide': './models/slide',
   'Ranking': './models/ranking',
   'Test': './models/test',
+  'TestResult': './models/test_result',
   'Reader': './models/reader',
   'SectionReader': './models/section_reader',
   'PresentationReader': './models/presentation_reader',
   'PresentationLocator': './models/presentation_locator',
   'PresentationRepository': './models/presentation_repository',
   'Presentation': './models/presentation',
-  'User': './models/User',
-  'UserRepository': './models/user_repository'
+  'User': './models/User'
 
 };
 

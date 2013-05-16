@@ -8,6 +8,11 @@
   "presentation_id_length": 9,
   "max_unique_id_attempts": 20,
 
-  "presentation_directory": "/Users/hugoware/projects/codefollow/presentations/"
+  "browser_execution_script": "/User/hugoware/projects/codefollow/scripts/execute.js",
+
+  "presentation_directory": "/Users/hugoware/projects/codefollow/presentations/",
+
+  "test_execution_time_limit": 5000,
+  "test_execution_max_buffer": 204800
 
 }

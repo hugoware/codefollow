@@ -106,6 +106,46 @@ require('../test')( module, {
     this.ok( Object.isString( presentation.test_key), 'did not generate a test key' );
     this.equal( presentation.test_key.length, $$config.test_key_length, 'did not generate correct length' );
     this.equal( presentation.test_key, _.numbers( presentation.test_key ), 'did not only use numbers' );
+  },
+
+  will_return_user_content: function() {
+
+    // include a user
+    var presentation = new Presentation()
+      , user = new User();
+    presentation.add( user );
+
+    // get the default info
+    var starting_content = presentation.content_for( user )
+      , starting_count = 0;
+
+    // get the counts
+    for ( var a in starting_content ) starting_count++;
+
+    // update some properties
+    starting_content.first = '1';
+    starting_content.second = '2';
+    starting_content.third = '3';
+
+
+    // get the updated info
+    var updated_content = presentation.content_for( user )
+      , updated_count = 0;
+
+    // get the counts
+    for ( var a in updated_content ) updated_count++;
+
+    // verify everything
+    this.ok( starting_content, 'did not have default object' );
+    this.equal( starting_count, 0, 'already had populated values' );
+    this.ok( updated_content, 'did not have updated object' );
+    this.equal( updated_count, 3, 'not enough values' );
+
+    // verify everything was found
+    this.equal( updated_content.first, '1', 'did not match first value' );
+    this.equal( updated_content.second, '2', 'did not match second value' );
+    this.equal( updated_content.third, '3', 'did not match third value' );
+
   }
 
   // working_with_external_presentations: {

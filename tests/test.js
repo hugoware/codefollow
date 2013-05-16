@@ -25,7 +25,12 @@ module.exports = $$class = function TestAttempt( mod, tests ) {
       // create an object that can be called
       // directly or instantiated
       var assign = function( target ) { for (var o in obj) target[o] = obj[o]; }
-        , definition = function() { assign(this); };
+        , definition = function() { 
+          assign(this); 
+          if ( obj.ctor ) obj.ctor.apply( this, arguments )
+        };
+      
+      // setup as all methods off the object itself
       assign( definition );
 
       // save the type
@@ -52,7 +57,13 @@ module.exports = $$class = function TestAttempt( mod, tests ) {
       return Object.merge( test || { }, {
         mock: _mock,
         unmock: _unmock,
-        reset: _reset
+        reset: _reset,
+
+        // stopping the test
+        end: function() {
+          test.done();
+          _reset();
+        }
       });
     },
 
@@ -89,8 +100,7 @@ module.exports = $$class = function TestAttempt( mod, tests ) {
         action.call( test, test );
 
         // finish and reset
-        test.done();
-        _reset();
+        if ( !test.delay ) test.end();
       };
     },
 
@@ -139,6 +149,9 @@ global.WebRequest = function( params ) {
 
     // handling user responses
     response: {
+      send: function( status ) {
+        $context.result.status = status;
+      },
       json: function( obj ) {
         // convert just to be sure it looks like the actual result
         $context.result.json = JSON.parse( JSON.stringify( obj ) );

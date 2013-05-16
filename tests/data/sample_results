@@ -1,0 +1,28 @@
+junk
+== BEGIN ==
+sfadf
+asdfasdf
+== BEGIN ==
+variable `a`
+	should should exist	1	1
+	it should equal to `3`	1	1
+variable `b`
+	it should exist	1	2
+	variable `b` should equal to `false`	2	2
+variable `c`
+	it should exist	1	1
+	it should equal to `name`	1	1
+== SUMMARY ==
+time	6
+message	name
+message	3
+message	this is my test
+== END ==
+sdfasdfasdf
+assert_difference 
+== END ==
+== BEGIN ==
+
+sdfsdf 
+  
+end

@@ -8,7 +8,7 @@ require('../test')( module, {
   test_is_a_thing : function() {
     this.ok( Test, 'missing type Test' )
     this.ok( new Test( $section, $directory ), 'could not create a new test' );
-    this.ok( new Test(), 'could not create an empty test' );
+    this.ok( new Test instanceof Test, 'could not create an empty test' );
   },
 
   can_be_read : function() {

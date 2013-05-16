@@ -71,7 +71,7 @@ var __login = function( params, session ) {
 
 // reset signed in users
 var __clear = function() {
-  $$users = { }
+  $$users = { };
 };
 
 
