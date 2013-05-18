@@ -10,12 +10,12 @@ var $$class = module.exports = function TestResult( content ) {
     , $pass = 0
     , $fail = 0
     , $attempts = 0
-    , $error = false
+    , $error = false    
+    , $time
 
-    , $current
-
-    // the actual lines gathered
+    // reading lines from the result
     , $lines = [ ]
+    , $current
     ,
 
     // start reading the content

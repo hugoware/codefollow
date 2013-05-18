@@ -1,6 +1,0 @@
-{
-  "head": { "content": "h1 { color: #f00; font-weight: normal; }" },
-  "body": { "content": "This is stuff from the user" },
-  "markup": { "content": "This is <html>from the user</html>" },
-  "script": { "eval": true, "content": "function add( a, b ) { return a + b; }" }
-}

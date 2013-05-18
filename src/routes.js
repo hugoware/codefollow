@@ -8,7 +8,10 @@ module.exports = [
   [ 'get', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/:remote(\\d+)/remote', DisplayRemoteRequest ],
   [ 'post', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/:remote(\\d+)/remote', NavigatePresentationRequest ],
   [ 'all', '/join/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})', JoinPresentationRequest ],
-  [ 'all', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/status', StatusRequest ]
+  [ 'all', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/status', StatusRequest ],
+  [ 'post', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/test', RunTestRequest ],
+  [ 'all', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/:test_key(\\d+)/:user_id([a-z0-9]+)/?', ServeTestRequest ],
+  [ 'all', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/:test_key(\\d+)/:user_id([a-z0-9]+)/:serve([^$]*)', ServeTestRequest ]
   
 
 

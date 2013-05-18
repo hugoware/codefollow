@@ -187,6 +187,7 @@ $(function() {
     _handle_slide = function( slide ) {
       _state('slide');
 
+      console.log( slide.content );
       slide.content = _markdown( slide.content );
       var markup = $templates.slide( slide );
       $ui.slide.html( markup );
@@ -207,7 +208,7 @@ $(function() {
         .each( function( i, element ) {
           var area = $( element )
             , target = area.attr('for')
-            , detail = $test.zones[ target ] 
+            , detail = $test.zones[ target ]
             , syntax = _syntax( area.attr('syntax') )
             , params = { value: detail.content, mode: syntax, onKeyEvent: _check_global_shortcut_keys }
             , editor = CodeMirror( element, params );

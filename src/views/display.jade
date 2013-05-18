@@ -1,11 +1,8 @@
 html
   head
-    script( type='text/javascript', src='/scripts/jquery.js' )
-    script( type='text/javascript', src='/codemirror/lib/codemirror.js' )
-    script( type='text/javascript', src='/scripts/handlebars.js' )
-    script( type='text/javascript', src='/scripts/markdown.js' )
-    script( type='text/javascript', src='/scripts/mousetrap.js' )
-    script( type='text/javascript', src='/scripts/app.js' )
+    title= presentation.title
+    link( rel='stylesheet', type='text/css', href='/ui/presentation.css' ) 
+    
 
   body
 
@@ -139,3 +136,11 @@ html
     |     <h4>{{ earned }} of {{ total }}</h4>
     |   </div>
     | </script>
+
+
+    script( type='text/javascript', src='/scripts/jquery.js' )
+    script( type='text/javascript', src='/codemirror/lib/codemirror.js' )
+    script( type='text/javascript', src='/scripts/handlebars.js' )
+    script( type='text/javascript', src='/scripts/markdown.js' )
+    script( type='text/javascript', src='/scripts/mousetrap.js' )
+    script( type='text/javascript', src='/scripts/app.js' )

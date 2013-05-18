@@ -1,7 +1,7 @@
 
 // handles reading presentation files
 
-module.exports = $$class = function PresentationReader( source, params ) {
+module.exports = $$class = function PresentationReader( source, params, presentation ) {
   var $this = this
     , $params = params || { }
 
@@ -10,6 +10,7 @@ module.exports = $$class = function PresentationReader( source, params ) {
     , $source = source
     , $directory = $$path.join( $$config.presentation_directory, $source )
     , $index = $$path.join( $directory, 'index' )
+    , $presentation = presentation
 
     // presentation content
     , $title = null
@@ -48,6 +49,7 @@ module.exports = $$class = function PresentationReader( source, params ) {
 
     // cleans up a section 
     _add = function( section ) {
+      Object.merge( section, { presentation: $presentation } );
 
       // presentation title
       if ( section.type == 'title' )

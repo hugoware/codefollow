@@ -28,7 +28,7 @@ var $$class = module.exports = function RunTestRequest( request, response ) {
     // to execute this test
     _identify_engine = function( test ) {
       if ( /\.html$/i.test( $test.execute ) )
-        return HtmlJsEngine;
+        return new HtmlJsEngine( test );
     },
 
     // is this an actual presentation
@@ -57,7 +57,7 @@ var $$class = module.exports = function RunTestRequest( request, response ) {
 
     // attempts to execute the test
     _run_test = function() {
-      $engine = new _identify_engine({
+      $engine = _identify_engine({
         presentation: $presentation,
         test: $presentation.view,
         user: $user

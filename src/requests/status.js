@@ -39,13 +39,43 @@ module.exports = $$class = function StatusRequest( request, response ) {
         $errors.error = 'invalid_user';
     },
 
+    // determines how to render a view
+    _show_view = function( view ) {
+      if ( !view )
+        return;
+      else if ( view.type == 'slide' )
+        _show_as_slide( view );
+      else if ( view.type == 'test' )
+        _show_as_test( view );
+      else if ( view.type == 'ranking' )
+        _show_as_ranking( view );
+    },
+
+    // renders an entire test
+    _show_as_test = function( test ) {
+      Object.merge( $json, test );
+      Object.merge( $json, { 
+        zones: test.zones_for( $user )
+      });
+    },
+
+    // slides are fine as is
+    _show_as_slide = function( slide ) {
+      Object.merge( $json, slide );
+    },
+
+    // displays each ranking
+    _show_as_ranking = function( ranking ) {
+      Object.merge( $json, ranking );
+    },
+
     // set the view information
     _set_success = function() {
       $json = { success: true, at: $presentation.index };
 
       // only include content if needed
       if ( $missing_at || $presentation.views[ $at ] == null || $at != $presentation.index )
-        Object.merge( $json, $presentation.view );
+        _show_view( $presentation.view );        
     },
 
     // unable to display

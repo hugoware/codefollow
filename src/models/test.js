@@ -1,9 +1,10 @@
 
 // testing user attempts
 
-module.exports = $$class = function Test( params, directory, expand ) {
+var $$class = module.exports = function Test( params, directory, expand ) {
   var $this = this
     , $params = params || { }
+    , $presentation = $params.presentation
 
     // handles lazy loading
     , $expanded = false
@@ -93,6 +94,25 @@ module.exports = $$class = function Test( params, directory, expand ) {
 
         });
 
+    },
+
+    // returns a populated set of zones
+    _zones_for = function( user ) {
+      var zones = { }
+        , existing = $presentation.zones_for( user );
+
+      // copy only zones for this test
+      $zones.each( function( zone ) {
+        var key = zone['for'];
+        zones[ key ] = {
+          'for': key,
+          name: zone.name,
+          syntax: zone.syntax,
+          content: existing[ key ] || zone.content || ''
+        };
+      });
+
+      return zones;
     };
 
 
@@ -102,14 +122,17 @@ module.exports = $$class = function Test( params, directory, expand ) {
 
   __define( $this, {
     type: { get: function() { return 'test' }, enumerable: true },
-    location: { get: _get_location, enumerable: true },
+    location: { get: _get_location },
     title: { get: _get_title, enumerable: true },
     explanation: { get: _get_explanation, enumerable: true },
-    execute: { get: _get_execute, enumerable: true },
-    zones: { get: _get_zones, enumerable: true },
-    tests: { get: _get_tests, enumerable: true },
+    execute: { get: _get_execute },
+    zones: { get: _get_zones },
+    tests: { get: _get_tests },
     directory: { get: _get_directory },
-    source: { get: _get_source }
+    source: { get: _get_source },
+
+    // extracting content
+    zones_for: _zones_for
   });
 
 };

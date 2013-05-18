@@ -63,6 +63,8 @@ module.exports = $$class = function StartPresentationRequest( request, response 
       $presentation = $model.presentation = presentation;
       $model.success = true;
 
+      console.log( presentation.id, presentation.test_key, $model.user.id );
+
     },
 
     // attempt to login for this user

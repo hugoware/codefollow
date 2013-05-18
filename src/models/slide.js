@@ -1,10 +1,11 @@
 
 // a slide displayed
 
-module.exports = $$class = function Slide( params, directory, expand ) {
+var $$class = module.exports = function Slide( params, directory, expand ) {
   var $this = this
     , $params = params || { }
     , $expand = expand || false
+    , $presentation = $params.presentation
     , $directory = directory
     ,
 

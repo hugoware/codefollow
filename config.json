@@ -8,7 +8,7 @@
   "presentation_id_length": 9,
   "max_unique_id_attempts": 20,
 
-  "browser_execution_script": "/User/hugoware/projects/codefollow/scripts/execute.js",
+  "browser_execution_script": "/User/hugoware/projects/codefollow/engines/htmljs/execute.js",
 
   "presentation_directory": "/Users/hugoware/projects/codefollow/presentations/",
 

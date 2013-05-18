@@ -72,8 +72,16 @@ var $$class = module.exports = function ServeTestRequest( request, response ) {
 
     // returns a file for a test
     _serve_file = function() {
-      var path = $$path.join( $model.presentation.view.source, $serve );
-      if ( $$fs.existsSync( path ) && _is_valid_location( path ))
+      var path = $$path.join( $model.presentation.view.source, $serve )
+        , exists = $$fs.existsSync( path )
+        , valid = exists && _is_valid_location( path );
+
+      // make sure it can be served
+      if ( !exists ) $model.errors.error = 'missing_file';
+      else if ( !valid ) $model.errors.error = 'invalid_location';
+
+      // serve the file if still okay
+      if ( $model.errors.none )
         $file = path;
     },
 
@@ -81,12 +89,13 @@ var $$class = module.exports = function ServeTestRequest( request, response ) {
     _serve_content = function() {
       $json = {
         success: true,
-        zones: $model.presentation.content_for( $model.user )
+        zones: $model.presentation.zones_for( $model.user )
       };
     },
 
     // handle the request
     _run = function() {
+      console.log( $route.params );
       $$validation.run( $model.errors, 
         _validate_presentation,
         _validate_view,
@@ -95,6 +104,7 @@ var $$class = module.exports = function ServeTestRequest( request, response ) {
         _identify_request );
 
       // render the result
+      console.log( $file, $json, $model.errors )
       if ( $model.errors.any )
         $response.send( 404 );
       else {

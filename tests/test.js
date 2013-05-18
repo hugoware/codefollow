@@ -22,12 +22,18 @@ module.exports = $$class = function TestAttempt( mod, tests ) {
     _mock = function( type, obj ) {
       $mocks[ type ] = $mocks[ type ] || global[ type ];
 
-      // create an object that can be called
-      // directly or instantiated
+      // assigns each of the stubs to an object
       var assign = function( target ) { for (var o in obj) target[o] = obj[o]; }
+
+        // this acts as a class definition so the mock can be instantiated
         , definition = function() { 
+
+          // add methods
           assign(this); 
-          if ( obj.ctor ) obj.ctor.apply( this, arguments )
+
+          // call the constructor ( if any )
+          if ( Object.isFunction( obj.ctor ) )
+            obj.ctor.apply( this, arguments );
         };
       
       // setup as all methods off the object itself
@@ -51,19 +57,45 @@ module.exports = $$class = function TestAttempt( mod, tests ) {
       for( var k in $mocks ) _unmock( k );
     },
 
+    // waits a time limit before ending a test
+    _wait = function( time, end ) {
+      var test = this;
+
+      // test is now delayed
+      test.delay = true;
+
+      // will give up after timelimit    
+      test.__wait = setTimeout(function() {
+        
+        // if it gives up, set as an error
+        if ( Object.isFunction( end ) )
+          end.call( test );
+
+        // anything else, present as a fail
+        else {
+          test.ok( false, end );
+          test.end();
+        }
+
+      }, 0|time );
+
+    },
+
+    // called when stopping a test
+    _end = function() {
+      clearTimeout( this.__wait );
+      this.done();
+      _reset();
+    },
 
     // includes any extra testing functions
     _extend_test = function( test ) {
-      return Object.merge( test || { }, {
+      return Object.merge( test, {
         mock: _mock,
         unmock: _unmock,
         reset: _reset,
-
-        // stopping the test
-        end: function() {
-          test.done();
-          _reset();
-        }
+        wait: _wait,
+        end: _end
       });
     },
 
@@ -84,7 +116,7 @@ module.exports = $$class = function TestAttempt( mod, tests ) {
     // add a setup/teardown action
     _setup_non_test = function( to, name, action ) {
       to[ name ] = function( ready ) {
-        var test = _extend_test();
+        var test = _extend_test({ });
         action.call( test, test );
         ready();
       };
@@ -172,12 +204,14 @@ global.WebRequest = function( params ) {
   __define( this, $context );
 };
 
+
 // helper to run requests
 global.WebRequest.run = function( type, params ) {
   var web = new WebRequest( params );
   web.instance = type.run( web.request, web.response );
   return web;
 };
+
 
 // helper to run requests
 global.WebRequest.get = function( type, params ) { return WebRequest.run( type, params); };

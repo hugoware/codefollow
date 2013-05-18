@@ -1,6 +1,6 @@
 
 // the presentation instance
-module.exports = $$class = function Presentation( key, params ) {
+var $$class = module.exports = function Presentation( key, params ) {
   var $params = params || { }
     , $this = this
 
@@ -43,7 +43,7 @@ module.exports = $$class = function Presentation( key, params ) {
     },
 
     // grabs user content if any
-    _get_content_for = function( user ) {
+    _zones_for = function( user ) {
       user = user instanceof User ? user.id : user;
       return $content[ user ] || { };
     },
@@ -56,7 +56,7 @@ module.exports = $$class = function Presentation( key, params ) {
     // loads a presentation as required
     _init = function() {
       if ( !$key ) return;
-      $reader = new PresentationReader( $key, $params );
+      $reader = new PresentationReader( $key, $params, $this );
     },
 
     // sets up a presentation so it can broadcast
@@ -67,7 +67,7 @@ module.exports = $$class = function Presentation( key, params ) {
     // slide navigation
     _next = function() { _set_index( $index + 1 ); },
     _previous = function() { _set_index( $index - 1 ); },
-    _peek = function() { return $reader.views[ $index + 1 ]; }
+    _peek = function() { return $reader.views[ $index + 1 ]; },
     
 
     // adds something to a presentation
@@ -149,7 +149,7 @@ module.exports = $$class = function Presentation( key, params ) {
     peek: _peek,
 
     // content
-    content_for: _get_content_for,
+    zones_for: _zones_for,
 
     // other getters
     title: { get: _get_title },

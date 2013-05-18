@@ -179,7 +179,7 @@ require('../test')( module, {
         , expected = $$path.join( $$config.presentation_directory, 'presentation_a/content', serve );
 
       // set some content
-      var content = $$presentation.content_for( $$user );
+      var content = $$presentation.zones_for( $$user );
       content.script = 'test';
 
       // create the view request

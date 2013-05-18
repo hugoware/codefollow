@@ -116,7 +116,7 @@ require('../test')( module, {
     presentation.add( user );
 
     // get the default info
-    var starting_content = presentation.content_for( user )
+    var starting_content = presentation.zones_for( user )
       , starting_count = 0;
 
     // get the counts
@@ -129,7 +129,7 @@ require('../test')( module, {
 
 
     // get the updated info
-    var updated_content = presentation.content_for( user )
+    var updated_content = presentation.zones_for( user )
       , updated_count = 0;
 
     // get the counts

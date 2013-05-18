@@ -5,6 +5,13 @@
 
 
 [zone name:script.js for:script syntax:javascript]
+script default
+
+[zone name:content.html for:html syntax:html]
+html default
+
+[zone name:style.css for:css syntax:css]
+style default
 
 [test functions.js]
 [test test.js]
