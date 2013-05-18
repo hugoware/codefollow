@@ -1,12 +1,14 @@
 html5
   head
     title Remote
-    script( type='text/javascript', src='/scripts/remote.js' )
-
   body
-    form( method='post' )
-      button( type='submit' ) Next
-      button( type='submit' ) Previous
+    button( type='submit', id='next' ) Next
+    button( type='submit', id='prev' ) Previous
 
     #preview
-      | Next slide content goes here
+      span Next
+      span= next.content
+      span= next.type
+
+    script( type='text/javascript', src='/scripts/jquery.js' )
+    script( type='text/javascript', src='/scripts/remote.js' )

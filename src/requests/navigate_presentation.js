@@ -7,37 +7,52 @@ module.exports = $$class = function NavigatePresentationRequest( request, respon
     , $route = request.route
     , $post = /post/i.test( $request.method )
 
+    , $end_of_presentation = { title: 'End of Presentation', type: 'end' }
+
     // where to go
     , $json = { }
     , $redirect = null
     , $presentation_id = _.numbers( $route.params.presentation_id )
+    , $remote_key = _.numbers( $route.params.remote )
+    
+    , $errors = new $$validation()
+    , $user = User.find( $session.user )
+    , $presentation = Presentation.active[ $presentation_id ]
+
+    // the direction being navigated
     , $next = /next/i.test( _.trim( request.body.move ) )
     , $previous = /prev(ious)?/i.test( _.trim( request.body.move ) )
     
     // model used by the view
     , $model = {
-      errors: new $$validation(),
-      user: User.find( $session.user ),
+      errors: $errors,
+      user: $user,
       presentation_id: $presentation_id,
-      presentation: Presentation.active[ $presentation_id ]
+      next: $presentation && new Summary( $presentation.peek() || $end_of_presentation )
     },
 
     // make sure the presentation exists
     _validate_presentation = function() {
-      if ( $model.presentation instanceof Presentation ) return;
-      $model.errors.error = 'missing_presentation';
+      if ( $presentation instanceof Presentation ) return;
+      $errors.error = 'missing_presentation';
+    },
+
+    // this is a valid remote
+    _validate_key = function() { 
+      if ( $presentation.remote_key !== $remote_key )
+        $errors.error = 'invalid_key';
     },
 
     // make sure the movement parameter is provided
     _validate_direction = function() {
       if ( ( $next && $previous ) || ( !$next && !$previous ) )
-        $model.errors.error = 'invalid_direction';
+        $errors.error = 'invalid_direction';
     },
 
     // verify the user can perform this action
     _validate_user = function() {
-      if ( $model.user && $model.presentation.leader && $model.presentation.leader.id == $model.user.id ) return;
-      $model.errors.error = 'invalid_user';
+      if ( $user && $presentation.leader && $presentation.leader.id == $user.id ) return;
+      $errors.error = 'invalid_user';
     },
 
     // handles moving to the next slide
@@ -45,9 +60,9 @@ module.exports = $$class = function NavigatePresentationRequest( request, respon
 
       // handle moving the presentation
       if ( $next )
-        $model.presentation.next();
+        $presentation.next();
       else if ( $previous )
-        $model.presentation.previous();
+        $presentation.previous();
 
       // broadcast the update
       // ???
@@ -57,7 +72,8 @@ module.exports = $$class = function NavigatePresentationRequest( request, respon
     _set_success = function() {
       Object.merge( $json, {
         success: true,
-        view: $model.presentation.view
+        view: $presentation.view,
+        next: $presentation.peek()
       });
     },
 
@@ -65,14 +81,14 @@ module.exports = $$class = function NavigatePresentationRequest( request, respon
     _set_failed = function() {
       Object.merge( $json, {
         success: false,
-        error: $model.errors.error
+        error: $errors.error
       });
     },
     
     // handle the request
     _run = function() {
       if ( $post )
-        $$validation.run( $model.errors,
+        $$validation.run( $errors,
           _validate_direction,
           _validate_presentation,
           _validate_user,
@@ -80,7 +96,7 @@ module.exports = $$class = function NavigatePresentationRequest( request, respon
         );
 
       // finalize the response
-      if ( $model.errors.none ) _set_success();
+      if ( $errors.none ) _set_success();
       else _set_failed();
 
       // write the output
@@ -90,11 +106,11 @@ module.exports = $$class = function NavigatePresentationRequest( request, respon
 
   __define( $this, { 
     run: _run,
-    success: { get: function() { return $model.success; } },
-    errors: { get: function() { return $model.errors; } },
-    presentation: { get: function() { return $model.presentation; } },
+    success: { get: function() { return $success; } },
+    errors: { get: function() { return $errors; } },
+    presentation: { get: function() { return $presentation; } },
     available: { get: function() { return Presentation.available; } },
-    user: { get: function() { return $model.user; } }
+    user: { get: function() { return $user; } }
   });
 
 };

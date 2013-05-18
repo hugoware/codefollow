@@ -6,30 +6,37 @@ module.exports = $$class = function DisplayRemoteRequest( request, response ) {
     , $session = request.session
     , $route = request.route
     , $post = /post/i.test( $request.method )
+
+    // what to show if at the very end of the presentation
+    , $end_of_presentation = { content: 'End of Presentation', type: 'end' }
     
     // where to go
     , $presentation_id = _.numbers( $route.params.presentation_id )
     , $remote_key = _.numbers( $route.params.remote )
+
+    , $errors = new $$validation()
+    , $user = User.find( $session.user )
+    , $presentation = Presentation.active[ $presentation_id ]
     
     // model used by the view
     , $model = {
-      errors: new $$validation(),
+      errors: $errors,
       allowed: false,
-      user: User.find( $session.user ),
       presentation_id: $presentation_id,
-      presentation: Presentation.active[ $presentation_id ]
+      user: $user,
+      next: $presentation && new Summary( $presentation.peek() || $end_of_presentation )
     }, 
 
     // is this an actual presentation
     _validate_presentation = function()  {
-      if ( !($model.presentation instanceof Presentation )) 
-        $model.errors.error = 'missing_presentation';
+      if ( !($presentation instanceof Presentation )) 
+        $errors.error = 'missing_presentation';
     },
 
-    // is this user part of the presentation
+    // this is a valid remote
     _validate_key = function() { 
-      if ( $model.presentation.remote_key !== $remote_key )
-        $model.errors.error = 'invalid_key';
+      if ( $presentation.remote_key !== $remote_key )
+        $errors.error = 'invalid_key';
     },
 
     // handle the request
@@ -39,7 +46,7 @@ module.exports = $$class = function DisplayRemoteRequest( request, response ) {
         _validate_key );
 
       // go to home for invalid requests
-      if ( $model.errors.any )
+      if ( $errors.any )
         $response.redirect( '/' );
 
       // no problems, show remote

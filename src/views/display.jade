@@ -1,8 +1,141 @@
 html
   head
+    script( type='text/javascript', src='/scripts/jquery.js' )
+    script( type='text/javascript', src='/codemirror/lib/codemirror.js' )
+    script( type='text/javascript', src='/scripts/handlebars.js' )
+    script( type='text/javascript', src='/scripts/markdown.js' )
+    script( type='text/javascript', src='/scripts/mousetrap.js' )
+    script( type='text/javascript', src='/scripts/app.js' )
 
   body
-    #content
+
+    #slide
+    #test
+    #results
+    #rankings
 
     a( href=remote_url, target='_blank' ) Remote
     
+    //- a general slide
+    | <script id="template_slide" type="text/template" >
+    |   <div class="content" >{{{ content }}}</div>
+    | </script>
+
+    //- displaying a test and editor
+    | <script id="template_test" type="text/template" >
+    |   <div class="content" >
+    |     <h2>{{ title }}</h2>
+    |     <div>{{{ explanation }}}</div>
+    |   </div>
+    | 
+    |   <div id="editor" >
+    |     <div class="toolbar" >
+    |       
+    |       <ul class="tabs" >
+    |       {{# each zones }}
+    |         <li for="{{ for }}" >{{ name }}</li>
+    |       {{/ each }}
+    |       </ul>
+    | 
+    |       <div class="actions" >
+    |         <button class="submit" >Submit</button>
+    |         <button class="preview" >Preview</button>
+    |       </div>
+    |     </div>
+    | 
+    |     <div class="editors" >
+    |     {{# each zones }}
+    |       <div for="{{ for }}" syntax="{{ syntax }}" class="editor" >
+    |       </div>
+    |     {{/ each }}
+    |     </div>
+    |   </div>
+    | </script>
+
+
+    //- participant results for tests
+    | <script id="template_results" type="text/template">
+    |   <div class="dialog" >
+    |     <div class="container" >
+    |             
+    |       <h2>{{ title }}</h2>
+    |       <ul class="grade" >
+    |         <li class="{{#if grade_1}}on{{/if}}" ></li>
+    |         <li class="{{#if grade_2}}on{{/if}}" ></li>
+    |         <li class="{{#if grade_3}}on{{/if}}" ></li>
+    |       </ul>
+    | 
+    |       <h3>Summary</h3>
+    |       <div class="view summary" >
+    |         <ul>
+    |           <li class="first" >
+    |             <h4>{{ earned }}</h4>
+    |             <div>Earned Points</div>
+    |           </li>
+    |           <li>
+    |             <h4>{{ total }}</h4>
+    |             <div>Total Points</div>
+    |           </li>
+    |           <li class="last" >
+    |             <h4>{{ grade }}</h4>
+    |             <div>Score</div>
+    |           </li>
+    |         </ul>
+    |       </div>
+    | 
+    |       <h3>Tests</h3>
+    |       <div class="view tests" >
+    |         {{# each tests }}
+    |           <h4 class="{{# if pass }} pass {{ else }} fail {{/ if }}" >{{ name }}</h4>
+    |           <ul class="{{# if pass }} hide {{/ if }}" >
+    |             {{# each tests }}
+    |             <li class="{{# if pass }} pass {{ else }} fail {{/ if }}" >{{ name }}</li>
+    |             {{/ each }}
+    |           </ul>
+    |         {{/ each}}
+    |       </div>
+    | 
+    |       <h3>Console</h3>
+    |       <div class="view console" >
+    |         {{# if messages }}
+    |         <pre>{{ messages }}</pre>
+    |         {{ else }}
+    |         <pre>No console messages</pre>
+    |         {{/ if }}
+    |       </div>
+    | 
+    |     </div>
+    |   </div>
+    | </script>
+
+
+    //- the leader board for participants
+    | <script id="template_rankings" type="text/template" >
+    |   <div class="content" >
+    |     <ul>
+    |       <li>
+    |         {{# each rankings }}
+    |         {{> ranking }}
+    |         {{/ each }}
+    |       </li>
+    |     </ul>
+    | 
+    |     {{# if current }}
+    |     <div class="current" >
+    |       {{# with current }}
+    |       {{> ranking }}
+    |       {{/ with }}
+    |     </div>
+    |     {{/ if }}
+    |   </div>
+    | </script>
+
+    //- each user listed on rankings
+    | <script id="template_ranking" class="partial" type="text/template" >
+    |   <div class="rank" >
+    |     <img src="{{ gravatar }}" />
+    |     <h3>{{ name }}</h3>
+    |     <h4>{{ rank }}</h4>
+    |     <h4>{{ earned }} of {{ total }}</h4>
+    |   </div>
+    | </script>

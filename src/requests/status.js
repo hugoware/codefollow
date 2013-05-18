@@ -10,42 +10,49 @@ module.exports = $$class = function StatusRequest( request, response ) {
     // where to go
     , $redirect = null
     , $presentation_id = _.numbers( $route.params.presentation_id )
-    , $at = $request.body.at == null ? -1 : 0|_.numbers( $request.body.at )
+    , $presentation = Presentation.active[ $presentation_id ]
+    , $errors = new $$validation()
+    , $user = User.find( $session.user )
+    
+    // requested slide
+    , $requested_at = _.numbers( $request.body.at )
+    , $at = ( parseInt( $requested_at ) || 0 )
+    , $missing_at = $requested_at.length == 0
     
     // model used by the view
     , $model = {
-      errors: new $$validation(),
-      user: User.find( $session.user ),
+      errors: $errors,
+      user: $user,
       presentation_id: $presentation_id,
-      presentation: Presentation.active[ $presentation_id ]
+      presentation: $presentation
     }, 
 
     // make sure the presentation exists
     _validate_presentation = function() {
-      if ( !($model.presentation instanceof Presentation )) 
-        $model.errors.error = 'missing_presentation';
+      if ( !($presentation instanceof Presentation )) 
+        $errors.error = 'missing_presentation';
     },
 
     // check if this user can be used
     _validate_user = function() {
-      if ( !$model.presentation.is_member( $model.user ) )
-        $model.errors.error = 'invalid_user';
+      if ( !$presentation.is_member( $user ) )
+        $errors.error = 'invalid_user';
     },
 
     // set the view information
     _set_success = function() {
-      $json = { success: true, at: $model.presentation.index };
+      $json = { success: true, at: $presentation.index };
 
       // only include content if needed
-      if ( $at !== $model.presentation.index )
-        Object.merge( $json, $model.presentation.view );
+      if ( $missing_at || $presentation.views[ $at ] == null || $at != $presentation.index )
+        Object.merge( $json, $presentation.view );
     },
 
     // unable to display
     _set_failed = function() {
       $json = {
         success: false,
-        error: $model.errors.error
+        error: $errors.error
       };
     },
 

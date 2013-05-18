@@ -67,6 +67,7 @@ module.exports = $$class = function Presentation( key, params ) {
     // slide navigation
     _next = function() { _set_index( $index + 1 ); },
     _previous = function() { _set_index( $index - 1 ); },
+    _peek = function() { return $reader.views[ $index + 1 ]; }
     
 
     // adds something to a presentation
@@ -145,6 +146,7 @@ module.exports = $$class = function Presentation( key, params ) {
     // navigation
     next: _next,
     previous: _previous,
+    peek: _peek,
 
     // content
     content_for: _get_content_for,

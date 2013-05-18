@@ -16,7 +16,7 @@ $(function() {
     , $state = 'setup'
     , $stopped = false
     , $busy = false
-    , $progress = null
+    , $progress = -1
 
     // urls used for presentation requests
     , $trailing_slash = !/\/$/.test( window.location.pathname )
@@ -168,7 +168,8 @@ $(function() {
     // determine what to do with a response
     _identify = function( result ) {
       if ( result == null ) return;
-      $progress = result.at || $progress;
+      console.log( result );
+      $progress = result.at != null ? result.at : $progress;
       $state = result.state || $state;
 
       // choose the view

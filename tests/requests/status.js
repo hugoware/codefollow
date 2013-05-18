@@ -74,7 +74,7 @@ require('../test')( module, {
     presentation.add( user );
 
     var web = WebRequest.post( StatusRequest, {
-      body: { at: 0 },
+      body: { at: '0' },
       route: { presentation_id: presentation.id },
       session: { user: user.id }
     });
@@ -82,6 +82,48 @@ require('../test')( module, {
     this.ok( web.result.json.success, 'did not display slide' );
     this.equal( web.result.json.type, null, 'should not include full view' );
     this.equal( web.result.json.at, 0, 'should be on first slide' );
+  },
+
+  displays_partial_view_when_away_from_start_and_is_provided: function() {
+    var presentation = new Presentation('presentation_a')
+      , user = new User();
+
+    User.login( user );
+    Presentation.register( presentation );
+    presentation.add( user );
+
+    presentation.next();
+
+    var web = WebRequest.post( StatusRequest, {
+      body: { at: '1' },
+      route: { presentation_id: presentation.id },
+      session: { user: user.id }
+    });
+
+    this.ok( web.result.json.success, 'did not display slide' );
+    this.equal( web.result.json.type, null, 'should not include full view' );
+    this.equal( web.result.json.at, 1, 'should be on first slide' );
+  },
+
+  displays_partial_view_when_invalid_and_is_provided: function() {
+    var presentation = new Presentation('presentation_a')
+      , user = new User();
+
+    User.login( user );
+    Presentation.register( presentation );
+    presentation.add( user );
+
+    presentation.next();
+
+    var web = WebRequest.post( StatusRequest, {
+      body: { at: '-1' },
+      route: { presentation_id: presentation.id },
+      session: { user: user.id }
+    });
+
+    this.ok( web.result.json.success, 'did not display slide' );
+    this.equal( web.result.json.type, null, 'should not include full view' );
+    this.equal( web.result.json.at, 1, 'should be on first slide' );
   },
 
   displays_test_differently_as_result: function() {

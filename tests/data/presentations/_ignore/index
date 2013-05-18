@@ -1,0 +1,22 @@
+[title Presentation A]
+[tags javascript, programming, coding]
+
+[description]
+desc for a
+--[title with comment]
+
+
+[slide content/slide_1.md]
+
+[slide]
+inline content
+
+[slide content/slide_2.md]
+
+[test content]
+
+[ranking]
+
+[slide]
+ending
+

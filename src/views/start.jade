@@ -2,7 +2,7 @@ extends layout
 
 block content
   form( method='post', action='/start' )
-    - if ( errors )
+    - if ( errors.any )
       ul
         - for ( e in errors )
           li= errors[e]

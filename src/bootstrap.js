@@ -41,6 +41,7 @@ var includes = {
   'PresentationLocator': './models/presentation_locator',
   'PresentationRepository': './models/presentation_repository',
   'Presentation': './models/presentation',
+  'Summary': './models/summary',
   'User': './models/User'
 
 };

@@ -5,7 +5,8 @@ module.exports = [
   [ 'all', '/start', StartPresentationRequest ],
   [ 'all', '/join', JoinPresentationRequest ],
   [ 'all', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})', DisplayPresentationRequest ],
-  [ 'all', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/:remote(\\d+)/remote', DisplayRemoteRequest ],
+  [ 'get', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/:remote(\\d+)/remote', DisplayRemoteRequest ],
+  [ 'post', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/:remote(\\d+)/remote', NavigatePresentationRequest ],
   [ 'all', '/join/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})', JoinPresentationRequest ],
   [ 'all', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/status', StatusRequest ]
   

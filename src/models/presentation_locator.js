@@ -10,6 +10,7 @@ module.exports = $$class = function PresentationLocator() {
 
     // grabs located presentations
     _get_available = function() { return $available; },
+    _exclude_directory = function( name ) { return /^_/.test( name ); },
 
     // check for each folder in the presentation directory
     _get_presentation_directory_entries = function() {
@@ -23,7 +24,7 @@ module.exports = $$class = function PresentationLocator() {
           , entry = $fs.statSync( path );
         
         // only keep directories for now
-        if ( entry.isDirectory() )
+        if ( entry.isDirectory() && !_exclude_directory( item ) )
           keep.push( item );
         });
 

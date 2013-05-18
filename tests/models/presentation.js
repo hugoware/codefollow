@@ -146,6 +146,29 @@ require('../test')( module, {
     this.equal( updated_content.second, '2', 'did not match second value' );
     this.equal( updated_content.third, '3', 'did not match third value' );
 
+  },
+
+  can_peek_ahead: function() {
+    var path = $$path.join( __dirname, '/../data/presentations' );
+    $$config.mock( 'presentation_directory', path );
+    Presentation.repository.refresh();
+
+    // create the presentation that will be displayed
+    var presentation = new Presentation('presentation_a');
+
+    this.ok( presentation.peek(), 'did not have anything to peek' );
+    this.equal( presentation.peek().type, 'slide', 'first peeked item was not a slide' );
+    this.equal( presentation.peek().content, 'inline content', 'first peeked had wrong content' );
+
+    presentation.next();
+
+    this.ok( presentation.peek(), 'second did not anything to peek' );
+    this.equal( presentation.peek().type, 'slide', 'second peeked item was not a slide' );
+    this.equal( presentation.peek().content, 'slide 2 content', 'second peeked had wrong content' );
+
+    // check for peeking too far
+    presentation.index = presentation.views.length;
+    this.ok( !presentation.peek(), 'too far did not anything to peek' );
   }
 
   // working_with_external_presentations: {

@@ -4,9 +4,9 @@ require('../test')( module, {
     Presentation.clear();
 
     // load in presentations
-    // var path = $$path.join( __dirname, '/../data/presentations' );
-    // $$config.mock( 'presentation_directory', path );
-    // Presentation.repository.refresh();
+    var path = $$path.join( __dirname, '/../data/presentations' );
+    $$config.mock( 'presentation_directory', path );
+    Presentation.repository.refresh();
   },
 
   is_a_thing: function() {
@@ -43,10 +43,31 @@ require('../test')( module, {
     // run the attempts
     var missing_remote = { route: { presentation_id: presentation.id } }
       , valid_remote = { route: { presentation_id: presentation.id, remote: presentation.remote_key } }
-      , attempt = WebRequest.run( DisplayRemoteRequest, valid_remote )
-    
+      , attempt = WebRequest.run( DisplayRemoteRequest, valid_remote );
+
     this.equal( attempt.result.view, 'remote', 'did not render remove view' );
+    this.ok( attempt.result.params.next, 'did not have next slide provided' );
+    this.equal( attempt.result.params.next.preview, 'inline content', 'was not correct next slide' );
+    this.equal( attempt.result.params.next.type, 'slide', 'was not correct type of next slide' );
     this.ok( attempt.instance.errors.none, 'still had errors when successful' );
+  },
+
+  displays_end_slide_for_next_when_at_end: function() {
+    var presentation = new Presentation( 'presentation_a' );
+    Presentation.register( presentation );
+    presentation.index = presentation.views.length;
+
+    // run the attempts
+    var missing_remote = { route: { presentation_id: presentation.id } }
+      , valid_remote = { route: { presentation_id: presentation.id, remote: presentation.remote_key } }
+      , attempt = WebRequest.run( DisplayRemoteRequest, valid_remote );
+
+    this.equal( attempt.result.view, 'remote', 'did not render remove view' );
+    this.ok( attempt.result.params.next, 'did not have next slide provided' );
+    this.equal( attempt.result.params.next.preview, 'End of Presentation', 'was not ending slide' );
+    this.equal( attempt.result.params.next.type, 'end', 'was not ending type of next slide' );
+    this.ok( attempt.instance.errors.none, 'still had errors when successful' );
+    
   }
 
 });
