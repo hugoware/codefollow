@@ -2,6 +2,8 @@ html
   head
     title= presentation.title
     link( rel='stylesheet', type='text/css', href='/ui/presentation.css' ) 
+    link( rel='stylesheet', type='text/css', href=stylesheet ) 
+    link( rel='stylesheet', type='text/css', href='/codemirror/lib/codemirror.css' )
     
 
   body
@@ -56,25 +58,25 @@ html
     |     <div class="container" >
     |             
     |       <h2>{{ title }}</h2>
-    |       <ul class="grade" >
-    |         <li class="{{#if grade_1}}on{{/if}}" ></li>
-    |         <li class="{{#if grade_2}}on{{/if}}" ></li>
-    |         <li class="{{#if grade_3}}on{{/if}}" ></li>
+    |       <ul class="grade rank-{{ score }}" >
+    |         <li class="rank-1" ></li>
+    |         <li class="rank-2" ></li>
+    |         <li class="rank-3" ></li>
     |       </ul>
     | 
     |       <h3>Summary</h3>
     |       <div class="view summary" >
     |         <ul>
     |           <li class="first" >
-    |             <h4>{{ earned }}</h4>
+    |             <h4>{{ pass }}</h4>
     |             <div>Earned Points</div>
     |           </li>
     |           <li>
-    |             <h4>{{ total }}</h4>
+    |             <h4>{{ attempts }}</h4>
     |             <div>Total Points</div>
     |           </li>
     |           <li class="last" >
-    |             <h4>{{ grade }}</h4>
+    |             <h4>{{ score }}</h4>
     |             <div>Score</div>
     |           </li>
     |         </ul>
@@ -83,8 +85,8 @@ html
     |       <h3>Tests</h3>
     |       <div class="view tests" >
     |         {{# each tests }}
-    |           <h4 class="{{# if pass }} pass {{ else }} fail {{/ if }}" >{{ name }}</h4>
-    |           <ul class="{{# if pass }} hide {{/ if }}" >
+    |           <h4 class="{{# if pass }} pass {{ else }} fail {{/ if }}" >{{ title }}</h4>
+    |           <ul>
     |             {{# each tests }}
     |             <li class="{{# if pass }} pass {{ else }} fail {{/ if }}" >{{ name }}</li>
     |             {{/ each }}
@@ -111,7 +113,7 @@ html
     |   <div class="content" >
     |     <ul>
     |       <li>
-    |         {{# each rankings }}
+    |         {{# each leaders }}
     |         {{> ranking }}
     |         {{/ each }}
     |       </li>
@@ -119,7 +121,7 @@ html
     | 
     |     {{# if current }}
     |     <div class="current" >
-    |       {{# with current }}
+    |       {{# with user }}
     |       {{> ranking }}
     |       {{/ with }}
     |     </div>
@@ -132,8 +134,7 @@ html
     |   <div class="rank" >
     |     <img src="{{ gravatar }}" />
     |     <h3>{{ name }}</h3>
-    |     <h4>{{ rank }}</h4>
-    |     <h4>{{ earned }} of {{ total }}</h4>
+    |     <h4>{{ pass }} of {{ attempts }}</h4>
     |   </div>
     | </script>
 

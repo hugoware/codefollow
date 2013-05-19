@@ -1,22 +1,29 @@
+var $$TOTAL_RANKS = 3;
 
 // a result of executing a user test
-var $$class = module.exports = function TestResult( content ) {
+var $$class = module.exports = function TestResult( test, content, error ) {
   var $this = this
     , $content = ( content || '' ).toString().trim()
 
     // other details
+    , $test = test
     , $tests = [ ]
     , $messages = [ ]
     , $pass = 0
     , $fail = 0
     , $attempts = 0
-    , $error = false    
+    , $error = error
     , $time
 
     // reading lines from the result
     , $lines = [ ]
     , $current
     ,
+
+    // calculates final score value
+    _get_score = function() {
+      return 0|( ( $pass /  $attempts ) * $$TOTAL_RANKS );
+    },
 
     // start reading the content
     _parse = function() {
@@ -40,7 +47,6 @@ var $$class = module.exports = function TestResult( content ) {
         else if ( gather )
           $lines.push( line );
       });
-
     },
 
     // grabs the test results
@@ -110,13 +116,16 @@ var $$class = module.exports = function TestResult( content ) {
 
 
   __define( $this, {
+    title: { get: function() { return $test.title; }, enumerable: true },
+    score: { get: _get_score, enumerable: true },
+    type: { get: function() { return 'results' }, enumerable: true },
     pass: { get: function() { return $pass; }, enumerable: true },
     fail: { get: function() { return $fail; }, enumerable: true },
     attempts: { get: function() { return $attempts; }, enumerable: true },
     time: { get: function() { return $time; }, enumerable: true },
     messages: { get: function() { return $messages; }, enumerable: true },
     tests: { get: function() { return $tests; }, enumerable: true },
-    error: { get: function() { return $error; } },
+    error: { get: function() { return $error; } }
 
   });
 };

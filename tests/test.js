@@ -171,6 +171,7 @@ global.WebRequest = function( params ) {
 
     // incoming request 
     request: {
+      url: params.url || '/',
       session: params.session || { },
       method: params.method || 'get',
       body: params.body || { },

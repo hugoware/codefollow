@@ -48,7 +48,6 @@ require('../test')( module, {
       body: { name: 'fred', email: 'fred@test.com', presentation_id: 'presentation_a' }
     })
 
-    this.ok( web.instance.success, 'did not work correctly' );
     this.ok( web.instance.errors.none, 'still had errors' );
     this.ok( web.instance.presentation instanceof Presentation, 'created a new presentation' );
     this.ok( web.instance.user instanceof User, 'logged in a new user' );
@@ -56,7 +55,8 @@ require('../test')( module, {
     this.equal( web.request.session.user, web.instance.user.id, 'did not log in correct user' );
 
     // redirected the request
-    this.equal( web.result.redirect, '/' + web.instance.presentation.identity );
+    var expect = '/{1}/'.assign( web.instance.presentation.identity );
+    this.equal( web.result.redirect, expect );
   }
 
 });

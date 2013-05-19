@@ -16,6 +16,9 @@ var $$class = module.exports = function Presentation( key, params ) {
     , $remote_key = Object.generate_id( $$config.remote_key_length )
     , $test_key = Object.generate_id( $$config.test_key_length )
 
+    // get location of the presentation
+    , $directory = $$path.join( $$config.presentation_directory, key )
+
     // the view being displayed
     , $index = 0
     , 
@@ -28,6 +31,8 @@ var $$class = module.exports = function Presentation( key, params ) {
     _get_view = function() { return $reader.views[ $index ]; },
     _get_remote_key = function() { return $remote_key; },
     _get_test_key = function() { return $test_key; },
+    _get_directory = function() { return $directory; },
+    _get_stylesheet = function() { return $reader.stylesheet; },
 
     // getters
     _get_leader = function() { return $leader; },
@@ -43,9 +48,21 @@ var $$class = module.exports = function Presentation( key, params ) {
     },
 
     // grabs user content if any
-    _zones_for = function( user ) {
+    _zones_for = function( user, test ) {
       user = user instanceof User ? user.id : user;
-      return $content[ user ] || { };
+      var content = $content[ user ] || { };
+
+      // if this needs to be filtered
+      if ( !test ) return content;
+
+      // grab values for the test only
+      var keep = { }
+      test.zones.each( function( zone ) {
+        target = zone['for'];
+        keep[ target ] = content[ target ] || '';
+      });
+
+      return keep;
     },
 
     _identity = function() { 
@@ -155,7 +172,9 @@ var $$class = module.exports = function Presentation( key, params ) {
     title: { get: _get_title },
     views: { get: _get_views },
     slides: { get: _get_slides },
-    tests: { get: _get_tests }
+    tests: { get: _get_tests },
+    directory: { get: _get_directory },
+    stylesheet: { get: _get_stylesheet }
     
   });
 

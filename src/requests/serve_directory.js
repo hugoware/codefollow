@@ -1,6 +1,5 @@
-
-var $$class = module.exports = function ServeTestRequest( request, response ) {
-  var $this = this
+var $$class = module.exports = function ServeDirectoryRequest( request, response ) {
+    var $this = this
 
     , $request = request
     , $response = response
@@ -9,13 +8,12 @@ var $$class = module.exports = function ServeTestRequest( request, response ) {
     , $post = /post/i.test( $request.method )
     
     // where to go
-    , $presentation_id = _.numbers( $route.params.presentation_id )
-    , $presentation = Presentation.active[ $presentation_id ]
-    , $test_key = _.numbers( $route.params.test_key )
-    , $user_id = $route.params.user_id
-    , $serve = _.trim( $route.params.serve )
     , $errors = new $$validation()
-    , $user = User.find( $user_id )
+    , $presentation_id = _.numbers( $route.params.presentation_id )
+    , $serve = _.trim( $route.params.serve )
+    , $user = User.find( $session.user )
+    , $presentation = Presentation.active[ $presentation_id ]
+    
 
     // possible results
     , $json
@@ -35,42 +33,43 @@ var $$class = module.exports = function ServeTestRequest( request, response ) {
         $errors.error = 'missing_presentation';
     },
 
-    // make sure the key provided is correct
-    _validate_test_key = function() {
-      if ( $presentation.test_key != $test_key )
-        $errors.error = 'invalid_test_key';
-    },
-
     // is this user part of the presentation
     _validate_user = function() { 
       if ( !$presentation.is_member( $user ) )
         $errors.error = 'invalid_user';
     },
 
-    // make sure the 
-    _validate_view = function() {
-      if ( !( $presentation.view instanceof Test ) )
-        $errors.error = 'invalid_view';
-    },
-
-    // checks if looking for user input values
-    _is_input_request = function() {
-      return /^(.*\/input|input)$/.test( $serve );
-    },
-
     // verify a file can be lesser
     _is_valid_location = function( path ) {
-      var root = $$fs.realpathSync( $presentation.view.directory )
+      var root = $$fs.realpathSync( $presentation.directory )
         , target = $$fs.realpathSync( path )
         , contains = target.indexOf( root ) == 0;
       return contains;
+    },
+
+    // check if this is for the current test
+    _for_input = function() { return /input$/.test( $serve ) },
+    
+    // checks if the route requested matches a test directory
+    _is_allowed = function() {
+      for (var t in $presentation.tests) {
+        var test = $presentation.tests[t]
+          , location = test.location;
+
+        // if this matches a directory request, require the test is active
+        if ( $serve.substr( 0, location.length ) == location )
+          return $presentation.view.location == test.location;
+      }
+
+      // any other location is fine
+      return true;
     },
 
     // determines what should be sent back
     _identify_request = function() {
 
       // if looking for user content
-      if ( _is_input_request() )
+      if ( _for_input() )
         _serve_content();
 
       // returns file content
@@ -87,6 +86,7 @@ var $$class = module.exports = function ServeTestRequest( request, response ) {
       // make sure it can be served
       if ( !exists ) $errors.error = 'missing_file';
       else if ( !valid ) $errors.error = 'invalid_location';
+      else if ( !_is_allowed() ) $errors.error = 'unavailable';
 
       // serve the file if still okay
       if ( $errors.none )
@@ -95,6 +95,10 @@ var $$class = module.exports = function ServeTestRequest( request, response ) {
 
     // displays content provided by the user
     _serve_content = function() {
+      if ( !_is_allowed() )
+        return $errors.error = 'unavailable';
+
+      // grab the content
       $json = {
         success: true,
         zones: $presentation.view.zones_for( $user )
@@ -105,8 +109,6 @@ var $$class = module.exports = function ServeTestRequest( request, response ) {
     _run = function() {
       $$validation.run( $errors, 
         _validate_presentation,
-        _validate_view,
-        _validate_test_key,
         _validate_user,
         _identify_request );
 

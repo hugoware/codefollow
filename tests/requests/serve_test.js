@@ -109,7 +109,7 @@ require('../test')( module, {
     // will attempt to display existing file
     sends_file_when_requested: function() {
       var serve = 'file.txt'
-        , expected = $$path.join( $$config.presentation_directory, 'presentation_a/content', serve );
+        , expected = $$path.join( $$config.presentation_directory, 'presentation_a', serve );
 
       // create the view request
       var web = WebRequest.get( ServeTestRequest, {
@@ -122,7 +122,7 @@ require('../test')( module, {
     // will attempt to display existing file
     send_404_for_missing_files: function() {
       var serve = 'missing.txt'
-        , expected = $$path.join( $$config.presentation_directory, 'presentation_a/content', serve );
+        , expected = $$path.join( $$config.presentation_directory, 'presentation_a', serve );
 
       // create the view request
       var web = WebRequest.get( ServeTestRequest, {
@@ -133,35 +133,35 @@ require('../test')( module, {
       this.equal( web.result.status, 404, 'did not return 404' );
     },
 
-    // will attempt to display existing file
-    will_map_to_lower_directories: function() {
-      var serve = '../file.txt'
-        , expected = $$path.join( $$config.presentation_directory, 'presentation_a/content', serve );
+    // // will attempt to display existing file
+    // will_map_to_lower_directories: function() {
+    //   var serve = '../file.txt'
+    //     , expected = $$path.join( $$config.presentation_directory, 'presentation_a/content', serve );
 
-      // create the view request
-      var web = WebRequest.get( ServeTestRequest, {
-        route: { presentation_id: $$presentation.identity, test_key: $$presentation.test_key, user_id: $$user.id, serve: serve }
-      });
+    //   // create the view request
+    //   var web = WebRequest.get( ServeTestRequest, {
+    //     route: { presentation_id: $$presentation.identity, test_key: $$presentation.test_key, user_id: $$user.id, serve: serve }
+    //   });
 
-      this.equal( web.result.sendfile, expected, 'did not return correct file' );
-    },
+    //   this.equal( web.result.sendfile, expected, 'did not return correct file' );
+    // },
 
-    // will attempt to display existing file
-    will_map_relative_paths: function() {
-      var serve = '../lib/file.txt'
-        , expected = $$path.join( $$config.presentation_directory, 'presentation_a/content', serve );
+    // // will attempt to display existing file
+    // will_map_relative_paths: function() {
+    //   var serve = '/content/../lib/file.txt'
+    //     , expected = $$path.join( $$config.presentation_directory, 'presentation_a/content', serve );
 
-      // create the view request
-      var web = WebRequest.get( ServeTestRequest, {
-        route: { presentation_id: $$presentation.identity, test_key: $$presentation.test_key, user_id: $$user.id, serve: serve }
-      });
+    //   // create the view request
+    //   var web = WebRequest.get( ServeTestRequest, {
+    //     route: { presentation_id: $$presentation.identity, test_key: $$presentation.test_key, user_id: $$user.id, serve: serve }
+    //   });
 
-      this.equal( web.result.sendfile, expected, 'did not return correct file' );
-    },
+    //   this.equal( web.result.sendfile, expected, 'did not return correct file' );
+    // },
 
     // will attempt to display existing file
     will_not_go_beneath_presentation_directory: function() {
-      var serve = '../../too_low.txt'
+      var serve = '../too_low.txt'
         , expected = $$path.join( $$config.presentation_directory, 'presentation_a/content', serve );
 
       // create the view request
@@ -175,7 +175,7 @@ require('../test')( module, {
 
     // will attempt to display existing file
     will_return_user_content: function() {
-      var serve = 'user'
+      var serve = 'input'
         , expected = $$path.join( $$config.presentation_directory, 'presentation_a/content', serve );
 
       // set some content

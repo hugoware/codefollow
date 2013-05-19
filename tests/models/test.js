@@ -91,6 +91,31 @@ require('../test')( module, {
     this.equal( content.css.content, 'style default', 'has correct content for css' );
     this.ok( !!!content.extra, 'did not pull too much content' );
 
+  },
+
+  will_track_user_results: function() {
+
+    this.mock('TestResult', {
+      ctor: function( id ) { this.id = id; }
+    })
+
+    var test = new Test()
+      , user = new User()
+      , starting_results = new TestResult( 1 )
+      , replace_results = new TestResult( 2 );
+
+    // try the first attempt at setting
+    test.set_results( user, starting_results );
+    this.ok( test.results, 'did not have starting results' );
+    this.ok( test.results[ user.id ], 'did not have starting results for user' );
+    this.equal( test.results[ user.id ].id, starting_results.id, 'starting results were not correct' );
+
+    // then replace the results
+    test.set_results( user, replace_results );
+    this.ok( test.results, 'did not have replace results' );
+    this.ok( test.results[ user.id ], 'did not have replace results for user' );
+    this.equal( test.results[ user.id ].id, replace_results.id, 'replace results were not correct' );
+
   }
 
 

@@ -22,6 +22,9 @@ var $$class = module.exports = function Test( params, directory, expand ) {
     , $execute = null
     , $zones = [ ]
     , $tests = [ ]
+
+    // holds user submission results
+    , $results = { }
     ,
 
     // getters
@@ -33,10 +36,18 @@ var $$class = module.exports = function Test( params, directory, expand ) {
     _get_tests = function() { _expand(); return $tests; },
     _get_directory = function() { return $directory; },
     _get_source = function() { return $source; },
+    _get_results = function() { return $results; },
 
     // including new content
     _add_test = function( section ) { $tests.push( section ); },
     _add_zone = function( section ) { $zones.push( section ); },
+
+    // adds results for use with leaderboards
+    _set_results = function ( user, results ) {
+      if ( !( results instanceof TestResult ) ) return;
+      if ( user instanceof User ) user = user.id;
+      $results[ user ] = results;
+    },
 
 
     // adds a zone entry
@@ -130,9 +141,11 @@ var $$class = module.exports = function Test( params, directory, expand ) {
     tests: { get: _get_tests },
     directory: { get: _get_directory },
     source: { get: _get_source },
+    results: { get: _get_results },
 
     // extracting content
-    zones_for: _zones_for
+    zones_for: _zones_for,
+    set_results: _set_results
   });
 
 };

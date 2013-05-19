@@ -179,7 +179,7 @@ $(function() {
         _handle_test( result );
       else if ( result.type == 'results' )
         _handle_results( result );
-      else if ( result.type == 'rankings' )
+      else if ( result.type == 'ranking' )
         _handle_rankings( result );
     },
 
@@ -224,11 +224,6 @@ $(function() {
 
     // displays a content slide
     _handle_results = function( results ) {
-
-      // fix the grade value
-      results.grade_1 = results.grade >= 1;
-      results.grade_2 = results.grade >= 2;
-      results.grade_3 = results.grade >= 3;
 
       // figure out all passses
       for (var t in results.tests)

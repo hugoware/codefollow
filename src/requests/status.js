@@ -66,7 +66,8 @@ module.exports = $$class = function StatusRequest( request, response ) {
 
     // displays each ranking
     _show_as_ranking = function( ranking ) {
-      Object.merge( $json, ranking );
+      var results = ranking.results( $user );
+      Object.merge( $json, results );
     },
 
     // set the view information

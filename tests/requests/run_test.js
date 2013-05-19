@@ -86,13 +86,44 @@ require('../test')( module, {
 
     var web = WebRequest.post( RunTestRequest, {
       route: { presentation_id: $$presentation.id },
-      session: { user: $$user.id }
+      session: { user: $$user.id },
+      body: { zones:{ } }
     });
 
     this.ok( web.instance.engine.run, 'did not find an engine' );
     this.ok( web.result.json.success, 'failed to run callback' );
 
-  }
+  },
+
+  handles_updating_user_zones: function() {
+    // set to the test view
+    $$presentation.index = 3;
+
+    // mock any engine requests
+    this.mock('HtmlJsEngine', {
+      run: function( callback ) {
+        callback({ success: true }); 
+      }
+    });
+
+    var expected = 'update';
+    var web = WebRequest.post( RunTestRequest, {
+      route: { presentation_id: $$presentation.id },
+      session: { user: $$user.id },
+      body: { zones:{
+        script: expected,
+        fake: 'ignore'
+      } }
+    });
+
+    var updated = $$presentation.zones_for( $$user );
+
+    this.ok( updated.script, 'missing script value' );
+    this.equal( updated.script, expected, 'missing script value' );
+    this.ok( !updated.html, 'had assigned value to html' );
+    this.ok( !updated.fake, 'assigned user provided content' );
+
+  },
 
 
 });

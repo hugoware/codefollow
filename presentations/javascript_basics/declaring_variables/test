@@ -11,5 +11,5 @@
 * variable named `c` with the value 'name'
 
 [zone name:script.js for:script syntax:javascript]
-[test source:functions.js]
+--[test source:functions.js]
 [test source:test.js]

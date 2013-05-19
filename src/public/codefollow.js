@@ -14,7 +14,7 @@ var ___external_eval = function( script ) { window.eval(script); };
 
     // handles checking if this is a development
     // test or an actual test request
-    , $test_attempt= /^\/test\/\d+\/\d+\/[a-z0-9]+\//.test( window.location.pathname )
+    , $test_attempt= /^\/\d+\/\d+\/[a-z0-9]+\//.test( window.location.pathname )
 
     // unique URL per attempt
     , $ticks = (new Date()).getTime()
@@ -160,18 +160,15 @@ var ___external_eval = function( script ) { window.eval(script); };
           data = JSON.parse( data );
 
           // replace each content item returned
-          for (var i in data) {
-            var item = data[i];
+          for (var k in data.zones) {
+            var item = data.zones[ k ];
 
             // execute if needed
-            if ( item.eval ) 
+            var target = document.getElementById( k );
+            if ( target ) 
+              target.innerHTML = item.content;
+            else
               $eval( item.content );
-
-            // sub out the content
-            else {
-              var target = document.getElementById( i );
-              if ( target ) target.innerHTML = item.content;
-            }
 
           }
         }});

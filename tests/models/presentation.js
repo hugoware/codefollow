@@ -108,6 +108,14 @@ require('../test')( module, {
     this.equal( presentation.test_key, _.numbers( presentation.test_key ), 'did not only use numbers' );
   },
 
+  knows_where_it_lives: function() {
+    var presentation = new Presentation('presentation_a')
+      , expected = $$path.join( $$config.presentation_directory, 'presentation_a' );
+
+    this.ok( presentation.directory, 'did not have a directory' );
+    this.equal( presentation.directory, expected, 'did not have correct directory' );
+  },
+
   will_return_user_content: function() {
 
     // include a user
@@ -169,43 +177,26 @@ require('../test')( module, {
     // check for peeking too far
     presentation.index = presentation.views.length;
     this.ok( !presentation.peek(), 'too far did not anything to peek' );
+  },
+
+  is_aware_of_custom_stylesheets: function() {
+    var path = $$path.join( __dirname, '/../data/presentations' );
+    $$config.mock( 'presentation_directory', path );
+    Presentation.repository.refresh();
+
+    // create the presentation that will be displayed
+    var presentation_a_minimum = new Presentation('presentation_a')
+      , presentation_b_minimum = new Presentation('presentation_b')
+      , presentation_a_expand = new Presentation('presentation_a', { expand: true })
+      , presentation_b_expand = new Presentation('presentation_b', { expand: true });
+
+    this.ok( !presentation_a_minimum.stylesheet, 'presentation a (not expanded) should not have a stylesheet' );
+    this.ok( !presentation_b_minimum.stylesheet, 'presentation b (not expanded) should not have a stylesheet' );
+    this.ok( presentation_a_expand.stylesheet, 'presentation a (expanded) should have a stylesheet' );
+    this.ok( !presentation_b_expand.stylesheet, 'presentation b (expanded) should not have a stylesheet' );
+    
+
   }
-
-  // working_with_external_presentations: {
-
-  //  before: function() {
-  //  },
-
-    // presentation_can_find_presentations : function() {
-    //   var presentation = new Presentation( 'presentation_a' );
-    //   this.equal( presentation.title, 'Presentation A', 'missing presentation title' );
-    //   this.equal( presentation.views.length, 6, 'incorrect number of views' );
-    // }
-
-  //}
-
-
-  // collects_slides_tests_and_rankings: function() {
-  //   var presentation = new Presentation( 'presentation_a' );
-  //   this.equal( presentation.views.length, 6, 'incorrect number of views found' );
-  //   this.equal( presentation.slides.length, 4, 'incorrect number of slides found' );
-  //   this.equal( presentation.tests.length, 1, 'incorrect number of tests found' );
-  //   this.equal( presentation.views[1].content, 'inline content', 'missing inline content for slide 2' );
-  // },
-
-  // should_not_expand_unless_requested: function() {
-  //   var presentation = new Presentation( 'presentation_a' );
-  //   this.equal( presentation.tests.length, 1, 'incorrect number of tests found' );
-  //   this.notEqual( presentation.tests[0].content, 'explained here', 'test had expanded content' );
-  //   this.equal( presentation.tests[0].content, null, 'test did not have null for content' );
-  // },
-
-  // should_have_full_content_when_expaned: function() {
-  //   var presentation = new Presentation( 'presentation_a', { expand: true });
-  //   this.equal( presentation.tests.length, 1, 'incorrect number of tests found' );
-  //   this.equal( presentation.tests[0].explanation, 'explained here', 'test did not have expanded content' );
-  //   this.notEqual( presentation.tests[0].explanation, null, 'test had null content when should be expanded' );
-  // }
 
 
 });

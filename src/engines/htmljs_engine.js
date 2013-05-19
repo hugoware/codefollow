@@ -31,6 +31,7 @@ var $$class = module.exports = function HtmlJsEngine( params ) {
 
     // kicks off the process
     _execute = function() {
+      console.log( $command );
       $process = $$process.exec( $command, $defaults, _resume );
     },
 
@@ -38,7 +39,7 @@ var $$class = module.exports = function HtmlJsEngine( params ) {
     _resume = function( error, output, err ) {
 
       // display the results
-      var result = new TestResult( error, output );
+      var result = new TestResult( $test, output, error );
       if ( $on_complete )
         $on_complete.call( $this, result );
     },

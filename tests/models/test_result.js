@@ -9,9 +9,14 @@ require('../test')( module, {
     var path = $$path.join( __dirname, '../data/sample_results' )
       , file = $$fs.readFileSync( path )
       , content = file.toString()
-      , results = new TestResult( content );
+      , error = 'null'
+      , test = { title: 'title' }
+      , results = new TestResult( test, content, error )
+      
 
     this.ok( results instanceof TestResult, 'did not create results' );
+    this.equal( results.title, test.title, 'did not have correct title' );
+    this.equal( results.error, error, 'did not have correct error' );
     this.equal( results.tests.length, 3, 'did not find correct number of tests' );
     this.equal( results.messages.length, 3, 'did not return correct number of results' );
     this.equal( results.time, 6, 'did not find correct time' );

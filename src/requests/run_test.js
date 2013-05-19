@@ -55,6 +55,19 @@ var $$class = module.exports = function RunTestRequest( request, response ) {
         $errors.error = 'invalid_user';
     },
 
+    // populates new user content
+    _update_zones = function() {
+      if ( !!!request.body.zones )
+        return $errors.error = 'invalid_update';
+
+      // update each zone (if it exists)
+      var zones = $presentation.zones_for( $user );
+      $test.zones.each( function( zone ) {
+        var target = zone['for'];
+        zones[ target ] = request.body.zones[ target ];
+      });
+    },
+
     // attempts to execute the test
     _run_test = function() {
       $engine = _identify_engine({
@@ -69,6 +82,7 @@ var $$class = module.exports = function RunTestRequest( request, response ) {
 
     // populate and send the results
     _handle_results = function( results ) {
+      $test.set_results( $user, results );
       $response.json( results );
     },
 
@@ -79,14 +93,13 @@ var $$class = module.exports = function RunTestRequest( request, response ) {
         _validate_presentation,
         _validate_test,
         _validate_user,
+        _update_zones,
         _run_test );
 
       // if there are any problems, just stop
       if ( $errors.any )
         return $response.send( 404 );
-
     };
-
 
 
   __define( $this, { 

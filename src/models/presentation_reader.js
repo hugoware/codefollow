@@ -10,16 +10,19 @@ module.exports = $$class = function PresentationReader( source, params, presenta
     , $source = source
     , $directory = $$path.join( $$config.presentation_directory, $source )
     , $index = $$path.join( $directory, 'index' )
+    , $stylesheet_location = $$path.join( $directory, 'style.css' )
+    , $stylesheet
     , $presentation = presentation
 
     // presentation content
-    , $title = null
-    , $description = null
-    , $tags = null
+    , $title
+    , $description
+    , $tags
     , $views = [ ]
     ,
 
     // getters
+    _get_stylesheet = function() { return $stylesheet; },
     _get_exists = function() { return $exists; },
     _get_title = function() { return $title || ''; },
     _get_description = function() { return $description || ''; },
@@ -28,7 +31,7 @@ module.exports = $$class = function PresentationReader( source, params, presenta
     
 
     // starts reading the content 
-    _init = function() { 
+    _init = function() {
 
       // make sure this is real
       var exists = $$fs.existsSync( $index );
@@ -45,6 +48,15 @@ module.exports = $$class = function PresentationReader( source, params, presenta
         _add( section );
       });
 
+      // checks for a stylesheet
+      if ( $params.expand )
+        _detect_stylesheet();
+
+    },
+
+    // checks if a stylesheet exists
+    _detect_stylesheet = function() {
+      $stylesheet = $$fs.existsSync( $stylesheet_location );
     },
 
     // cleans up a section 
@@ -87,7 +99,8 @@ module.exports = $$class = function PresentationReader( source, params, presenta
     description: { get: _get_description },
     tags: { get: _get_tags },
     views: { get: _get_views },
-    exists: { get: _get_exists }
+    exists: { get: _get_exists },
+    stylesheet: { get: _get_stylesheet }
 
   });
 

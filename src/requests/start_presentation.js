@@ -14,6 +14,7 @@ module.exports = $$class = function StartPresentationRequest( request, response 
     , $exists = !!$entry
     , $user = User.find( $session.user )
     , $errors = new $$validation()
+    , $presentation
     
     // model used by the view
     , $model = {
@@ -30,7 +31,7 @@ module.exports = $$class = function StartPresentationRequest( request, response 
     _attempt_login = function() {
 
       // make sure they aren't already logged in
-      if ( $model.user ) {
+      if ( $user ) {
         if ( $user.presentation_id && !!Presentation.active[ $user.presentation_id ] )
           $errors.user = 'in_session';
         return;
@@ -41,7 +42,7 @@ module.exports = $$class = function StartPresentationRequest( request, response 
       if ( $errors.any ) return;
 
       // otherwise, log in the user
-      $model.user = User.login( $model, $session );
+      $user = User.login( $model, $session );
 
     },
 
@@ -54,16 +55,15 @@ module.exports = $$class = function StartPresentationRequest( request, response 
 
       // create the actual presentation
       var presentation = new Presentation( $presentation_id, { expand: true });
-      presentation.add( $model.user );
+      presentation.add( $user );
 
       // try and register for use
       Presentation.register( presentation );
 
       // successfully created and added presentation
-      $presentation = $model.presentation = presentation;
-      $model.success = true;
+      $model.presentation = $presentation = presentation;
 
-      console.log( presentation.id, presentation.test_key, $model.user.id );
+      $presentation.index = 2;
 
     },
 
@@ -78,8 +78,8 @@ module.exports = $$class = function StartPresentationRequest( request, response 
     // handle the request
     _run = function() {
       if ( $post ) _attempt_start();
-      if ( $model.success )
-        $response.redirect( '/' + $model.presentation.identity );
+      if ( $post && $errors.none )
+        $response.redirect( '/{1}/'.assign( $presentation.identity ) );
       else
         $response.render( $view, $model );
     };
@@ -87,11 +87,11 @@ module.exports = $$class = function StartPresentationRequest( request, response 
 
   __define( $this, { 
     run: _run,
-    success: { get: function() { return $model.success; } },
-    errors: { get: function() { return $model.errors; } },
-    presentation: { get: function() { return $model.presentation; } },
+
+    errors: { get: function() { return $errors; } },
+    presentation: { get: function() { return $presentation; } },
     available: { get: function() { return Presentation.available; } },
-    user: { get: function() { return $model.user; } }
+    user: { get: function() { return $user; } }
   });
 
 };

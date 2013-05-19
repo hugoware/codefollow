@@ -14,7 +14,6 @@ var includes = {
   '$$config': './config',
   '$$validation': './validation',
 
-
   // handling requests
   'IndexRequest': './requests/index',
   'DisplayPresentationRequest': './requests/display_presentation',
@@ -25,7 +24,7 @@ var includes = {
   'StatusRequest': './requests/status',
   'RunTestRequest': './requests/run_test',
   'ServeTestRequest': './requests/serve_test',
-
+  'ServeDirectoryRequest': './requests/serve_directory',
 
   // engines
   'HtmlJsEngine': './engines/htmljs_engine',
@@ -42,7 +41,8 @@ var includes = {
   'PresentationRepository': './models/presentation_repository',
   'Presentation': './models/presentation',
   'Summary': './models/summary',
-  'User': './models/User'
+  'User': './models/user',
+  'Score': './models/score'
 
 };
 

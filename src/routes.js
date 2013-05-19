@@ -11,9 +11,8 @@ module.exports = [
   [ 'all', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/status', StatusRequest ],
   [ 'post', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/test', RunTestRequest ],
   [ 'all', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/:test_key(\\d+)/:user_id([a-z0-9]+)/?', ServeTestRequest ],
-  [ 'all', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/:test_key(\\d+)/:user_id([a-z0-9]+)/:serve([^$]*)', ServeTestRequest ]
-  
-
+  [ 'all', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/:test_key(\\d+)/:user_id([a-z0-9]+)/:serve([^$]*)', ServeTestRequest ],
+  [ 'all', '/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/:serve([^$]*)', ServeDirectoryRequest ]
 
 
 

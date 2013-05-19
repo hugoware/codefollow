@@ -40,6 +40,16 @@ require('../test')( module, {
 
     // tests should also expand as needed
     this.equal( presentation.views[3].explanation, 'explained here', 'did not have test explanation' )
+  },
+
+  should_detect_custom_stylesheet: function() {
+    var presentation_a = new PresentationReader('presentation_a', { expand: true })
+      , presentation_b = new PresentationReader('presentation_b', { expand: true });
+
+    this.ok( presentation_a.stylesheet, 'did not detect custom stylesheet' );
+    this.ok( !presentation_b.stylesheet, 'detected custom stylesheet where there was none' );
+    
+    
   }
 
 

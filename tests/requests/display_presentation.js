@@ -63,6 +63,36 @@ require('../test')( module, {
     this.equal( web.instance.user.id, user.id, 'has the correct user' );
     this.ok( web.instance.errors.none, 'has no errors' );
 
+  },
+
+  requires_trailing_slash: function() {
+
+    var user = new User({ name: 'fred' })
+      , invalid_url = '/999-999-999'
+      , valid_url = invalid_url + '/';
+
+    // setup the presentation
+    User.login( user );
+    $$presentation.add( user );
+
+    // attempts
+    var invalid_request = WebRequest.get( DisplayPresentationRequest, {
+      session: { user: user.id },
+      route: { presentation_id: $$presentation.identity },
+      url: invalid_url
+    });
+
+    var valid_request = WebRequest.get( DisplayPresentationRequest, {
+      session: { user: user.id },
+      route: { presentation_id: $$presentation.identity },
+      url: valid_url
+    });
+
+    this.ok( invalid_request.result.redirect, 'did not redirect for invalid' );
+    this.equal( invalid_request.result.redirect, valid_url, 'did not redirect to correct url' );
+    this.ok( !valid_request.result.redirect, 'did not redirect for valid' );
+    this.ok( valid_request.result.view, 'rendered view normally' );
+
   }
 
 });
