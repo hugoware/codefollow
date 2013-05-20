@@ -122,7 +122,7 @@ require('../test')( module, {
     });
 
     this.ok( web.result.json.success, 'did not display slide' );
-    this.equal( web.result.json.type, null, 'should not include full view' );
+    this.equal( web.result.json.type, 'slide', 'should not include full view' );
     this.equal( web.result.json.at, 1, 'should be on first slide' );
   },
 

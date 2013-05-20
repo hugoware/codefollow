@@ -17,7 +17,7 @@ module.exports = $$class = function User( params ) {
     _validate = function() { return $$class.validate( $this ); },
 
     // calculates the gravatar for an email
-    _gravatar = function() { return _.hash( $email ); }
+    _gravatar = function() { return _.md5( $email ); }
     
 
   __define( $this, {

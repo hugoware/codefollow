@@ -119,7 +119,7 @@ html
     |       </li>
     |     </ul>
     | 
-    |     {{# if current }}
+    |     {{# if user }}
     |     <div class="current" >
     |       {{# with user }}
     |       {{> ranking }}
@@ -132,7 +132,7 @@ html
     //- each user listed on rankings
     | <script id="template_ranking" class="partial" type="text/template" >
     |   <div class="rank" >
-    |     <img src="{{ gravatar }}" />
+    |     <img src="http://gravatar.com/avatar/{{ gravatar }}?r=g&d=blank&s=50" />
     |     <h3>{{ name }}</h3>
     |     <h4>{{ pass }} of {{ attempts }}</h4>
     |   </div>

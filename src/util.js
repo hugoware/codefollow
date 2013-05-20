@@ -88,6 +88,14 @@ var _trim = function( value ) {
 };
 
 
+// compute a md5 hash from a string
+var _md5 = function( value ) {
+  var crypto = require('crypto')
+    , sha = crypto.createHash('md5');
+    sha.update( value );
+    return sha.digest('hex');
+};
+
 // compute a hash from a string
 var _hash = function( value ) {
   var crypto = require('crypto')
@@ -200,6 +208,7 @@ __define( module.exports, {
   each: _each,
   trim: _trim,
   hash: _hash,
+  md5: _md5,
   alias: _alias,
   all: _all,
   any: _any,

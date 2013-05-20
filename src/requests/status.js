@@ -15,7 +15,7 @@ module.exports = $$class = function StatusRequest( request, response ) {
     , $user = User.find( $session.user )
     
     // requested slide
-    , $requested_at = _.numbers( $request.body.at )
+    , $requested_at = _.trim( $request.body.at ).replace(/[^\d\-]/g, '' )
     , $at = ( parseInt( $requested_at ) || 0 )
     , $missing_at = $requested_at.length == 0
     
@@ -75,8 +75,8 @@ module.exports = $$class = function StatusRequest( request, response ) {
       $json = { success: true, at: $presentation.index };
 
       // only include content if needed
-      if ( $missing_at || $presentation.views[ $at ] == null || $at != $presentation.index )
-        _show_view( $presentation.view );        
+      if ( !$missing_at && $at === $presentation.index ) return;
+      _show_view( $presentation.view );        
     },
 
     // unable to display

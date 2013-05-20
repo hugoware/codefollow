@@ -51,7 +51,7 @@ require('../test')( module, {
   gravatar_is_generated_from_email_hash: function() {
 
     var email = 'fred@test.com'
-      , expected = 'fc3aa257dd18e035ad401650492dd6c4aa4c1ef4'
+      , expected = _.md5( email )
       , params = { email: email }
       , user = new User( params )
       , actual = user.gravatar;
