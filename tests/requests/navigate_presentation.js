@@ -50,27 +50,27 @@ require('../test')( module, {
       this.equals( web.result.json.error, 'missing_presentation', 'did not provide reason why' );
     },
 
-    requires_leader_navigate : function() {
-      var web = WebRequest.post( NavigatePresentationRequest, {
-        body: { move: 'next' },
-        route: { presentation_id: $$presentation.identity },
-        session: { user: $$user.id }
-      });
+    // requires_leader_navigate : function() {
+    //   var web = WebRequest.post( NavigatePresentationRequest, {
+    //     body: { move: 'next' },
+    //     route: { presentation_id: $$presentation.identity },
+    //     session: { user: $$user.id }
+    //   });
 
-      this.equals( web.result.json.success, false, 'should have failed' );
-      this.equals( web.result.json.error, 'invalid_user', 'did not provide reason why' );
-    },
+    //   this.equals( web.result.json.success, false, 'should have failed' );
+    //   this.equals( web.result.json.error, 'invalid_user', 'did not provide reason why' );
+    // },
 
     // will find the presentation as required
-    will_allow_leader_to_navigate: function() {
-      var web = WebRequest.post( NavigatePresentationRequest, {
-        body: { move: 'next' },
-        route: { presentation_id: $$presentation.identity },
-        session: { user : $$leader.id }
-      });
+    // will_allow_leader_to_navigate: function() {
+    //   var web = WebRequest.post( NavigatePresentationRequest, {
+    //     body: { move: 'next' },
+    //     route: { presentation_id: $$presentation.identity },
+    //     session: { user : $$leader.id }
+    //   });
 
-      this.ok( web.result.json.success, 'did not advance to next view' );
-    }
+    //   this.ok( web.result.json.success, 'did not advance to next view' );
+    // }
 
   },
 

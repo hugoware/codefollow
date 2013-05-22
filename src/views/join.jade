@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  form( method='post', action='/join' )
+    - if ( errors.any )
+      ul
+        - for ( e in errors )
+          li= errors[e]
+
+    input( name='name', type='text', value= name )
+    input( name='email', type='text', value= email )
+    input( name='presentation_id', type='text', value= presentation_id )
+    
+    button( type='submit' ) Login

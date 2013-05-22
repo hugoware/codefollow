@@ -1,22 +1,81 @@
 
-
 html, body {
-  background-image: -o-linear-gradient(180deg, #0070D9 0%, #083950 100%);
-  background-image: -moz-linear-gradient(180deg, #0070D9 0%, #083950 100%);
-  background-image: -webkit-linear-gradient(180deg, #0070D9 0%, #083950 100%);
-  background-image: -ms-linear-gradient(180deg, #0070D9 0%, #083950 100%);
-  background-image: linear-gradient(180deg, #0070D9 0%, #083950 100%);
+  height : 100%;
+
+  background: #eaeaea;
+  background: -moz-linear-gradient(top, #ffffff 0%, #eaeaea 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#eaeaea));
+  background: -webkit-linear-gradient(top, #ffffff 0%,#eaeaea 100%);
+  background: -o-linear-gradient(top, #ffffff 0%,#eaeaea 100%);
+  background: -ms-linear-gradient(top, #ffffff 0%,#eaeaea 100%);
+  background: linear-gradient(to bottom, #ffffff 0%,#eaeaea 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
 }
 
+img {
+  width : 100%;
+}
 
+#container {
+  padding : 10% 15% 0 15%;
+}
 
-.content {
+#header {
+  position : absolute;
+  top : 0;
+  left : 0;
+  width : 100%;
+  padding : 14px 0;
+  font-family: 'title', sans-serif;
+
+  background: #444444;
+  background: -moz-linear-gradient(top,  #444444 0%, #222222 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#444444), color-stop(100%,#222222));
+  background: -webkit-linear-gradient(top,  #444444 0%,#222222 100%);
+  background: -o-linear-gradient(top,  #444444 0%,#222222 100%);
+  background: -ms-linear-gradient(top,  #444444 0%,#222222 100%);
+  background: linear-gradient(to bottom,  #444444 0%,#222222 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#222222',GradientType=0 );
+
   color : #fff;
-  text-shadow : 0 1px 2px rgba( 0,0,0, .5 );
+  -webkit-text-shadow: 0 1px 3px rgba( 0,0,0, .9 );
+  -moz-text-shadow: 0 1px 3px rgba( 0,0,0, .9 );
+  -o-text-shadow: 0 1px 3px rgba( 0,0,0, .9 );
+  text-shadow: 0 1px 3px rgba( 0,0,0, .9 );
+
+  font-size : 16px;
 }
 
-.content h1 { font-size : 2.8em; }
-.content h2 { font-size : 1.8em; }
-.content h3 { font-size : 1.4em; }
-.content h4 { font-size : 1.2em; }
-.content p { font-size : 1em; line-height : 1.6em; }
+#header:before {
+  content : 'JavaScript Deep Dive';
+  position : relative;
+  left : 15px;
+}
+
+h1 {
+  font-size : 64px;
+  padding : 0 0 25px 0;
+}
+
+h2 {
+  font-size : 36px;
+  color : #999;
+}
+
+
+@media ( max-width: 800px ) {
+
+  h1 {
+    font-size : 64px;
+    padding : 0 0 25px 0;
+  }
+
+  h2 { 
+    font-size : 38px;
+  }
+
+}
+
+@media (min-width: 801px) and (max-width: 1280px) {
+
+}

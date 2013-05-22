@@ -16,7 +16,7 @@ module.exports = $$class = function NavigatePresentationRequest( request, respon
     , $remote_key = _.numbers( $route.params.remote )
     
     , $errors = new $$validation()
-    , $user = User.find( $session.user )
+    // , $user = User.find( $session.user )
     , $presentation = Presentation.active[ $presentation_id ]
 
     // the direction being navigated
@@ -26,7 +26,7 @@ module.exports = $$class = function NavigatePresentationRequest( request, respon
     // model used by the view
     , $model = {
       errors: $errors,
-      user: $user,
+      // user: $user,
       presentation_id: $presentation_id,
       next: $presentation && new Summary( $presentation.peek() || $end_of_presentation )
     },
@@ -50,10 +50,10 @@ module.exports = $$class = function NavigatePresentationRequest( request, respon
     },
 
     // verify the user can perform this action
-    _validate_user = function() {
-      if ( $user && $presentation.leader && $presentation.leader.id == $user.id ) return;
-      $errors.error = 'invalid_user';
-    },
+    // _validate_user = function() {
+    //   if ( $user && $presentation.leader && $presentation.leader.id == $user.id ) return;
+    //   $errors.error = 'invalid_user';
+    // },
 
     // handles moving to the next slide
     _navigate_presentation = function() {
@@ -72,8 +72,9 @@ module.exports = $$class = function NavigatePresentationRequest( request, respon
     _set_success = function() {
       Object.merge( $json, {
         success: true,
-        view: $presentation.view,
-        next: $presentation.peek()
+        current: $presentation.index + 1,
+        total: $presentation.views.length + 1,
+        next: new Summary( $presentation.peek() )
       });
     },
 
@@ -91,7 +92,7 @@ module.exports = $$class = function NavigatePresentationRequest( request, respon
         $$validation.run( $errors,
           _validate_direction,
           _validate_presentation,
-          _validate_user,
+          // _validate_user,
           _navigate_presentation
         );
 

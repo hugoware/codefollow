@@ -1,14 +1,20 @@
 html5
   head
     title Remote
+    meta( id='scale', name='viewport', content='initial-scale=1, maximum-scale=1' )
+    link( rel='stylesheet', type='text/css', href='/ui/remote.css' )
   body
     button( type='submit', id='next' ) Next
     button( type='submit', id='prev' ) Previous
 
     #preview
-      span Next
-      span= next.content
-      span= next.type
+      #position
+        span#current= current
+        | 
+        span of 
+        span#total= total
+      #type= next.type
+      #content= next.preview
 
     script( type='text/javascript', src='/scripts/jquery.js' )
     script( type='text/javascript', src='/scripts/remote.js' )

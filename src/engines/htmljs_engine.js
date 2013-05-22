@@ -31,7 +31,6 @@ var $$class = module.exports = function HtmlJsEngine( params ) {
 
     // kicks off the process
     _execute = function() {
-      console.log( $command );
       $process = $$process.exec( $command, $defaults, _resume );
     },
 

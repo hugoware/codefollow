@@ -6,24 +6,42 @@ html
     link( rel='stylesheet', type='text/css', href='/codemirror/lib/codemirror.css' )
     
 
-  body
+  body( class=( leader ? 'leader' : 'user' ) )
 
-    #slide
-    #test
-    #results
-    #rankings
+    #container
+      .content
+        #header
+        #extra-1
+        #extra-2
+        #extra-3
+        #slide
+        #test
+        #results
+        #preview
+        #rankings
 
-    a( href=remote_url, target='_blank' ) Remote
+    #footer
+
+    - if ( leader )
+        a( href=remote_url, target='_blank' ) Remote
     
     //- a general slide
     | <script id="template_slide" type="text/template" >
     |   <div class="content" >{{{ content }}}</div>
     | </script>
 
+    //- a preview result
+    | <script id="template_preview" type="text/template" >
+    |   <div class="content" >
+    |     <a href="{{ url }}" target="_blank" >Open in new window</a>
+    |     <iframe src="{{ url }}" ></iframe>
+    |   </div>
+    | </script>
+
     //- displaying a test and editor
     | <script id="template_test" type="text/template" >
     |   <div class="content" >
-    |     <h2>{{ title }}</h2>
+    |     <h1>{{ title }}</h1>
     |     <div>{{{ explanation }}}</div>
     |   </div>
     | 
@@ -50,7 +68,6 @@ html
     |     </div>
     |   </div>
     | </script>
-
 
     //- participant results for tests
     | <script id="template_results" type="text/template">
@@ -107,7 +124,6 @@ html
     |   </div>
     | </script>
 
-
     //- the leader board for participants
     | <script id="template_rankings" type="text/template" >
     |   <div class="content" >
@@ -138,10 +154,11 @@ html
     |   </div>
     | </script>
 
-
     script( type='text/javascript', src='/scripts/jquery.js' )
     script( type='text/javascript', src='/codemirror/lib/codemirror.js' )
     script( type='text/javascript', src='/scripts/handlebars.js' )
     script( type='text/javascript', src='/scripts/markdown.js' )
     script( type='text/javascript', src='/scripts/mousetrap.js' )
     script( type='text/javascript', src='/scripts/app.js' )
+
+

@@ -26,8 +26,8 @@ require('../test')( module, {
   },
   
   will_truncate_content_when_too_long: function() {
-    var value = String.generate( 26 )
-      , expected = value.substr( 0, 25 )
+    var value = String.generate( 51 )
+      , expected = value.substr( 0, 50 )
       , view = { type:'slide', content: value }
       , summary = new Summary( view )
 

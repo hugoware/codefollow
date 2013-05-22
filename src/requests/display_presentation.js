@@ -11,6 +11,7 @@ module.exports = $$class = function DisplayPresentationRequest( request, respons
     , $presentation_id = _.numbers( $route.params.presentation_id )
     , $presentation = Presentation.active[ $presentation_id ]
     , $user = User.find( $session.user )
+    , $leader = $user && $presentation.leader && $presentation.leader.id == $user.id
     , $errors = new $$validation()
     
     // model used by the view
@@ -18,7 +19,8 @@ module.exports = $$class = function DisplayPresentationRequest( request, respons
       errors: $errors,
       user: $user,
       presentation_id: $presentation_id,
-      presentation: $presentation
+      presentation: $presentation,
+      leader: $leader
     }, 
 
     // is this an actual presentation

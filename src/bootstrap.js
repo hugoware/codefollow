@@ -41,6 +41,7 @@ var includes = {
   'PresentationRepository': './models/presentation_repository',
   'Presentation': './models/presentation',
   'Summary': './models/summary',
+  'Preview': './models/preview',
   'User': './models/user',
   'Score': './models/score'
 

@@ -47,7 +47,7 @@ module.exports = $$class = function StartPresentationRequest( request, response 
     },
 
     // tries to create the presentation session
-    _attempt_create_presentation = function() {
+    _attempt_create = function() {
 
       // try and find the presentation first
       if ( !$exists )
@@ -63,15 +63,13 @@ module.exports = $$class = function StartPresentationRequest( request, response 
       // successfully created and added presentation
       $model.presentation = $presentation = presentation;
 
-      $presentation.index = 2;
-
     },
 
     // attempt to login for this user
     _attempt_start = function() {
       $$validation.run( $errors, 
         _attempt_login,
-        _attempt_create_presentation
+        _attempt_create
         );
     },
 

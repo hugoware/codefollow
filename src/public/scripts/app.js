@@ -30,7 +30,8 @@ $(function() {
       slide: $('#slide'),
       test: $('#test'),
       results: $('#results'),
-      rankings: $('#rankings')
+      rankings: $('#rankings'),
+      preview: $('#preview'),
     }
     , 
 
@@ -168,9 +169,11 @@ $(function() {
     // determine what to do with a response
     _identify = function( result ) {
       if ( result == null ) return;
-      console.log( result );
       $progress = result.at != null ? result.at : $progress;
       $state = result.state || $state;
+
+      // always resume
+      _busy();
 
       // choose the view
       if ( result.type == 'slide' )
@@ -181,13 +184,21 @@ $(function() {
         _handle_results( result );
       else if ( result.type == 'ranking' )
         _handle_rankings( result );
+      else if ( result.type == 'preview' )
+        _handle_preview( result );
+    },
+
+    _handle_preview = function( preview ) {
+      _state('preview');
+
+      var markup = $templates.preview( preview );
+      $ui.preview.html( markup );
     },
 
     // displays a content slide
     _handle_slide = function( slide ) {
       _state('slide');
 
-      console.log( slide.content );
       slide.content = _markdown( slide.content );
       var markup = $templates.slide( slide );
       $ui.slide.html( markup );
@@ -253,11 +264,15 @@ $(function() {
       $ui.rankings.html( markup );
     },
 
-    // gathers up the submitted info and sends it
-    _submit_test = function() {
-      
-      // get each of the zones to save
-      var submit = { at: $progress, zones: { } };
+    // handles saving/preview
+    _submit_test = function() { _send_update( _identify ); },
+    _preview_test = function() { _send_update( _identify, true ); },
+
+    // handles updating user content
+    _send_update = function( callback, preview ) {
+
+      // grab the zones
+      var submit = { at: $progress, preview: preview, zones: { } };
       $ui.test.find('.editors > div')
         .each( function(i, v ) {
           var area = $(v)
@@ -267,13 +282,7 @@ $(function() {
         });
 
       // send the test immediately
-      _request( 'test', submit, { success: _identify }, true );
-
-    },
-
-    // displays a view with the current test
-    _preview_test = function() {
-
+      _request( 'test', submit, { success: callback }, true );
     },
 
 

@@ -4,7 +4,7 @@
   /* Set height, width, borders, and global font properties here */
   /*font-family: monospace;*/
   font-family: 'mono', monospace;
-  font-size : 14px;
+  font-size : 16px;
   height: 300px;
   padding : 25px 10px;
 }
@@ -19,7 +19,7 @@
   padding: 4px 0; /* Vertical padding around content */
 }
 .CodeMirror pre {
-  padding: 0 4px; /* Horizontal padding of content */
+  padding: 2px 4px; /* Horizontal padding of content */
 }
 
 .CodeMirror-scrollbar-filler {
@@ -34,7 +34,7 @@
 }
 .CodeMirror-linenumbers {}
 .CodeMirror-linenumber {
-  padding: 0 3px 0 5px;
+  padding: 3px 3px 2px 5px;
   min-width: 20px;
   text-align: right;
   color: #999;

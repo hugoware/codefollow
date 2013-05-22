@@ -78,7 +78,7 @@ var $$class = module.exports = function Presentation( key, params ) {
 
     // sets up a presentation so it can broadcast
     _activate = function() {
-      // $$broadcast.to( '/'+this.identity, { test: 'test' } )
+      // does nothing now, may eventually setup a socket.io connection
     },
 
     // slide navigation

@@ -1,12 +1,86 @@
 /* reset */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; } /* HTML5 display-role reset for older browsers */ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; } body { line-height: 1; } ol, ul { list-style: none; } blockquote, q { quotes: none; } blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; } table { border-collapse: collapse; border-spacing: 0; }
 
+html {
+  font-family : sans-serif;
+}
+
 form { 
   padding : 25px;
 }
 
 button { 
-  height : 80px; 
-  width : 100%;
-  font-size : 20px;
+  display : block;
+  /*width : 100%;*/
+  
+  border : none;
+  border-radius: none;
+}
+
+#next {
+  padding : 35px 0;
+  text-align : center;
+  font-size : 28px;
+  width : 90%;
+  margin : 10px 0 0 5%;
+
+  border-radius: 3px;
+
+  background: #56A01E;
+  background: -moz-linear-gradient(top, #6DCE23 0%, #56A01E 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #6DCE23), color-stop(100%, #56A01E));
+  background: -webkit-linear-gradient(top, #6DCE23 0%, #56A01E 100%);
+  background: -o-linear-gradient(top, #6DCE23 0%, #56A01E 100%);
+  background: -ms-linear-gradient(top, #6DCE23 0%, #56A01E 100%);
+  background: linear-gradient(to bottom, #6DCE23 0%, #56A01E 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6DCE23', endColorstr='#56A01E',GradientType=0 );
+
+  color : #fff;
+  border : 1px solid #56A01E;
+
+  -webkit-text-shadow: 0 1px 2px rgba( 0,0,0, .9 );
+  -moz-text-shadow: 0 1px 2px rgba( 0,0,0, .9 );
+  -o-text-shadow: 0 1px 2px rgba( 0,0,0, .9 );
+  text-shadow: 0 1px 2px rgba( 0,0,0, .9 );
+
+  -webkit-box-shadow: 0 6px 15px rgba( 0,0,0, .3 ), inset 0 0 0 1px rgba( 255,255,255, .4 );
+  -moz-box-shadow: 0 6px 15px rgba( 0,0,0, .3 ), inset 0 0 0 1px rgba( 255,255,255, .4 );
+  -o-box-shadow: 0 6px 15px rgba( 0,0,0, .3 ), inset 0 0 0 1px rgba( 255,255,255, .4 );
+  box-shadow: 0 6px 15px rgba( 0,0,0, .3 ), inset 0 0 0 1px rgba( 255,255,255, .4 );
+
+}
+
+#prev {
+  position : absolute;
+  bottom : 10px;
+  width : 90%;
+
+  padding : 15px 0;
+
+  background : #eee;
+  border : 1px solid #ddd;
+  margin : 0 0 0 5%;
+
+  font-size : 14px;
+  color : #444;
+  text-shadow : 0 1px 1px rgba( 255,255,255, .9 );
+}
+
+#preview {
+  padding : 15px 5% 0 5%;
+}
+
+#position {
+  float : right;
+}
+
+#type {
+  float : left;
+  font-weight : bold;
+}
+
+#content {
+  clear : both;
+  padding : 10px 0 0 0;
+  color : #999;
 }

@@ -24,6 +24,8 @@ module.exports = $$class = function DisplayRemoteRequest( request, response ) {
       allowed: false,
       presentation_id: $presentation_id,
       user: $user,
+      current: $presentation && $presentation.index + 1,
+      total: $presentation && $presentation.views.length + 1,
       next: $presentation && new Summary( $presentation.peek() || $end_of_presentation )
     }, 
 

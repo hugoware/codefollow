@@ -3,6 +3,40 @@
 [title JavaScript Basics]
 [theme style.css]
 
+[slide]
+<div class="intro" >
+<h1>JavaScript Deep Dive</h1>
+<h2>Part 1</h2>
+<a href="http://twitter.com/hugoware" >@hugoware</a>
+</div>
+
+Follow along at [http://codefollow.net/${PRESENTATION_ID}](http://codefollow.net/${PRESENTATION_ID})
+
+[slide]
+## What is this?
+
+Visit http://codefollow.net/{$PRESENTATION_ID$}
+
+[slide]
+## Let's Get Started!
+
+Hopefully everyone is setup. So, let's try an easy one to get started...
+
+[slide]
+# Variables
+
+[slide]
+### Variables
+
+* behave how you'd expect them to work
+* you can assign values to them
+* multiple assignments can be made
+
+[slide]
+### Variables
+
+* you should declare variables with `var`
+* if you don't, they may end up as global
 
 [slide declaring_variables/what_are_variables.md]
 [slide declaring_variables/why_variables.md]

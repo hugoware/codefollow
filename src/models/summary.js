@@ -19,7 +19,7 @@ var $$class = module.exports = function Summary( view ) {
       if ( $view.title )
         $preview = $view.title;
       else if ( $view.content )
-        $preview = _.trim( $view.content ).substr( 0, 25 );
+        $preview = _.trim( $view.content ).substr( 0, 50 );
       else
         $preview = 'Unknown';
 
@@ -27,8 +27,8 @@ var $$class = module.exports = function Summary( view ) {
 
 
   __define( $this, {
-    preview: { get: _get_preview },
-    type: { get: _get_type }
+    preview: { get: _get_preview, enumerable: true },
+    type: { get: _get_type, enumerable: true }
   });
 
 };

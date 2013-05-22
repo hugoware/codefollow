@@ -3,6 +3,10 @@ $(function() {
     , $url = window.location.pathname
     , $next = $('#next')
     , $prev = $('#prev')
+    , $preview = $('#preview')
+    , $content = $('#content')
+    , $current = $('#current')
+    , $type = $('#type')
     , $activity = $('#activity')
     ,
 
@@ -19,12 +23,16 @@ $(function() {
     // updates the current view
     _update = function( result ) {
       console.log( result );
+      if ( result.current ) $current.text( result.current );
+      if ( result.next ) {
+        if ( result.next.preview ) $content.text( result.next.preview );
+        if ( result.next.type ) $type.text( result.next.type );
+      }
     },
 
     // navigates to a new slide
     _navigate = function() {
       if ( _is_busy() ) return;
-      console.log('send');
 
       // find the update to send
       var button = $(this)

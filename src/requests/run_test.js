@@ -11,9 +11,14 @@ var $$class = module.exports = function RunTestRequest( request, response ) {
     , $presentation_id = _.numbers( $route.params.presentation_id )
     , $presentation = Presentation.active[ $presentation_id ]
     , $test = $presentation && $presentation.view instanceof Test && $presentation.view
-    , $engine
     , $user = User.find( $session.user )
     , $errors = new $$validation
+
+    // is this an actual grading attempt
+    , $preview = /(true|y|yes|ok)/gi.test( $request.body.preview )
+
+    // the test engine to use
+    , $engine
     
     // model used by the view
     , $model = {
@@ -68,6 +73,12 @@ var $$class = module.exports = function RunTestRequest( request, response ) {
       });
     },
 
+    // submission is correct
+    _handle_request = function() {
+      if ( $preview ) _send_preview();
+      else _run_test();
+    },
+
     // attempts to execute the test
     _run_test = function() {
       $engine = _identify_engine({
@@ -78,6 +89,12 @@ var $$class = module.exports = function RunTestRequest( request, response ) {
 
       // populate final results
       $engine.run( _handle_results );
+    },
+
+    // sends a preview URL for the attempt
+    _send_preview = function() {
+      var preview = new Preview( $presentation, $test );
+      $response.json( preview );
     },
 
     // populate and send the results
@@ -94,7 +111,7 @@ var $$class = module.exports = function RunTestRequest( request, response ) {
         _validate_test,
         _validate_user,
         _update_zones,
-        _run_test );
+        _handle_request );
 
       // if there are any problems, just stop
       if ( $errors.any )
