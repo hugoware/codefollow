@@ -12,10 +12,6 @@ html, body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );
 }
 
-img {
-  width : 100%;
-}
-
 #container {
   padding : 10% 15% 0 15%;
 }
@@ -28,14 +24,14 @@ img {
   padding : 14px 0;
   font-family: 'title', sans-serif;
 
-  background: #444444;
-  background: -moz-linear-gradient(top,  #444444 0%, #222222 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#444444), color-stop(100%,#222222));
-  background: -webkit-linear-gradient(top,  #444444 0%,#222222 100%);
-  background: -o-linear-gradient(top,  #444444 0%,#222222 100%);
-  background: -ms-linear-gradient(top,  #444444 0%,#222222 100%);
-  background: linear-gradient(to bottom,  #444444 0%,#222222 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#444444', endColorstr='#222222',GradientType=0 );
+  background: #272822;
+  background: -moz-linear-gradient(top,  #32332C 0%, #272822 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#32332C), color-stop(100%,#272822));
+  background: -webkit-linear-gradient(top,  #32332C 0%,#272822 100%);
+  background: -o-linear-gradient(top,  #32332C 0%,#272822 100%);
+  background: -ms-linear-gradient(top,  #32332C 0%,#272822 100%);
+  background: linear-gradient(to bottom,  #32332C 0%,#272822 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#32332C', endColorstr='#272822',GradientType=0 );
 
   color : #fff;
   -webkit-text-shadow: 0 1px 3px rgba( 0,0,0, .9 );
@@ -52,17 +48,45 @@ img {
   left : 15px;
 }
 
-h1 {
-  font-size : 64px;
-  padding : 0 0 25px 0;
+strong { font-weight : bold; }
+em { font-style : italic; }
+code { font-family: 'mono', monospace; }
+
+h1 { font-size : 64px; padding : 0 0 20px 0; }
+h2 { font-size : 36px; padding : 0 0 35px 0; }
+#slide .content ul, #test .content ul { font-size : 24px; }
+
+.user #test h1 { font-size : 42px; padding : 0 0 12px 0; }
+.user #test h2 { font-size : 24px; padding : 0 0 20px 0; }
+.user #test .content ul { font-size : 20px; }
+.user #test .content ul li { margin-left : 35px; }
+
+p {
+  padding : 0 0 35px 0;
+  font-size : 24px;
 }
 
-h2 {
-  font-size : 36px;
-  color : #999;
+
+h2 { color : #999; }
+
+.code {
+  background : #333;
+  padding : 10px;
 }
 
+#slide .content ul,
+#test .content ul {
+  list-style : disc;
+  padding : 10px 0 25px 0;
+}
 
+#slide .content ul li,
+#test .content ul li {
+  margin : 0 0 0 40px;
+  padding : 10px 0 10px 5px;
+}
+
+/*
 @media ( max-width: 800px ) {
 
   h1 {
@@ -78,4 +102,4 @@ h2 {
 
 @media (min-width: 801px) and (max-width: 1280px) {
 
-}
+}*/

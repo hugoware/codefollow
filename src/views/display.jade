@@ -23,7 +23,7 @@ html
     #footer
 
     - if ( leader )
-        a( href=remote_url, target='_blank' ) Remote
+        a#remote( href=remote_url, target='_blank' ) Remote
     
     //- a general slide
     | <script id="template_slide" type="text/template" >
@@ -73,8 +73,8 @@ html
     | <script id="template_results" type="text/template">
     |   <div class="dialog" >
     |     <div class="container" >
-    |             
-    |       <h2>{{ title }}</h2>
+    |       <h2>Test Results</h2>      
+    |       <h5>{{ title }}</h5>
     |       <ul class="grade rank-{{ score }}" >
     |         <li class="rank-1" ></li>
     |         <li class="rank-2" ></li>
@@ -101,14 +101,18 @@ html
     | 
     |       <h3>Tests</h3>
     |       <div class="view tests" >
+    |         {{# if tests }}
     |         {{# each tests }}
-    |           <h4 class="{{# if pass }} pass {{ else }} fail {{/ if }}" >{{ title }}</h4>
+    |           <h4 class="{{# if pass }} pass {{ else }} fail {{/ if }}" ><i>{{# if pass}}g{{ else }}n{{/ if }}</i> {{ title }}</h4>
     |           <ul>
     |             {{# each tests }}
     |             <li class="{{# if pass }} pass {{ else }} fail {{/ if }}" >{{ name }}</li>
     |             {{/ each }}
     |           </ul>
     |         {{/ each}}
+    |         {{ else }}
+    |           <div>No tests were successfully run</div>
+    |         {{/ if }}
     |       </div>
     | 
     |       <h3>Console</h3>
@@ -127,6 +131,7 @@ html
     //- the leader board for participants
     | <script id="template_rankings" type="text/template" >
     |   <div class="content" >
+    |     {{# if leaders }}
     |     <ul>
     |       <li>
     |         {{# each leaders }}
@@ -134,12 +139,17 @@ html
     |         {{/ each }}
     |       </li>
     |     </ul>
+    |     {{/ if }}
     | 
     |     {{# if user }}
     |     <div class="current" >
     |       {{# with user }}
     |       {{> ranking }}
     |       {{/ with }}
+    |       <ul>
+    |         {{# each test }}
+    |         {{/ each }}
+    |       </ul>
     |     </div>
     |     {{/ if }}
     |   </div>
@@ -156,6 +166,7 @@ html
 
     script( type='text/javascript', src='/scripts/jquery.js' )
     script( type='text/javascript', src='/codemirror/lib/codemirror.js' )
+    script( type='text/javascript', src='/codemirror/addon/runmode/runmode.js' )
     script( type='text/javascript', src='/scripts/handlebars.js' )
     script( type='text/javascript', src='/scripts/markdown.js' )
     script( type='text/javascript', src='/scripts/mousetrap.js' )

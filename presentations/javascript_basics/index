@@ -4,13 +4,11 @@
 [theme style.css]
 
 [slide]
-<div class="intro" >
-<h1>JavaScript Deep Dive</h1>
-<h2>Part 1</h2>
-<a href="http://twitter.com/hugoware" >@hugoware</a>
-</div>
+# JavaScript Deep Dive
+## Part 1
 
-Follow along at [http://codefollow.net/${PRESENTATION_ID}](http://codefollow.net/${PRESENTATION_ID})
+Follow along at **CodeFollow.net/${PRESENTATION_ID}**
+
 
 [slide variables/intro.md]
 [slide variables/basic.md]
@@ -18,7 +16,10 @@ Follow along at [http://codefollow.net/${PRESENTATION_ID}](http://codefollow.net
 [slide variables/arrays.md]
 [slide variables/scope.md]
 [test variables]
+-- [ranking]
 
 [slide]
-Thanks for coming out!
+
+# Thanks!
+I hope you learned a lot!
 

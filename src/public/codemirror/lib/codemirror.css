@@ -5,9 +5,26 @@
   /*font-family: monospace;*/
   font-family: 'mono', monospace;
   font-size : 16px;
-  height: 300px;
-  padding : 25px 10px;
+  height : 90%;
+  padding : 15px 15px 0 15px;
 }
+
+.code-readonly {
+  height: 300px;
+}
+
+.leader #editor .editors {
+  opacity : 0;
+}
+
+.leader #editor.focused .editors {
+  opacity : 1;
+}
+
+.leader .CodeMirror-vscrollbar {
+  display : none !important;
+}
+
 .CodeMirror-scroll {
   /* Set scrolling behaviour here */
   overflow: auto;
@@ -74,7 +91,7 @@
 }
 .cm-s-default div.CodeMirror-selected {background: #49483E !important;}
 .cm-s-default .CodeMirror-gutters {background: #272822; border-right: 0px;}
-.cm-s-default .CodeMirror-linenumber {color: #d0d0d0;}
+.cm-s-default .CodeMirror-linenumber {color: #555; text-shadow : none;}
 .cm-s-default .CodeMirror-cursor {border-left: 1px solid #f8f8f0 !important;}
 
 .cm-s-default span.cm-comment {color: #75715e;}

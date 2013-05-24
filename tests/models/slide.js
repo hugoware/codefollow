@@ -25,6 +25,24 @@ require('../test')( module, {
       , actual = slide.content;
     
     this.equal( expected, actual, 'content did not match from external file' );
+  },
+
+  will_sub_for_special_content : function() {
+    var section = { content: 'testing ${PRESENTATION_ID}', presentation: { identity: 'AAAA' } }
+      , expected = 'testing AAAA'
+      , slide = new Slide( section, $directory );
+    
+    this.equal( slide.type, 'slide', 'type was incorrect' );
+    this.equal( slide.content, expected, 'content did not match' );
+  },
+
+  will_sub_for_multiple_special_content : function() {
+    var section = { content: 'testing ${PRESENTATION_ID} ${PRESENTATION_ID} ${PRESENTATION_ID}', presentation: { identity: 'AAAA' } }
+      , expected = 'testing AAAA AAAA AAAA'
+      , slide = new Slide( section, $directory );
+    
+    this.equal( slide.type, 'slide', 'type was incorrect' );
+    this.equal( slide.content, expected, 'content did not match' );
   }
 
 

@@ -6,7 +6,11 @@ $(function() {
 
     // configuration
     , $poll_interval = 3000
+    , $last = 0
     , $states = 'slide test rankings'
+
+    , $body = $(document.body)
+    , $leader = $body.hasClass('leader')
 
     // slides/test values
     , $slide = null
@@ -15,12 +19,11 @@ $(function() {
     // the current state of the presentation
     , $state = 'setup'
     , $stopped = false
-    , $busy = false
     , $progress = -1
 
     // urls used for presentation requests
     , $trailing_slash = !/\/$/.test( window.location.pathname )
-    , $root = window.location.pathname + ($trailing_slash ? '/' : '')
+    , $root = window.location.pathname + ( $trailing_slash ? '/' : '' )
 
     // compiled templates for views
     , $templates = { }
@@ -36,11 +39,27 @@ $(function() {
     , 
 
     // convenience methods
-    _state = function( state ) { $(document.body).removeClass($states).addClass( $state = state ); },
+    _is = function ( state ) { return $body.hasClass( state ); },
+    _state = function( state ) { _hide_dialog(); $body.removeClass($states).addClass( $state = state ); },
     _delay = function( time, action ) { if (!action) action = time, time = 1; if ( time == 0 ) action(); else window.setTimeout( action, time ); },
     _markdown = function( str ) { return (new Markdown.Converter()).makeHtml( str ); },
     _syntax = function( key ) { return({ 'html': 'htmlembedded' })[key] || key; },
-    _busy = function( on ) { $(document.body)[ ($busy = on) ? 'addClass' : 'removeClass' ]('busy'); },
+    _is_busy = function() { return $body.hasClass('busy'); }
+    _busy = function( on ) { $body[ on ? 'addClass' : 'removeClass' ]('busy'); },
+
+    // handles a nice fade in
+    _show = function( target ) {
+      target.css({ marginLeft: '25px', opacity: 0 })
+        .removeClass('hide')
+        .animate({ opacity: 1, marginLeft: '0' }, 500 );
+    },
+
+    // slides in an editor
+    _slide = function( target ) {
+      return;
+      target.css({ right: '-300px' })
+        .animate({ right: '0' }, 500 );
+    },
     
     // wires up all templates on the page
     _find_templates = function() {
@@ -56,12 +75,19 @@ $(function() {
         });
     },
 
+    // grabs the first available tab
+    _find_first_editor_tab = function() {
+      return $ui.test.find('.tabs :first-child')
+    },
+
     // selects a new tab to view
     _set_editor_tab = function( tab ) {
+      if ( !$test || !$test.zones ) return;
+      var default_tab = !!!tab;
 
       // get the requested tab or default
       if ( tab && tab.target ) tab = $( tab.target );
-      if ( !tab || !tab.length ) tab = $ui.test.find('.tabs :first-child');
+      if ( !tab || !tab.length ) tab = _find_first_editor_tab();
 
       // reset the views
       $ui.test.find('.tabs li').removeClass('selected');
@@ -74,8 +100,10 @@ $(function() {
       var target = tab.attr('for')
         , zone = '.editors > [for='+target+']';
       $ui.test.find(zone).removeClass('hide');
+      
+      // focus by default ( except the leader )
+      if ( default_tab && $leader ) return;
       $test.zones[ target ].editor.focus();
-
     },
 
     // grab the correct view
@@ -107,7 +135,10 @@ $(function() {
     },
 
     // unhandled exceptions (silent repair efforts)
-    _unhandled_error = function( e ) { console.log(e); },
+    _unhandled_error = function( e ) { 
+      _busy( false );
+      console.log( e ); 
+    },
 
     // makes requests for presentation 
     _request = function( type, params, actions, override ) {
@@ -140,7 +171,10 @@ $(function() {
       $(document).on( 'click', '.submit', _submit_test )
         .on( 'click', '.preview', _preview_test )
         .on( 'click', '.tabs > li', _set_editor_tab )
-        .on( 'click', '#results .dialog h3', _set_results_view );
+        .on( 'click', '#results .dialog h3', _set_results_view )
+        .on( 'focus', '#editor textarea', _show_editor )
+        .on( 'blur', '#editor textarea', _hide_editor );
+
 
       // also link up the keyboard
       Mousetrap.bind( 'esc', _hide_dialog );
@@ -160,7 +194,13 @@ $(function() {
 
     // checks for a presentation status
     _poll = function( immediate ) {
-      if ( $busy ) return;
+      
+      // make sure it runs eventually
+      if ( _is_busy() && ++$last < 10 ) return;
+      immediate = immediate || $last >= 10;
+      $last = 0;
+
+      // send the request
       _delay( immediate ? 0 : $poll_interval, function() {
         _request( 'status', { at: $progress }, { success: _identify, done: _poll });
       })
@@ -201,7 +241,46 @@ $(function() {
 
       slide.content = _markdown( slide.content );
       var markup = $templates.slide( slide );
-      $ui.slide.html( markup );
+      $ui.slide.html( markup )
+        .addClass('hide');
+
+      // apply any syntax highlighting
+      window.setTimeout( _apply_code_highlighting, 0 );
+      _show( $ui.slide );
+
+    },
+
+    // styles all code samples
+    _apply_code_highlighting = function() {
+      $ui.slide.find('pre.code').each( function() {
+        var block = $(this)
+          , code = $.trim( block.text() )
+          , syntax = $.trim( block.attr('class').replace(/code/g, '') )
+          , params = { value: code, mode: syntax, readOnly: true, showCursorWhenSelecting: false }
+
+        // load the formatted content
+        var container = new CodeMirror( this, params );
+        CodeMirror.autoLoadMode( container, syntax );
+
+        // visible only
+        block.addClass('hide')
+          .find('>div')
+            .addClass('code-readonly')
+            .insertBefore( block );
+  
+      });
+    },
+
+    // handles displaying the editor window for leaders
+    _show_editor = function() {
+      if ( !$leader ) return;
+      $('#editor').addClass('focused');
+    },
+
+    // handles displaying the editor window for leaders
+    _hide_editor = function() {
+      if ( !$leader ) return;
+      $('#editor').removeClass('focused');
     },
 
     // displays a content slide
@@ -213,6 +292,11 @@ $(function() {
       test.explanation = _markdown( test.explanation );
       var markup = $templates.test( test );
       $ui.test.html( markup );
+      _show( $ui.test );
+
+      // slide in the editor if needed
+      if ( !$leader )
+        _slide( $('#editor') );
 
       // setup each editor
       $ui.test.find('.editor')
@@ -227,6 +311,7 @@ $(function() {
           // update the code mirror syntax
           $test.zones[ target ].editor = editor;
           CodeMirror.autoLoadMode( editor, syntax );
+
         });
 
       // update the editors
@@ -235,6 +320,7 @@ $(function() {
 
     // displays a content slide
     _handle_results = function( results ) {
+      _busy( false );
 
       // figure out all passses
       for (var t in results.tests)
@@ -270,6 +356,7 @@ $(function() {
 
     // handles updating user content
     _send_update = function( callback, preview ) {
+      if ( !_is('test') ) return;
 
       // grab the zones
       var submit = { at: $progress, preview: preview, zones: { } };
@@ -321,6 +408,10 @@ $(function() {
       // restore the editor (if any)
       var tab = $ui.test.find('.tabs .selected');
       _set_editor_tab( tab );
+
+      // blur stuff for the leader
+      if ( $leader && _is('test') )
+        $('input,textarea').blur();
     };
 
 

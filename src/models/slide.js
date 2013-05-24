@@ -5,18 +5,30 @@ var $$class = module.exports = function Slide( params, directory, expand ) {
   var $this = this
     , $params = params || { }
     , $expand = expand || false
-    , $presentation = $params.presentation
+    , $presentation = $params.presentation || { }
     , $directory = directory
     ,
+
+    _format = function() {
+
+      // update the content
+      var content = $params.content;
+      content = content.replace(/\$\{PRESENTATION\_ID\}/gi, $presentation.identity );
+
+      // update and return
+      return content;
+    },
 
     // grabs the content for the slides
     _expand = function() {
 
       // if already cached, use it
-      if ( $params.content ) return $params.content;
+      if ( $params.content )
+        return _format();
 
       // check for a path
-      if ( !$params.value ) return '';
+      if ( !$params.value )
+        return ( $params.content = '' );
 
       // read content if possible
       var path = $$path.join( $directory, $params.value )
@@ -24,9 +36,9 @@ var $$class = module.exports = function Slide( params, directory, expand ) {
         , file = exists && $$fs.readFileSync( path )
         , content = file && file.toString();
       
-      // only read 
-      if ( content )
-        return ( $params.content = content );
+      // read in the content
+      $params.content = content || '';
+      return _format();
 
     };
 

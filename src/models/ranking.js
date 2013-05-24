@@ -11,7 +11,7 @@ module.exports = $$class = function Ranking( params ) {
     _update = function() {
       $rankings = [ ];
       for ( var u in $presentation.users )
-        _calculate_ranking( $presentation.users[ u ] );
+        _calculate_ranking( $presentation.users[ u ], true );
       
       // handle sorting by most passing
       $rankings.sort( function( a, b ) {
@@ -40,18 +40,20 @@ module.exports = $$class = function Ranking( params ) {
     // finds the score for the current user
     _get_results = function( user ) {
       if ( !$rankings ) _update();
-      return {
-        type: 'ranking',
-        leaders: _get_leaders(),
-        user: _get_user( user )
-      };
+
+      // ignore the leader
+      user = $presentation.is_leader( user ) ? null : user;
+
+      // reutrn the correct type
+      return user ? { type: 'ranking', user: _get_user( user ) }
+        : { type: 'ranking', leaders: _get_leaders() };
     },
 
     // gets the calculated randking for the user
-    _calculate_ranking = function( user ) {
+    _calculate_ranking = function( user, minimum ) {
 
       // find each attempt made by the user
-      var score = new Score( user );
+      var score = new Score( user, minimum );
       $presentation.tests.each( function( test ) {
         var attempt = test.results[ user.id ];
         if ( attempt )

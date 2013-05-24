@@ -6,10 +6,9 @@
 
 ## Declare 3 variables
 
-* variable named `a` with the value 3
-* variable named `b` with the value false
-* variable named `c` with the value 'name'
+* _variable_ named `a` with the value **3**
+* _variable_ named `b` with the value **false**
+* _variable_ named `c` with the value **'name'**
 
 [zone name:script.js for:script syntax:javascript]
---[test source:functions.js]
 [test source:test.js]
