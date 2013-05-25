@@ -2,6 +2,7 @@
   "version": 1,
   "port": 3000,
   "secret": "denise ruby 2649 raiden",
+  "mode": "development",
 
   "test_key_length": 8,
   "remote_key_length": 4,

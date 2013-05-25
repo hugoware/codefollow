@@ -1,16 +1,14 @@
 /* BASICS */
 
 .CodeMirror {
-  /* Set height, width, borders, and global font properties here */
-  /*font-family: monospace;*/
   font-family: 'mono', monospace;
   font-size : 16px;
-  height : 90%;
   padding : 15px 15px 0 15px;
+  height : 90%;
 }
 
-.code-readonly {
-  height: 300px;
+.CodeMirror.code-readonly {
+  height: auto !important;
 }
 
 .leader #editor .editors {

@@ -95,7 +95,7 @@ require('../test')( module, {
       Presentation.repository.refresh();
 
       // create the presentation that will be displayed
-      $$presentation = new Presentation('presentation_a');
+      $$presentation = new Presentation('presentation_a', { expand: true });
       Presentation.register( $$presentation );
       $$presentation.index = 3;
 
@@ -133,32 +133,6 @@ require('../test')( module, {
       this.equal( web.result.status, 404, 'did not return 404' );
     },
 
-    // // will attempt to display existing file
-    // will_map_to_lower_directories: function() {
-    //   var serve = '../file.txt'
-    //     , expected = $$path.join( $$config.presentation_directory, 'presentation_a/content', serve );
-
-    //   // create the view request
-    //   var web = WebRequest.get( ServeTestRequest, {
-    //     route: { presentation_id: $$presentation.identity, test_key: $$presentation.test_key, user_id: $$user.id, serve: serve }
-    //   });
-
-    //   this.equal( web.result.sendfile, expected, 'did not return correct file' );
-    // },
-
-    // // will attempt to display existing file
-    // will_map_relative_paths: function() {
-    //   var serve = '/content/../lib/file.txt'
-    //     , expected = $$path.join( $$config.presentation_directory, 'presentation_a/content', serve );
-
-    //   // create the view request
-    //   var web = WebRequest.get( ServeTestRequest, {
-    //     route: { presentation_id: $$presentation.identity, test_key: $$presentation.test_key, user_id: $$user.id, serve: serve }
-    //   });
-
-    //   this.equal( web.result.sendfile, expected, 'did not return correct file' );
-    // },
-
     // will attempt to display existing file
     will_not_go_beneath_presentation_directory: function() {
       var serve = '../too_low.txt'
@@ -189,7 +163,8 @@ require('../test')( module, {
 
       this.ok( web.result.json, 'returned a json response' );
       this.notEqual( web.result.sendfile, expected, 'did not return a file' );
-      this.equal( web.result.json.zones.script, 'test', 'did not have user content' );
+      this.ok( web.result.json.zones.script, 'did not have user content' );
+      this.equal( web.result.json.zones.script.content, 'test', 'did not have correct user content' );
     }
 
   }

@@ -1,6 +1,7 @@
-var $$class = module.exports = function Score( user, minimum ) {
+var $$class = module.exports = function Score( user, params ) {
   var $this = this
     , $user = user || { }
+    , $params = params || { }
     
     , $tests = [ ]
     , $attempts = 0
@@ -13,20 +14,25 @@ var $$class = module.exports = function Score( user, minimum ) {
     _get_pass = function() { return $pass; },
     _get_attempts = function() { return $attempts; },
     _get_tests = function() { return $tests; },
+    _get_rank = function() { return Ranking.calculate( $pass, $attempts ); },
 
     // includes a test
-    _add = function( test ) {
+    _add = function( test, attempt ) {
+      if ( !attempt ) attempt = { skipped: true, pass: 0, attempts: 0 }
 
       // add up score
-      $pass += test.pass;
-      $attempts += test.attempts;
+      $pass += 0|attempt.pass;
+      $attempts += 0|attempt.attempts;
 
-      // include the record
-      $tests.push({
-        name: test.title,
-        pass: test.pass,
-        attempts: test.attempts
-      });
+      // include the record ( if needed )
+      if ( $params.complete )
+        $tests.push({
+          title: test.title,
+          pass: 0|attempt.pass,
+          attempts: 0|attempt.attempts,
+          rank: Ranking.calculate( attempt.pass, attempt.attempts ),
+          skipped: !!attempt.skipped
+        });
     };
 
 
@@ -45,9 +51,9 @@ var $$class = module.exports = function Score( user, minimum ) {
   });
 
   // include extra if needed
-  if ( minimum ) return;
-  __define( $this, {
-    tests: { get: _get_tests, enumerable: true }
-  });
+  if ( $params.complete )
+    __define( $this, {
+      tests: { get: _get_tests, enumerable: true }
+    });
 
 };

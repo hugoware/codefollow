@@ -17,7 +17,7 @@ html
         #slide
         #test
         #results
-        #preview
+        //- #preview
         #rankings
 
     #footer
@@ -56,7 +56,7 @@ html
     | 
     |       <div class="actions" >
     |         <button class="submit" >Submit</button>
-    |         <button class="preview" >Preview</button>
+    //- |         <button class="preview" >Preview</button>
     |       </div>
     |     </div>
     | 
@@ -73,14 +73,16 @@ html
     | <script id="template_results" type="text/template">
     |   <div class="dialog" >
     |     <div class="container" >
-    |       <h2>Test Results</h2>      
-    |       <h5>{{ title }}</h5>
-    |       <ul class="grade rank-{{ score }}" >
-    |         <li class="rank-1" ></li>
-    |         <li class="rank-2" ></li>
-    |         <li class="rank-3" ></li>
-    |       </ul>
-    | 
+    |       <div class="detail" >
+    |         <h2>Test Results</h2>      
+    |         <h5>{{ title }}</h5>
+    |         <ul class="grade rank-{{ score }}" >
+    |           <li class="rank-1" ></li>
+    |           <li class="rank-2" ></li>
+    |           <li class="rank-3" ></li>
+    |         </ul>
+    |       </div>
+    |       {{# if no_tests }}<div class="error" ><i>f</i> Uh oh! looks like your code failed to run! <strong>{{ error }}</strong></div>{{/ if }}
     |       <h3>Summary</h3>
     |       <div class="view summary" >
     |         <ul>
@@ -111,7 +113,7 @@ html
     |           </ul>
     |         {{/ each}}
     |         {{ else }}
-    |           <div>No tests were successfully run</div>
+    |           <div>No test results were found</div>
     |         {{/ if }}
     |       </div>
     | 
@@ -132,7 +134,8 @@ html
     | <script id="template_rankings" type="text/template" >
     |   <div class="content" >
     |     {{# if leaders }}
-    |     <ul>
+    |     <h1>Leaderboard</h1>
+    |     <ul class="leaders" >
     |       <li>
     |         {{# each leaders }}
     |         {{> ranking }}
@@ -141,15 +144,34 @@ html
     |     </ul>
     |     {{/ if }}
     | 
-    |     {{# if user }}
+    |     {{# if score }}
     |     <div class="current" >
-    |       {{# with user }}
-    |       {{> ranking }}
-    |       {{/ with }}
-    |       <ul>
-    |         {{# each test }}
-    |         {{/ each }}
-    |       </ul>
+    |       <h1>Your Progress</h1>
+    |       <div class="personal" >
+    |         {{# with score }}
+    |         {{> ranking }}
+    |         {{/ with }}
+    |         <ul>
+    |           {{# each score.tests }}
+    |           <li class="test-entry {{# if skipped }}skip{{/ if }}" >
+    |             <div class="container" >
+    |               <h4>{{ title }}</h4>
+    |               <ul class="grade rank-{{ rank }}" >
+    |                 <li class="rank-1" ></li>
+    |                 <li class="rank-2" ></li>
+    |                 <li class="rank-3" ></li>
+    |               </ul>
+    |               <ul class="count" >
+    |                 <li>passed</li>
+    |                 <li>{{ pass }}</li>
+    |                 <li>of</li>
+    |                 <li>{{ attempts }}</li>
+    |               </ul>
+    |             </div>
+    |           </li>
+    |           {{/ each }}
+    |         </ul>
+    |       </div>
     |     </div>
     |     {{/ if }}
     |   </div>
@@ -157,10 +179,14 @@ html
 
     //- each user listed on rankings
     | <script id="template_ranking" class="partial" type="text/template" >
-    |   <div class="rank" >
-    |     <img src="http://gravatar.com/avatar/{{ gravatar }}?r=g&d=blank&s=50" />
-    |     <h3>{{ name }}</h3>
-    |     <h4>{{ pass }} of {{ attempts }}</h4>
+    |   <div class="ranking" >
+    |     <div class="avatar" >
+    |       <img src="http://gravatar.com/avatar/{{ gravatar }}?r=g&s=140&d=retro" />
+    |     </div>
+    |     <div class="detail" >
+    |       <h3>{{ name }}</h3>
+    |       <h4>passed {{ pass }} of {{ attempts }}</h4>
+    |     </div>
     |   </div>
     | </script>
 

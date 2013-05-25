@@ -36,7 +36,15 @@ var $$class = module.exports = function Test( params, directory, expand ) {
     _get_tests = function() { _expand(); return $tests; },
     _get_directory = function() { return $directory; },
     _get_source = function() { return $source; },
-    _get_results = function() { return $results; },
+    
+    // finds results for a specific user
+    _get_results = function( user ) {
+      if ( !user ) return $results; 
+
+      // if for a specific user
+      if ( user instanceof User ) user = user.id;
+      return $results[ user ];
+    },
 
     // including new content
     _add_test = function( section ) { $tests.push( section ); },
@@ -145,7 +153,8 @@ var $$class = module.exports = function Test( params, directory, expand ) {
 
     // extracting content
     zones_for: _zones_for,
-    set_results: _set_results
+    set_results: _set_results,
+    get_results: _get_results
   });
 
 };

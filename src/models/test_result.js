@@ -1,4 +1,3 @@
-var $$TOTAL_RANKS = 3;
 
 // a result of executing a user test
 var $$class = module.exports = function TestResult( test, content, error ) {
@@ -22,7 +21,7 @@ var $$class = module.exports = function TestResult( test, content, error ) {
 
     // calculates final score value
     _get_score = function() {
-      return 0|( ( $pass /  $attempts ) * $$TOTAL_RANKS );
+      return Ranking.calculate( $pass, $attempts );
     },
 
     // start reading the content

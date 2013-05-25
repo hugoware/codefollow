@@ -163,6 +163,30 @@ require('../test')( module, {
 
     this.ok( web.result.json.success, 'did not display slide' );
     this.equal( web.result.json.type, 'ranking', 'did not display a slide' );
+    this.ok( web.result.json.leaders, 'ranking', 'should display leaderboard' );
+    this.equal( web.result.json.at, 4, 'should be on first slide' );
+  },
+
+  non_leaders_get_personal_stats_for_ranking_result: function() {
+    var presentation = new Presentation('presentation_a')
+      , leader = new User()
+      , user = new User();
+
+    User.login( user );
+    Presentation.register( presentation );
+    presentation.add( leader );
+    presentation.add( user );
+
+    presentation.index = 4;
+
+    var web = WebRequest.post( StatusRequest, {
+      route: { presentation_id: presentation.id },
+      session: { user: user.id }
+    });
+
+    this.ok( web.result.json.success, 'did not display slide' );
+    this.equal( web.result.json.type, 'ranking', 'did not display a slide' );
+    this.ok( web.result.json.score, 'ranking', 'should display leaderboard' );
     this.equal( web.result.json.at, 4, 'should be on first slide' );
   }
 

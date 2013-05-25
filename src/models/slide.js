@@ -14,7 +14,7 @@ var $$class = module.exports = function Slide( params, directory, expand ) {
       // update the content
       var content = $params.content;
       content = content.replace(/\$\{PRESENTATION\_ID\}/gi, $presentation.identity );
-
+      
       // update and return
       return content;
     },

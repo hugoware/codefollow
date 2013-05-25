@@ -2,7 +2,7 @@ if (!('console' in window)) window.console = { log: function() { } };
 
 $(function() {
   var $this = this
-    , $pending_request = null
+    , $pending_request
 
     // configuration
     , $poll_interval = 3000
@@ -13,12 +13,14 @@ $(function() {
     , $leader = $body.hasClass('leader')
 
     // slides/test values
-    , $slide = null
-    , $test = null
+    , $slide
+    , $test
 
     // the current state of the presentation
     , $state = 'setup'
     , $stopped = false
+    , $polling
+    , $sending = false
     , $progress = -1
 
     // urls used for presentation requests
@@ -46,6 +48,7 @@ $(function() {
     _syntax = function( key ) { return({ 'html': 'htmlembedded' })[key] || key; },
     _is_busy = function() { return $body.hasClass('busy'); }
     _busy = function( on ) { $body[ on ? 'addClass' : 'removeClass' ]('busy'); },
+    _is_testing = function() { return $('.dialog:visible').length > 0; },
 
     // handles a nice fade in
     _show = function( target ) {
@@ -55,11 +58,7 @@ $(function() {
     },
 
     // slides in an editor
-    _slide = function( target ) {
-      return;
-      target.css({ right: '-300px' })
-        .animate({ right: '0' }, 500 );
-    },
+    _slide = function( target ) { },
     
     // wires up all templates on the page
     _find_templates = function() {
@@ -142,12 +141,13 @@ $(function() {
 
     // makes requests for presentation 
     _request = function( type, params, actions, override ) {
-      if ($stopped) return;
+      if ( $stopped ) return;
 
       // cancel an existing
-      if ($pending_request) 
-        if (override) $pending_request.abort();
+      if ( $pending_request ) {
+        if ( override ) $pending_request.abort();
         else return;
+      }
 
       // activity in progress
       _busy( true );
@@ -160,8 +160,13 @@ $(function() {
         .fail( actions.fail || _unhandled_error )
         .done( actions.success )
         .always(function() {
-          $pending_request = _busy( false );
-          if ( actions.done ) actions.done();
+
+          $pending_request = null;
+          $sending = false;
+          _busy( false );
+
+          if ( actions.done )
+            actions.done();
         });
 
     },
@@ -179,11 +184,13 @@ $(function() {
       // also link up the keyboard
       Mousetrap.bind( 'esc', _hide_dialog );
       Mousetrap.bind( [ 'command+enter', 'ctrl+enter' ], _submit_test );
-      Mousetrap.bind( [ 'command+?', 'ctrl+?' ], _preview_test );
       Mousetrap.bind( [ 'command+shift+.', 'ctrl+shift+.' ], _tab_editor_right );
       Mousetrap.bind( [ 'command+shift+,', 'ctrl+shift+,' ], _tab_editor_left );
       Mousetrap.bind( 'down', _set_results_next );
       Mousetrap.bind( 'up', _set_results_previous );
+
+      // later...
+      // Mousetrap.bind( [ 'command+?', 'ctrl+?' ], _preview_test );
     },
 
     // allow CodeMirror to respond to mousetrap shortcuts
@@ -192,18 +199,16 @@ $(function() {
       Mousetrap.handleKeyEvent( event );
     },
 
-    // checks for a presentation status
-    _poll = function( immediate ) {
-      
-      // make sure it runs eventually
-      if ( _is_busy() && ++$last < 10 ) return;
-      immediate = immediate || $last >= 10;
-      $last = 0;
+    // handles auto polling
+    _set_polling_interval = function() {
+      window.clearInterval( $polling );
+      $polling = window.setInterval( _poll, $poll_interval );
+    },
 
-      // send the request
-      _delay( immediate ? 0 : $poll_interval, function() {
-        _request( 'status', { at: $progress }, { success: _identify, done: _poll });
-      })
+    // checks for a presentation status
+    _poll = function( force ) {
+      if ( force ) _set_polling_interval();
+      _request( 'status', { at: $progress }, { success: _identify }, force );
     },
 
     // determine what to do with a response
@@ -212,8 +217,11 @@ $(function() {
       $progress = result.at != null ? result.at : $progress;
       $state = result.state || $state;
 
+      // reset the view
+      $pending_request = null;
+
       // always resume
-      _busy();
+      _busy( false );
 
       // choose the view
       if ( result.type == 'slide' )
@@ -238,35 +246,47 @@ $(function() {
     // displays a content slide
     _handle_slide = function( slide ) {
       _state('slide');
-
+      
+      // update the content
       slide.content = _markdown( slide.content );
       var markup = $templates.slide( slide );
       $ui.slide.html( markup )
         .addClass('hide');
 
       // apply any syntax highlighting
-      window.setTimeout( _apply_code_highlighting, 0 );
       _show( $ui.slide );
-
+      window.setTimeout( _apply_code_highlighting, 0 );
     },
 
     // styles all code samples
     _apply_code_highlighting = function() {
-      $ui.slide.find('pre.code').each( function() {
+      $('pre.code').each( function() {
         var block = $(this)
           , code = $.trim( block.text() )
           , syntax = $.trim( block.attr('class').replace(/code/g, '') )
           , params = { value: code, mode: syntax, readOnly: true, showCursorWhenSelecting: false }
+          , display = $('<div/>').addClass('CodeMirror cm-s-default');
 
         // load the formatted content
+        block.empty();
         var container = new CodeMirror( this, params );
         CodeMirror.autoLoadMode( container, syntax );
 
-        // visible only
-        block.addClass('hide')
-          .find('>div')
-            .addClass('code-readonly')
-            .insertBefore( block );
+        // only show the editor
+        var editor = block.find('>')
+          .addClass('code-readonly');
+
+        // shuffle around
+        editor.insertBefore( block );
+        block.remove();
+
+        // handle overriding styles
+        editor.find('.CodeMirror-scroll > div')
+          .addClass('scroll-area');
+
+        // no scrolling ( just for view )
+        editor.find('textarea, .CodeMirror-hscrollbar, .CodeMirror-vscrollbar')
+          .remove();
   
       });
     },
@@ -294,10 +314,6 @@ $(function() {
       $ui.test.html( markup );
       _show( $ui.test );
 
-      // slide in the editor if needed
-      if ( !$leader )
-        _slide( $('#editor') );
-
       // setup each editor
       $ui.test.find('.editor')
         .each( function( i, element ) {
@@ -311,8 +327,12 @@ $(function() {
           // update the code mirror syntax
           $test.zones[ target ].editor = editor;
           CodeMirror.autoLoadMode( editor, syntax );
-
         });
+
+
+      // slide in the editor if needed
+      if ( !$leader ) _slide( $('#editor') );
+      else _apply_code_highlighting();
 
       // update the editors
       _set_editor_tab();
@@ -323,6 +343,7 @@ $(function() {
       _busy( false );
 
       // figure out all passses
+      results.no_tests = !results.tests || results.tests.length == 0
       for (var t in results.tests)
         for (var r in results.tests[t].tests) {
           var pass = results.tests[t].pass = results.tests[t].tests[r].pass;
@@ -348,6 +369,21 @@ $(function() {
 
       var markup = $templates.rankings( rankings );
       $ui.rankings.html( markup );
+      _show( $ui.rankings );
+      
+      // make sure to alternate
+      $ui.rankings.find('.test-entry:odd')
+        .addClass('alt');
+
+      // add scoring
+      $ui.rankings.find('.leaders .ranking').each( function( i, v ) {
+        var number = ( i + 1 )
+          , style = [ 'first' ][ i ]
+          , place = [ 'st', 'nd', 'rd' ][ i ] || 'th'
+          , element = $('<div class="place" >' + number + '<span>' + place + '</span></div>');
+        $( this ).append( element )
+          .addClass( style )
+      });
     },
 
     // handles saving/preview
@@ -356,7 +392,8 @@ $(function() {
 
     // handles updating user content
     _send_update = function( callback, preview ) {
-      if ( !_is('test') ) return;
+      if ( !_is('test') || _is_testing() || $sending ) return;
+      $sending = true;
 
       // grab the zones
       var submit = { at: $progress, preview: preview, zones: { } };
@@ -403,6 +440,7 @@ $(function() {
 
     // hides the results dialog
     _hide_dialog = function() {
+      $testing = false;
       $ui.results.empty().hide();
 
       // restore the editor (if any)

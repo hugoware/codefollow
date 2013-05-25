@@ -9,14 +9,38 @@
 
 Follow along at **CodeFollow.net/${PRESENTATION_ID}**
 
+[slide about_me.md]
+[slide about_stuff.md]
+[slide about_presentation.md]
+[slide follow_along.md]
+[slide testing.md]
+[slide leaderboard.md]
+[slide some_of_you.md]
+[slide get_started.md]
 
 [slide variables/intro.md]
 [slide variables/basic.md]
+[slide variables/multiple.md]
+[slide variables/empty.md]
 [slide variables/objects.md]
 [slide variables/arrays.md]
-[slide variables/scope.md]
 [test variables]
--- [ranking]
+[ranking]
+
+[slide objects/intro.md]
+[slide objects/properties.md]
+[slide objects/key.md]
+[slide objects/null.md]
+[slide objects/delete.md]
+[test objects]
+[ranking]
+
+[slide loops/intro.md]
+[slide loops/length.md]
+[slide loops/length.md]
+[slide loops/each.md]
+[slide loops/gotchas.md]
+[ranking]
 
 [slide]
 

@@ -32,6 +32,8 @@ var includes = {
   // models
   'Slide': './models/slide',
   'Ranking': './models/ranking',
+  'UserRanking': './models/user_ranking',
+  'AllRanking': './models/all_ranking',
   'Test': './models/test',
   'TestResult': './models/test_result',
   'Reader': './models/reader',

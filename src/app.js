@@ -7,6 +7,12 @@ var express = require('express')
 // load in all app modules
 require( './bootstrap' );
 
+// don't go completely down
+process.addListener('uncaughtException', function ( err ) {
+  console.log('ex:', err );
+  console.trace();
+});
+
 
 // load the app configuration
 var source = $$path.join( __dirname, '../config.json' );

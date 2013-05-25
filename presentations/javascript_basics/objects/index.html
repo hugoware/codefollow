@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Working With Objects</title>
+    <meta charset="utf-8" />
+
+    <script type="text/javascript" >
+      var user = {
+        name: 'Fred Smith',
+        admin: true,
+
+        // an extra prop to make sure they
+        // don't just declare a new user
+        ___tmp: true
+      };
+
+      window.user = user;
+    </script>
+
+  </head>
+  <body>
+    <div id="__output" ></div>
+    <script type="text/javascript" src="/codefollow.js" ></script>
+  </body>
+</html>

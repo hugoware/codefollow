@@ -95,6 +95,7 @@ var $$class = module.exports = function ServeTestRequest( request, response ) {
 
     // displays content provided by the user
     _serve_content = function() {
+
       $json = {
         success: true,
         zones: $presentation.view.zones_for( $user )
