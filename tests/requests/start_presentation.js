@@ -7,6 +7,7 @@ require('../test')( module, {
 
     var path = $$path.join( __dirname + '/../data/presentations' );
     $$config.mock( 'presentation_directory', path );
+    $$config.mock( 'password', 'aaa' );
     Presentation.repository.refresh();
   },
 
@@ -25,6 +26,17 @@ require('../test')( module, {
     this.equal( web.result.view, 'start', 'did not show correct view' );
   },
 
+  identifies_when_already_in_presentation: function() {
+    var presentation = new Presentation( 'presentation_a' )
+      , user = User.login( 'aa' );
+
+    Presentation.register( presentation );
+    presentation.add( user );
+
+    var web = WebRequest.get( StartPresentationRequest, { session: { user: user.id }} );
+    this.ok( web.result.params.active instanceof Presentation, 'did not have active presentation' );
+  },
+
   fails_with_invalid_user: function() {
     var web = WebRequest.post( StartPresentationRequest, {
       body: { name:'', email:'' }
@@ -34,9 +46,19 @@ require('../test')( module, {
     this.ok( web.result.params.errors.name, 'did not fail name validation' );
   },
 
-  fails_with_invalid_presentation: function() {
+  fails_with_invalid_password: function() {
     var web = WebRequest.post( StartPresentationRequest, {
       body: { name:'fred', email:'' }
+    });
+
+    this.ok( web.result.params.errors.any, 'did find validation errors' );
+    this.ok( web.result.params.errors.password, 'did not fail password validation' );
+    this.equal( web.result.params.errors.password, 'incorrect', 'did not fail with correct reason' );
+  },
+
+  fails_with_invalid_presentation: function() {
+    var web = WebRequest.post( StartPresentationRequest, {
+      body: { name:'fred', email:'', password: 'aaa' }
     });
 
     this.ok( web.result.params.errors.any, 'did find validation errors' );
@@ -45,7 +67,7 @@ require('../test')( module, {
 
   successful_creates_presentation: function() {
     var web = WebRequest.post( StartPresentationRequest, {
-      body: { name: 'fred', email: 'fred@test.com', presentation_id: 'presentation_a' }
+      body: { name: 'fred', email: 'fred@test.com', password:'aaa', presentation_id: 'presentation_a' }
     })
 
     this.ok( web.instance.errors.none, 'still had errors' );

@@ -1,14 +1,62 @@
 extends layout
 
-block content
-  form( method='post', action='/join' )
-    - if ( errors.any )
-      ul
-        - for ( e in errors )
-          li= errors[e]
+block title
+  | Join Presentation
 
-    input( name='name', type='text', value= name )
-    input( name='email', type='text', value= email )
-    input( name='presentation_id', type='text', value= presentation_id )
-    
-    button( type='submit' ) Login
+block content
+  form( action='/join', method='post', autocomplete='off' )
+    - if ( active )
+      .active
+        | You're already in 
+        span= active.title
+        |&nbsp;-&nbsp;
+        a( href='/'+active.identity ) Rejoin?
+
+    - if ( errors.name == 'required' )
+      .error
+        i f
+        | A name is required!
+
+    - if ( errors.name == 'too_long' )
+      .error
+        i f
+        | That name is a little too long!
+
+    dl.input
+      dt
+        label( for='name' ) Your Name
+      dd
+        input( type='text', id='name', name='name', value=name )
+
+    - if ( errors.email == 'invalid' )
+      .error
+        i f
+        | Email address is invalid! (Optional)
+
+    - if ( errors.email == 'too_long' )
+      .error
+        i f
+        | That email address is a little too long!
+
+    dl.input
+      dt
+        label( for='email' ) Email Address
+      dd
+        input( type='text', placeholder='optional', id='email', name='email', value=email )
+
+    - if ( errors.presentation_id == 'missing' )
+      .error
+        i f
+        | Presentation could not be found!
+
+    dl.input
+      dt
+        label( for='presentation_id' ) Presentation ID
+      dd
+        input( type='text', placeholder='999-999-999', id='presentation_id', name='presentation_id', value=presentation_id )
+
+    button( type='submit' ) Join Presentation
+
+  | <script type="text/javascript" >
+  |   window.onload = function() { document.getElementById('name').focus(); }
+  | </script>

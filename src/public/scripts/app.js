@@ -15,6 +15,7 @@ $(function() {
     // slides/test values
     , $slide
     , $test
+    , $time
 
     // the current state of the presentation
     , $state = 'setup'
@@ -37,12 +38,13 @@ $(function() {
       results: $('#results'),
       rankings: $('#rankings'),
       preview: $('#preview'),
+      time: $('#time')
     }
     , 
 
     // convenience methods
     _is = function ( state ) { return $body.hasClass( state ); },
-    _state = function( state ) { _hide_dialog(); $body.removeClass($states).addClass( $state = state ); },
+    _state = function( state ) { _hide_dialog(); $time = null; $body.removeClass($states).addClass( $state = state ); },
     _delay = function( time, action ) { if (!action) action = time, time = 1; if ( time == 0 ) action(); else window.setTimeout( action, time ); },
     _markdown = function( str ) { return (new Markdown.Converter()).makeHtml( str ); },
     _syntax = function( key ) { return({ 'html': 'htmlembedded' })[key] || key; },
@@ -199,6 +201,34 @@ $(function() {
       Mousetrap.handleKeyEvent( event );
     },
 
+    // updates the clock
+    _set_time = function ( time ) {
+      $time = time * 60;
+      window.setTimeout( function() { 
+        $ui.time.hide().fadeIn();
+      }, 1000 );
+    },
+
+    // sets the countdown timer
+    _countdown = function() {
+      if ( !$time ) return;
+
+      // get the updated time
+      var minutes = 0|( $time / 60 )
+        , seconds = $time % 60;
+
+      // prepend a leading zero if needed
+      if ( seconds < 10 ) seconds = '0'+seconds;
+      var display = minutes + ':' + seconds;
+
+      // update
+      $ui.time.text( display );
+      if ( --$time <= 0 ) {
+        $ui.time.fadeOut();
+        $time = null;
+      }
+    },
+
     // handles auto polling
     _set_polling_interval = function() {
       window.clearInterval( $polling );
@@ -307,6 +337,10 @@ $(function() {
     _handle_test = function( test ) {
       _state('test');
       $test = test;
+
+      // set the time view
+      if ( $leader )
+        _set_time( test.time );
 
       // populate 
       test.explanation = _markdown( test.explanation );
@@ -452,6 +486,8 @@ $(function() {
         $('input,textarea').blur();
     };
 
+  // start countind down
+  window.setInterval( _countdown, 1000 );
 
   // initialize
   _find_templates();

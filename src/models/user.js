@@ -69,6 +69,24 @@ var __login = function( params, session ) {
   return user;
 };
 
+// adds a user to the user repo
+var __logout = function( user, session ) {
+  if ( !( user && session ) ) return;
+
+  // get rid of the session id
+  delete session.user;
+
+  // remove from existing presentation
+  if ( user.presentation_id ) {
+    var presentation = Presentation.active[ user.presentation_id ];
+    if ( presentation instanceof Presentation )
+      presentation.remove( user );
+  }
+
+  // remove from users
+  delete User.active[ user.id ];
+};
+
 // reset signed in users
 var __clear = function() {
   $$users = { };
@@ -79,6 +97,7 @@ __define( $$class, {
   active: { get: function() { return $$users; } },
   validate: __validate,
   login: __login,
+  logout: __logout,
   exists: __exists,
   find: __find,
   clear: __clear

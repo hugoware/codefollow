@@ -105,6 +105,17 @@ body.rankings #rankings { display : block; }
 }
 
 
+.leader #time {
+  display : none;
+  position: absolute;
+  width : 140px;
+  top : 55px;
+  right : 12px;
+  z-index : 105;
+  text-align : center;
+}
+
+
 #editor {
   position : absolute;
   z-index : 100;

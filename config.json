@@ -2,6 +2,7 @@
   "version": 1,
   "port": 3000,
   "secret": "denise ruby 2649 raiden",
+  "password": "raiden",
   "mode": "development",
 
   "test_key_length": 8,
@@ -13,7 +14,7 @@
 
   "presentation_directory": "/Users/hugoware/projects/codefollow/presentations/",
 
-  "test_execution_time_limit": 5000,
+  "test_execution_time_limit": 3000,
   "test_execution_max_buffer": 204800
 
 }

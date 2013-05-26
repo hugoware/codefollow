@@ -10,9 +10,11 @@ module.exports = $$class = function StartPresentationRequest( request, response 
     , $view = 'start'
     , $redirect = null
     , $presentation_id = _.trim( $request.body.presentation_id )
+    , $password = _.trim( $request.body.password )
     , $entry = _.first( Presentation.available, _.all({ id: $presentation_id }) )
     , $exists = !!$entry
     , $user = User.find( $session.user )
+    , $active = $user && Presentation.active[ $user.presentation_id ]
     , $errors = new $$validation()
     , $presentation
     
@@ -24,61 +26,60 @@ module.exports = $$class = function StartPresentationRequest( request, response 
       available: Presentation.available,
       name: _.trim( $request.body.name ),
       email: _.trim( $request.body.email ),
+      active: $active,
       errors: $errors
     }, 
 
+    // verify the password is okay
+    _validate_password = function() {
+      if ( $password != $$config.password )
+        $errors.password = 'incorrect';
+    },
+
     // attempts to log a user in
-    _attempt_login = function() {
-
-      // make sure they aren't already logged in
-      if ( $user ) {
-        if ( $user.presentation_id && !!Presentation.active[ $user.presentation_id ] )
-          $errors.user = 'in_session';
-        return;
-      }
-
-      // try and create the new account
+    _validate_user = function() {
       _.merge( $errors, User.validate( $model ) );
-      if ( $errors.any ) return;
+    },
 
-      // otherwise, log in the user
-      $user = User.login( $model, $session );
-
+    _validate_presentation = function() {
+      if ( !$exists )
+        $errors.presentation_id = 'missing';
     },
 
     // tries to create the presentation session
-    _attempt_create = function() {
+    _start = function() {
 
-      // try and find the presentation first
-      if ( !$exists )
-        return ( $errors.presentation_id = 'missing' );
+      // log out and back in
+      if ( $user ) User.logout( $user );
+      $user = User.login( $model, $session );
 
-      // create the actual presentation
+      // add a presentation
       var presentation = new Presentation( $presentation_id, { expand: true });
-      presentation.add( $user );
-
-      // try and register for use
       Presentation.register( presentation );
+
+      // and add the user
+      presentation.add( $user );
+      presentation.index = 14;
 
       // successfully created and added presentation
       $model.presentation = $presentation = presentation;
 
-    },
+      // send to the correct location
+      $response.redirect( '/{1}/'.assign( $presentation.identity ) );
 
-    // attempt to login for this user
-    _attempt_start = function() {
-      $$validation.run( $errors, 
-        _attempt_login,
-        _attempt_create
-        );
     },
 
     // handle the request
     _run = function() {
-      if ( $post ) _attempt_start();
-      if ( $post && $errors.none )
-        $response.redirect( '/{1}/'.assign( $presentation.identity ) );
-      else
+      if ( $post )
+        $$validation.run( $errors, 
+          _validate_user,
+          _validate_password,
+          _validate_presentation,
+          _start );
+      
+      // show the required view
+      if ( !$post || $errors.any )
         $response.render( $view, $model );
     };
 

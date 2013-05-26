@@ -5,14 +5,14 @@ var $$class = module.exports = function Presentation( key, params ) {
     , $this = this
 
     // the presentation content
-    , $reader = null
+    , $reader
 
     // the presentation view everyone should be looking at
     , $users = [ ]
     , $content = { }
     , $key = key
-    , $id = null
-    , $socket = null
+    , $id
+    , $socket
     , $remote_key = Object.generate_id( $$config.remote_key_length )
     , $test_key = Object.generate_id( $$config.test_key_length )
 
@@ -103,6 +103,7 @@ var $$class = module.exports = function Presentation( key, params ) {
         $leader = user;
 
       // clear existing (if any)
+      user.presentation_id = $id;
       _remove_user( user );
       delete $content[ user.id ];
 

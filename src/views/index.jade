@@ -1,11 +1,31 @@
 extends layout
 
 block title
-  | Hugoware
+  | CodeFollow
 
 block content
-  ul
-    li
-      a(href='/join') Join Presentation
-    li
-      a(href='/start') Start New Presentation
+
+  form( action='/join', method='post', autocomplete='off' )
+    dl.input
+      dt
+        label( for='name' ) Your Name
+      dd
+        input( type='text', id='name', name='name' )
+
+    dl.input
+      dt
+        label( for='email' ) Email Address
+      dd
+        input( type='text', placeholder='optional', id='email', name='email' )
+
+    dl.input
+      dt
+        label( for='presentation_id' ) Presentation ID
+      dd
+        input( type='text', placeholder='999-999-999', id='presentation_id', name='presentation_id' )
+
+    button( type='submit' ) Join Presentation
+
+  | <script type="text/javascript" >
+  |   window.onload = function() { document.getElementById('name').focus(); }
+  | </script>

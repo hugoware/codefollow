@@ -150,8 +150,18 @@ require('../test')( module, {
     this.ok( !web.instance.errors.any, 'does not have an error' );
     this.equal( web.result.redirect, '/{1}/'.assign( presentation.identity ), 'did not show correct view' );
 
-  }
+  },
 
+  identifies_when_already_in_presentation: function() {
+    var presentation = new Presentation( 'presentation_a' )
+      , user = User.login( 'aa' );
+
+    Presentation.register( presentation );
+    presentation.add( user );
+
+    var web = WebRequest.get( StartPresentationRequest, { session: { user: user.id }} );
+    this.ok( web.result.params.active instanceof Presentation, 'did not have active presentation' );
+  }
 
 
 });

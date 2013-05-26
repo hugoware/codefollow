@@ -17,9 +17,10 @@ var $$class = module.exports = function Test( params, directory, expand ) {
     , $path = $$path.join( $source, 'test' )
 
     // test details
-    , $explanation = null
-    , $title = null
-    , $execute = null
+    , $time
+    , $explanation
+    , $title
+    , $execute
     , $zones = [ ]
     , $tests = [ ]
 
@@ -35,6 +36,7 @@ var $$class = module.exports = function Test( params, directory, expand ) {
     _get_zones = function() { _expand(); return $zones; },
     _get_tests = function() { _expand(); return $tests; },
     _get_directory = function() { return $directory; },
+    _get_time = function() { return $time || 5; },
     _get_source = function() { return $source; },
     
     // finds results for a specific user
@@ -98,6 +100,10 @@ var $$class = module.exports = function Test( params, directory, expand ) {
           // the name of the test
           else if ( section.type == 'title' )
             $title = section.value || '';
+          
+          // the time to show on the clock
+          else if ( section.type == 'time' )
+            $time = 0|section.value || 5;
 
           // the file that should be run
           else if ( section.type == 'execute' )
@@ -141,9 +147,10 @@ var $$class = module.exports = function Test( params, directory, expand ) {
 
   __define( $this, {
     type: { get: function() { return 'test' }, enumerable: true },
-    location: { get: _get_location },
+    time: { get: _get_time, enumerable: true },
     title: { get: _get_title, enumerable: true },
     explanation: { get: _get_explanation, enumerable: true },
+    location: { get: _get_location },
     execute: { get: _get_execute },
     zones: { get: _get_zones },
     tests: { get: _get_tests },
