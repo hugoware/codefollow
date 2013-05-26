@@ -1,14 +1,14 @@
 
 [title Using Loops]
 [execute index.html]
-[time 5]
+[time 3]
 
 [explanation source:explanation.md]
 
-## Declare 3 variables
+## Write two loops
 
 * Write a for loop that executes `add()` 100 times.
-* Write a while loop that executes `find()` until it returns `false`.
+* Write a while loop that executes `read()` until it returns `cat`.
 
-[zone name:script.js for:script syntax:javascript]
+[zone name:script.js for:loops syntax:javascript]
 [test source:test.js]

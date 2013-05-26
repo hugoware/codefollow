@@ -48,7 +48,7 @@ html, body {
   left : 15px;
 }
 
-strong { font-weight : bold; }
+strong { font-weight: bold; font-family: 'basic-bold', 'basic', sans-serif; }
 em { font-style : italic; }
 code { font-family: 'mono', monospace; }
 

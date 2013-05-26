@@ -1,0 +1,14 @@
+
+[title Functions: Arguments Keyword]
+[execute index.html]
+[time 6]
+
+[explanation]
+## Update the `add` the function
+
+* accept _as many_ arguments as are passed in
+* shouldn't care about the argument types
+* should return the combined value
+
+[zone name:script.js for:function_arguments syntax:javascript]
+[test source:test.js]

@@ -1,9 +1,11 @@
 
 // executes the tests
-describe( 'loop should execute', function() {
-  it( '100 times', function() { expect ( window.mx.add ).toBe( 100 ); });
+describe( 'for loop should', function() {
+  it( 'call add', function() { expect ( window.__add > 0 ).toBe( true ); });
+  it( 'exactly 300 times', function() { expect ( window.__add ).toBe( 300 ); });
 });
 
-describe( 'while should loop', function() {
-  it( 'until false is returned', function() { expect ( window.mx.end ).toBe( 50 ); });
+describe( 'while loop should', function() {
+  it( 'call read', function() { expect ( window.__at > 0 ).toBe( true ); });
+  it( "until 'cat' is returned", function() { expect ( window.__at ).toBe( 46 ); });
 });

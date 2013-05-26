@@ -33,6 +33,9 @@ var $$class = module.exports = function Presentation( key, params ) {
     _get_test_key = function() { return $test_key; },
     _get_directory = function() { return $directory; },
     _get_stylesheet = function() { return $reader.stylesheet; },
+    _get_remote_url = function() {
+      return '/{1}/{2}/remote'.assign( $id, $remote_key );
+    },
 
     // getters
     _get_leader = function() { return $leader; },
@@ -149,6 +152,7 @@ var $$class = module.exports = function Presentation( key, params ) {
     users: { get: _get_users },
     key: { get:_get_key },
     remote_key: { get:_get_remote_key },
+    remote_url: { get:_get_remote_url },
     test_key: { get:_get_test_key },
     id: { get:_get_id, set:_set_id },
     identity: { get:_identity },

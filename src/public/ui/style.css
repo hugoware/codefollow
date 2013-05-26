@@ -10,17 +10,6 @@
 }
 
 @font-face {
-  font-family: 'basic';
-  font-weight: normal;
-  font-style: normal;
-  src: local('LatoLight');
-  src: url('/fonts/lato_light.eot') format('embedded-opentype'),
-       url('/fonts/lato_light.woff') format('woff'),
-       url('/fonts/lato_light.ttf') format('truetype'),
-       url('/fonts/lato_light.svg#LatoLight') format('svg');
-}
-
-@font-face {
   font-family: 'title';
   font-weight: normal;
   font-style: normal;
@@ -29,6 +18,17 @@
        url('/fonts/gotham_light.woff') format('woff'),
        url('/fonts/gotham_light.ttf') format('truetype'),
        url('/fonts/gotham_light.svg#GothamLight') format('svg');
+}
+
+@font-face {
+  font-family: 'basic';
+  font-weight: normal;
+  font-style: normal;
+  src: local('LatoLight');
+  src: url('/fonts/lato_light.eot') format('embedded-opentype'),
+       url('/fonts/lato_light.woff') format('woff'),
+       url('/fonts/lato_light.ttf') format('truetype'),
+       url('/fonts/lato_light.svg#LatoLight') format('svg');
 }
 
 @font-face {
@@ -41,6 +41,7 @@
        url('/fonts/pt-mono.ttf') format('truetype'),
        url('/fonts/pt-mono.svg#PTMonoRegular') format('svg');
 }
+
 
 /* css reset */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; } /* HTML5 display-role reset for older browsers */ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; } body { line-height: 1; } ol, ul { list-style: none; } blockquote, q { quotes: none; } blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; } table { border-collapse: collapse; border-spacing: 0; }
@@ -103,6 +104,11 @@ form {
   outline : none;
 }
 
+::-webkit-input-placeholder { color : #ccc; font-family : 'basic', sans-serif; font-weight : 300; font-size : 16px; }
+:-moz-placeholder { color : #ccc; font-family : 'basic', sans-serif; font-weight : 300; font-size : 16px; }
+::-moz-placeholder { color : #ccc; font-family : 'basic', sans-serif; font-weight : 300; font-size : 16px; }
+:-ms-input-placeholder { color : #ccc; font-family : 'basic', sans-serif; font-weight : 300; font-size : 16px; }
+
 select {
   width : 100%;
   padding : 8px 0;
@@ -111,7 +117,6 @@ select {
 form button {
   width : 100%;
   padding : 16px 0;
-  font-weight : bold;
 
   margin : 10px 0 0 0;
 
@@ -120,7 +125,7 @@ form button {
   -o-border-radius: 3px;
   border-radius: 3px;
 
-  font-size : 16px;
+  font-size : 20px;
 
   background : #8fa7a5;
   background : -moz-linear-gradient(top, #aec4c2 0%, #8fa7a5 100%);
@@ -173,6 +178,12 @@ form button {
   margin : 0 0 0 -30px;
   font-size : 22px;
   position : absolute;
+}
+
+.error span {
+  font-size : 14px;
+  padding : 8px 0 0 0;
+  display : block;
 }
 
 .active {

@@ -1,4 +1,17 @@
-html5
-  title Hmm?
-  body
-    | nothing was found
+extends layout
+
+block title
+  | CodeFollow
+
+block content
+
+  form( action='/join', method='post', autocomplete='off' )
+    .error 
+      i f
+      - if ( errors )
+        -if ( errors.error == 'missing_presentation' )
+          | Presentation Not Found
+          span You might have the wrong URL.
+      - else
+        | Page Not Found
+        span Nothing was found on this page.

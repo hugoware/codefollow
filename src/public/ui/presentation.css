@@ -11,17 +11,6 @@
 }
 
 @font-face {
-  font-family: 'basic';
-  font-weight: normal;
-  font-style: normal;
-  src: local('LatoLight');
-  src: url('/fonts/lato_light.eot') format('embedded-opentype'),
-       url('/fonts/lato_light.woff') format('woff'),
-       url('/fonts/lato_light.ttf') format('truetype'),
-       url('/fonts/lato_light.svg#LatoLight') format('svg');
-}
-
-@font-face {
   font-family: 'title';
   font-weight: normal;
   font-style: normal;
@@ -30,6 +19,28 @@
        url('/fonts/gotham_light.woff') format('woff'),
        url('/fonts/gotham_light.ttf') format('truetype'),
        url('/fonts/gotham_light.svg#GothamLight') format('svg');
+}
+
+@font-face {
+  font-family: 'basic-bold';
+  font-weight: normal;
+  font-style: normal;
+  src: local('Lato');
+  src: url('/fonts/lato.eot') format('embedded-opentype'),
+       url('/fonts/lato.woff') format('woff'),
+       url('/fonts/lato.ttf') format('truetype'),
+       url('/fonts/lato.svg#LatoRegular') format('svg');
+}
+
+@font-face {
+  font-family: 'basic';
+  font-weight: normal;
+  font-style: normal;
+  src: local('LatoLight');
+  src: url('/fonts/lato_light.eot') format('embedded-opentype'),
+       url('/fonts/lato_light.woff') format('woff'),
+       url('/fonts/lato_light.ttf') format('truetype'),
+       url('/fonts/lato_light.svg#LatoLight') format('svg');
 }
 
 @font-face {
@@ -42,6 +53,7 @@
        url('/fonts/pt-mono.ttf') format('truetype'),
        url('/fonts/pt-mono.svg#PTMonoRegular') format('svg');
 }
+
 
 .icon {
   font-family: 'icon', sans-serif;
@@ -56,6 +68,9 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 html, body, input, button { font-family: 'basic', sans-serif; }
 h1, h2, h3, h4, h5 { font-family: 'title', sans-serif; font-weight : 300; }
 textarea { font-family: 'mono', monospace !important; }
+strong { font-family: 'basic-bold', 'basic', sans-serif; }
+
+
 
 #test, #slide, #rankings, #results {
   display : none; 

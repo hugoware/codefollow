@@ -44,7 +44,7 @@ $(function() {
 
     // convenience methods
     _is = function ( state ) { return $body.hasClass( state ); },
-    _state = function( state ) { _hide_dialog(); $time = null; $body.removeClass($states).addClass( $state = state ); },
+    _state = function( state ) { _hide_dialog(); _stop_timer(); $body.removeClass($states).addClass( $state = state ); },
     _delay = function( time, action ) { if (!action) action = time, time = 1; if ( time == 0 ) action(); else window.setTimeout( action, time ); },
     _markdown = function( str ) { return (new Markdown.Converter()).makeHtml( str ); },
     _syntax = function( key ) { return({ 'html': 'htmlembedded' })[key] || key; },
@@ -202,11 +202,17 @@ $(function() {
     },
 
     // updates the clock
-    _set_time = function ( time ) {
+    _set_timer = function ( time ) {
       $time = time * 60;
       window.setTimeout( function() { 
         $ui.time.hide().fadeIn();
       }, 1000 );
+    },
+
+    // ends any timers in progress
+    _stop_timer = function() {
+      $ui.time.fadeOut();
+      $time = null;
     },
 
     // sets the countdown timer
@@ -223,10 +229,7 @@ $(function() {
 
       // update
       $ui.time.text( display );
-      if ( --$time <= 0 ) {
-        $ui.time.fadeOut();
-        $time = null;
-      }
+      if ( --$time <= 0 ) _stop_timer();
     },
 
     // handles auto polling
@@ -340,7 +343,7 @@ $(function() {
 
       // set the time view
       if ( $leader )
-        _set_time( test.time );
+        _set_timer( test.time );
 
       // populate 
       test.explanation = _markdown( test.explanation );

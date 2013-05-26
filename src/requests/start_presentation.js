@@ -59,7 +59,6 @@ module.exports = $$class = function StartPresentationRequest( request, response 
 
       // and add the user
       presentation.add( $user );
-      presentation.index = 14;
 
       // successfully created and added presentation
       $model.presentation = $presentation = presentation;

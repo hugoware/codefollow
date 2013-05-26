@@ -7,6 +7,7 @@ var express = require('express')
 // load in all app modules
 require( './bootstrap' );
 
+
 // don't go completely down
 process.addListener('uncaughtException', function ( err ) {
   console.log('ex:', err );
@@ -34,12 +35,12 @@ app.use( express.cookieParser( $$config.secret ) );
 app.use( express.session() );
 
 
-// routing
-app.use( app.router );
+// static resources
 app.use( express.static( $$path.join(__dirname, 'public' ) ) );
 
 
-// setup the routes for the application
+// routing
+app.use( app.router );
 require('./routes').each(
   function with_route( route ) {
     app[ route.method ]( route.path, route.request.run );
@@ -50,10 +51,12 @@ require('./routes').each(
 if ('development' == app.get('env'))
   app.use(express.errorHandler());
 
+
 // start listening
 server.listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
 
 // load the application
 require('./startup');

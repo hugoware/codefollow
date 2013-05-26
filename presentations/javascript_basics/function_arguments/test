@@ -1,0 +1,15 @@
+
+[title Functions: Using Arguments]
+[execute index.html]
+[time 3]
+
+[explanation]
+## Complete the following
+
+* _declare_ a `function` named **add**
+* **add** should two arguments and add them together
+* **add** shouldn't care about the argument types
+* **add** should return the combined value
+
+[zone name:script.js for:function_arguments syntax:javascript]
+[test source:test.js]

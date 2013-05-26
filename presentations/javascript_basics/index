@@ -9,41 +9,168 @@
 
 Follow along at **CodeFollow.net/${PRESENTATION_ID}**
 
-[slide about_me.md]
-[slide about_stuff.md]
-[slide about_presentation.md]
-[slide follow_along.md]
-[slide testing.md]
-[slide leaderboard.md]
-[slide some_of_you.md]
-[slide get_started.md]
+--[slide about_me.md]
+--[slide about_stuff.md]
+--[slide about_presentation.md]
+--[slide follow_along.md]
+--[slide testing.md]
+--[slide leaderboard.md]
+--[slide some_of_you.md]
+--[slide get_started.md]
 
-[slide variables/intro.md]
-[slide variables/basic.md]
-[slide variables/multiple.md]
-[slide variables/empty.md]
-[slide variables/objects.md]
-[slide variables/arrays.md]
+--[slide variables/intro.md]
+--[slide variables/basic.md]
+--[slide variables/multiple.md]
+--[slide variables/empty.md]
+--[slide variables/objects.md]
+--[slide variables/arrays.md]
 [test variables]
-[ranking]
+--[ranking]
 
-[slide objects/intro.md]
-[slide objects/properties.md]
-[slide objects/key.md]
-[slide objects/null.md]
-[slide objects/delete.md]
-[test objects]
-[ranking]
+-- arithmetic operators
+[slide operators_arithmetic/intro.md]
+[slide operators_arithmetic/add.md]
+[slide operators_arithmetic/subtract.md]
+[slide operators_arithmetic/multiply.md]
+[slide operators_arithmetic/divide.md]
+[slide operators_arithmetic/more.md]
+[test operators_arithmetic]
+--[ranking]
 
-[slide loops/intro.md]
-[slide loops/length.md]
-[slide loops/length.md]
-[slide loops/each.md]
-[slide loops/gotchas.md]
-[ranking]
+-- comparison operators
+[slide operators_comparisor/intro.md]
+[slide operators_comparisor/equal.md]
+[slide operators_comparisor/not_equal.md]
+[slide operators_comparisor/greater_less.md]
+[slide operators_comparisor/greater_less_equals.md]
+[slide operators_comparisor/type_equal.md]
+[test operators_comparisor]
+--[ranking]
 
-[slide]
+--[slide objects_basics/intro.md]
+--[slide objects_basics/properties.md]
+--[slide objects_basics/key.md]
+--[slide objects_basics/null.md]
+--[slide objects_basics/delete.md]
+[test objects_basics]
+--[ranking]
 
-# Thanks!
-I hope you learned a lot!
+--[slide objects_new/intro.md]
+--[slide objects_new/new_keyword.md]
+--[slide objects_new/arguments.md]
+--[slide objects_new/no_arguments.md]
+[test objects_new]
+--[ranking]
+
+--[slide types/intro.md]
+--[slide types/typeof.md]
+--[slide types/instanceof.md]
+--[slide types/using_together.md]
+[test types]
+--[ranking]
+
+--[slide function_basics/intro.md]
+--[slide function_basics/declaring_inline.md]
+--[slide function_basics/declaring_assign.md]
+--[slide function_basics/invoking.md]
+--[slide function_basics/return_values.md]
+[test function_basics]
+--[ranking]
+
+--[slide function_arguments/passing_arguments.md]
+--[slide function_arguments/multiple_arguments.md]
+--[slide function_arguments/object_arguments.md]
+--[slide function_arguments/object_reference.md]
+[test function_arguments]
+--[ranking]
+
+--[slide function_arguments/more_later.md]
+
+--[slide loops/intro.md]
+--[slide loops/length.md]
+--[slide loops/reverse.md]
+--[slide loops/each.md]
+--[slide loops/objects.md]
+--[slide loops/while.md]
+--[slide loops/break.md]
+--[slide loops/continue.md]
+--[slide loops/gotchas.md]
+[test loops]
+--[ranking]
+
+--[slide try_catch/intro.md]
+--[slide try_catch/basics.md]
+--[slide try_catch/catch.md]
+--[slide try_catch/finally.md]
+[test try_catch]
+--[ranking]
+
+-- arguments.length, not a in arguments
+--[slide function_arguments/unknown_arguments.md]
+--[slide function_arguments/using_arguments.md]
+[test function_advanced]
+--[ranking]
+
+--[slide function_callbacks/intro.md]
+--[slide function_callbacks/intro.md]
+--[slide function_callbacks/intro.md]
+--[slide function_callbacks/intro.md]
+[test function_callbacks]
+--[ranking]
+
+--[slide function_call_apply/intro.md]
+--[slide function_call_apply/intro.md]
+--[slide function_call_apply/intro.md]
+--[slide function_call_apply/intro.md]
+[test function_call_apply]
+--[ranking]
+
+--[slide oop_basics/intro.md]
+--[slide oop_basics/setup.md]
+--[slide oop_basics/exposing_methods.md]
+--[slide oop_basics/exposing_properties.md]
+[test oop_basics]
+--[ranking]
+
+--[slide oop_scoping/intro.md]
+--[slide oop_scoping/this.md]
+--[slide oop_scoping/this_reference.md]
+--[slide oop_scoping/protected.md]
+[test oop_scoping]
+--[ranking]
+
+--[slide oop_prototype/intro.md]
+--[slide oop_prototype/intro.md]
+--[slide oop_prototype/intro.md]
+--[slide oop_prototype/intro.md]
+[test oop_prototype]
+--[ranking]
+
+--[slide oop_inheritance/intro.md]
+--[slide oop_inheritance/intro.md]
+--[slide oop_inheritance/intro.md]
+--[slide oop_inheritance/intro.md]
+[test oop_inheritance]
+--[ranking]
+
+
+-- other stuff
+
+
+[test browser_basics_dom]
+[test browser_basics_edit]
+
+-- use get element by ID
+[test browser_jquery_ready]
+-- move to better selectors
+[test browser_jquery_selector_basic]
+[test browser_jquery_selector_intermediate]
+[test browser_jquery_selector_advanced]
+[test browser_jquery_ajax]
+
+
+--[slide]
+
+--# Thanks!
+--I hope you learned a lot!
 

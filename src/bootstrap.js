@@ -9,6 +9,7 @@ var includes = {
   '$$path': 'path',
   '$$fs': 'fs',
   '$$process': 'child_process',
+  '$$email': 'emailjs',
 
   // general
   '$$config': './config',
@@ -25,6 +26,7 @@ var includes = {
   'RunTestRequest': './requests/run_test',
   'ServeTestRequest': './requests/serve_test',
   'ServeDirectoryRequest': './requests/serve_directory',
+  'MissingRequest': './requests/missing',
 
   // engines
   'HtmlJsEngine': './engines/htmljs_engine',
@@ -45,7 +47,10 @@ var includes = {
   'Summary': './models/summary',
   'Preview': './models/preview',
   'User': './models/user',
-  'Score': './models/score'
+  'Score': './models/score',
+
+  // messages
+  'RemoteUrlMessage': './messages/remote_url'
 
 };
 

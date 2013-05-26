@@ -1,4 +1,4 @@
-module.exports = $$class = function DisplayPresentationRequest( request, response ) {
+var $$class = module.exports = function DisplayPresentationRequest( request, response ) {
   var $this = this
 
     , $request = request
@@ -40,13 +40,33 @@ module.exports = $$class = function DisplayPresentationRequest( request, respons
       return /.*\/$/.test( $request.url );
     },
 
+    // send out a message with URLs for the remote
+    _send_remote_url_message = function() {
+      console.log( 'send message' );
+
+      // only send if they have an email
+      if ( _.trim( $user.email ) == '' ) return;
+
+      // create the message
+      var message = new RemoteUrlMessage({
+        to: $user.email,
+        presentation: $presentation
+      });
+
+      // send off the message
+      message.send();
+
+    },
+
     // updates remaining properties for the view
     _finalize = function() {
       Object.merge( $model, {
-        remote_url: '/{1}/{2}/remote'.assign( $presentation.id, $presentation.remote_key ),
+        remote_url: $presentation.remote_url,
         stylesheet: $presentation.stylesheet ? './style.css' : '/ui/default.css'
       });
 
+      // do this in a minute
+      setTimeout( _send_remote_url_message, 1000 );
     },
 
     // handle the request

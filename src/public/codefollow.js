@@ -1,12 +1,15 @@
 
 // basic handling of all codefollow actions
-var ___external_eval = function( script ) { window.eval(script); };
+var ___external_eval = function( script ) { window.eval( script ); };
 (function() {
 
   // handles executing the tests
   var $this = this
     , $results = [ ]
     , $eval = ___external_eval
+
+    // writes final output ( if available )
+    , $output
 
     // reading/testing helpers
     , $CodeFollowInstructionParser = function(e){var t=this,n=null,r=(e||"").split(/\n/g),i=[],s=null,o=/\stest\]$/,u=/^--.*$/,a=/^\[\w+[^\]]*\]\s*$/,f=/^\s*|\s*$/g,l=/^\[\w+/,c=/(\w+):([^\s|\]]+)*/,h=function(){return o.test(n)},p=function(){return u.test(n)},d=function(){return a.test(n)},v=function(e){n=e;if(p())return;else if(d())m();else g()},m=function(){s={data:""};i.push(s);y();b()},g=function(){if(!s)return;s.data+=(s.data?"\n":"")+n},y=function(){n=n.replace(l,function(e){s.type=e.substr(1)})},b=function(){s.test=h();while(c.test(n)){n=n.replace(c,function(e){var t=e.split(/:/),n=t[0],r=t[1];if(n)s[n]=r||"";return null})}},w=function(){for(var e in r)v(r[e])},E=function(){for(var e in i){var n=i[e];t[n.type]=t[n.type]||[];t[n.type].push(n)}},S=function(){w();E()};S()}
@@ -109,6 +112,9 @@ var ___external_eval = function( script ) { window.eval(script); };
 
       // populate the user material
       apply_user_content();
+
+      // check for a console output area
+      $output = document.getElementById('__output');
 
       // lastly, load each of the test
       for (var t in $test.test) load_test( $test.test[t] );
@@ -239,10 +245,12 @@ var ___external_eval = function( script ) { window.eval(script); };
     load_resource_as_script= function( source ) {
       get( source, {
         load: function(data) {
-          var element = document.createElement('script');
-          element.type = 'text/javascript';
-          element.innerHTML = data;
-          document.body.appendChild( element );
+          setTimeout( data, 0 );
+
+          // var element = document.createElement('script');
+          // element.type = 'text/javascript';
+          // element.innerHTML = data;
+          // document.body.appendChild( element );
         }
       });
     },
@@ -286,6 +294,12 @@ var ___external_eval = function( script ) { window.eval(script); };
       // write the final message
       var result = output.join('\n');
       $console.log( result );
+
+      // if an output area
+      if ( !$test_attempt && $output && $output.outerHTML ) {
+        $output.outerHTML = [ '<pre>', result, '</pre>' ].join('') ;
+    }
+
     };
 
   init();
