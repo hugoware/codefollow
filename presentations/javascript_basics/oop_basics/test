@@ -1,0 +1,21 @@
+
+[title]
+OOP: Basics
+
+[execute index.html]
+[time 3]
+
+[explanation]
+
+## Create a `Counter` class
+
+* _declare_ a function named `Counter` to be used as a `class`
+* _declare_ a property named `value` that **holds the counter value**
+* _declare_ a function named `increment` that **increases the counter value by 1**
+* _declare_ a function named `reset` that **sets the counter to 0**
+* accept a **default value** when passed into the `constructor` _(default to zero if no argument is provided)_
+
+_(Only numbers will be used, don't worry about the constructor value type)_
+
+[zone name:script.js for:oop_basics syntax:javascript]
+[test source:test.js]

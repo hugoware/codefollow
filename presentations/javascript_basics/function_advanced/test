@@ -1,7 +1,9 @@
 
-[title Functions: Arguments Keyword]
+[title]
+Functions: `Arguments`
+
 [execute index.html]
-[time 6]
+[time 3]
 
 [explanation]
 ## Update the `add` the function
@@ -9,6 +11,8 @@
 * accept _as many_ arguments as are passed in
 * shouldn't care about the argument types
 * should return the combined value
+
+_Don't forget, use `arguments.length` with your loop_
 
 [zone name:script.js for:function_arguments syntax:javascript]
 [test source:test.js]

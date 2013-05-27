@@ -1,15 +1,17 @@
 
-[title Functions: Basics]
+[title]
+Functions: Basics
+
 [execute index.html]
 [time 3]
 
 [explanation]
 ## Complete the following
 
-* _declare_ a `function` named **reload**
-* **reload** should not _return_ a value
-* _declare_ a `function` named **status**
-* **status** should _return_ the value 'ready'
+* _declare_ a `function` named **save**
+* **save** should not _return_ a value
+* _declare_ a `function` named **find**
+* **find** should _return_ the value 'javascript'
 
 [zone name:script.js for:function_basics syntax:javascript]
 [test source:test.js]

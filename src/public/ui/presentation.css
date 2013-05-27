@@ -393,7 +393,7 @@ body.rankings #rankings { display : block; }
 #results .tests {
   overflow : auto;
   max-width : 100%;
-  max-height : 500px;
+  max-height : 400px;
 }
 
 #results .tests {
@@ -410,14 +410,15 @@ body.rankings #rankings { display : block; }
 }
 
 #results .tests h4 {
-  padding : 0 0 3px 19px;
+  padding : 0 0 3px 0;
+  margin : 0 0 0 -8px;
 }
 
 #results .tests h4 i {
   font-family : 'icon';
   line-height : 1em;
-  position: absolute;
-  margin : 1px 0 0 -25px;
+  position: relative;
+  top : 5px;
   font-size : 22px;
   font-weight : normal;
 }

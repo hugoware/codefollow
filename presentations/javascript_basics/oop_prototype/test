@@ -1,0 +1,23 @@
+
+[title]
+OOP: Prototype
+
+[execute index.html]
+[time 3]
+
+[explanation]
+
+## Complete the `Animal` and `Dog` classes
+
+* _define_ a prototype property for `Animal` named `name` with the value **'animal'**
+* _define_ a prototype function named `eat` that returns **`this.name + ' eats'`**
+* _assign_ the `Animal` prototype to the `Dog` prototype
+
+[zone name:script.js for:oop_prototype syntax:javascript]
+// the Animal class
+function Animal() { }
+
+// the Dog class
+function Dog() { }
+
+[test source:test.js]

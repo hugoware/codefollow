@@ -1,6 +1,9 @@
 
 // basic handling of all codefollow actions
-var ___external_eval = function( script ) { window.eval( script ); };
+var ___external_eval = function( script ) {
+  try { window.eval( script ); }
+  catch( e ) { console.log( 'Error:', e ); }
+};
 (function() {
 
   // handles executing the tests

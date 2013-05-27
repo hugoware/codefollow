@@ -1,4 +1,8 @@
 
+#rankings {
+  min-width : 900px;
+}
+
 html, body {
   height : 100%;
 
@@ -13,7 +17,7 @@ html, body {
 }
 
 #container {
-  padding : 10% 15% 0 15%;
+  padding : 10% 10% 0 10%;
 }
 
 #header {
@@ -53,7 +57,7 @@ em { font-style : italic; }
 code { font-family: 'mono', monospace; }
 
 h1 { font-size : 64px; padding : 0 0 20px 0; }
-h2 { font-size : 36px; padding : 0 0 35px 0; }
+h2 { font-size : 36px; padding : 0 0 15px 0; }
 #slide .content ul, #test .content ul { font-size : 24px; }
 
 .user #test h1 { font-size : 42px; padding : 0 0 12px 0; }
@@ -96,12 +100,13 @@ h2 { color : #999; }
 }
 
 .test-entry {
-  width : 48%;
+  width : 31%;
   float : left;
+  margin : 0 0 15px 3.1%;
 }
 
 .test-entry.alt {
-  float : right;
+  margin-left: 0;
 }
 
 .test-entry .container {
@@ -110,7 +115,7 @@ h2 { color : #999; }
 }
 
 .test-entry .grade {
-  margin : 0 0 0 15px;
+  margin : 0;
   clear : none;
 }
 
@@ -126,23 +131,26 @@ h2 { color : #999; }
 }
 
 .test-entry .count {
-  float : right;
+  clear : left;
+  float : left;
   color : #888;
+  padding : 6px 0 0 0;
+  font-size : 13px;
 }
 
 .test-entry .count li {
   float : left;
-  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .skip {
   background : #eee;
   color : #999;
 
-  -webkit-box-shadow: inset 0 1px 5px rgba( 0,0,0, .1 );
-  -moz-box-shadow: inset 0 1px 5px rgba( 0,0,0, .1 );
-  -o-box-shadow: inset 0 1px 5px rgba( 0,0,0, .1 );
-  box-shadow: inset 0 1px 5px rgba( 0,0,0, .1 );
+  -webkit-box-shadow: inset 0 1px 5px rgba( 0,0,0, .08 );
+  -moz-box-shadow: inset 0 1px 5px rgba( 0,0,0, .08 );
+  -o-box-shadow: inset 0 1px 5px rgba( 0,0,0, .08 );
+  box-shadow: inset 0 1px 5px rgba( 0,0,0, .08 );
 }
 
 .skip .grade li {
@@ -233,6 +241,8 @@ h2 { color : #999; }
 
 
 #time {
+  display : none;
+  
   background: #222;
   background: -moz-linear-gradient(top, #444 0%, #222 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #444), color-stop(100%, #222));
@@ -271,6 +281,10 @@ h2 { color : #999; }
 .code {
   background : #333;
   padding : 10px;
+}
+
+.code-readonly {
+  margin-bottom : 35px;
 }
 
 #slide .content ul,

@@ -1,16 +1,20 @@
 
-[title Declaring Variables]
+[title]
+Type Checking
+
 [execute index.html]
+[time 3]
 
-[explanation source:explanation.md]
+[explanation]
 
-## Declare 5 variables
+## Declare four functions
 
-* _variable_ named `a` with the value **3**
-* _variable_ named `b` with the value **false**
-* _variable_ named `c` with the value **'name'**
-* _array_ named `d` with the values **'a', 'b', and 'c'**
-* _object_ named `e` with a property **color** and the value **blue**
+* `is_number` that accepts an argument and returns if it's a **number**
+* `is_string` that accepts an argument and returns if it's a **string**
+* `is_array` that accepts an argument and returns if it's an **array**
+* `is_user` that accepts an argument and returns if it's a **User type**
 
-[zone name:script.js for:script_variables syntax:javascript]
+**`User` is a custom type for this demo.**
+
+[zone name:script.js for:types syntax:javascript]
 [test source:test.js]

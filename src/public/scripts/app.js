@@ -104,7 +104,9 @@ $(function() {
       
       // focus by default ( except the leader )
       if ( default_tab && $leader ) return;
-      $test.zones[ target ].editor.focus();
+
+      try { $test.zones[ target ].editor.focus(); }
+      catch( e ) { /* shouldn't happen unless en error elsewhere... */ }
     },
 
     // grab the correct view
@@ -409,7 +411,7 @@ $(function() {
       _show( $ui.rankings );
       
       // make sure to alternate
-      $ui.rankings.find('.test-entry:odd')
+      $ui.rankings.find('.test-entry:nth-child(3n+1)')
         .addClass('alt');
 
       // add scoring

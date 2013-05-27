@@ -1,0 +1,36 @@
+
+[title]
+Functions: Call/Apply
+
+[execute index.html]
+[time 4]
+
+[explanation]
+
+Use the following object to complete this test.
+
+<pre class="code javascript" >
+Server.route( a1, a2, a3, ... );
+Server.error( a1, a2, a3, ... );
+Server.send( a1, a2, a3, ... );
+</pre>
+
+## Assign a function called `handle` to `Server`
+
+* `handle` should _accept_ two arguments: type _(string)_ and data _(array)_
+* `handle` use the _type_ and _data_ arguments to call the correct `Server` method
+* the _type_ on a message matches the function to call on `Server`
+* `call/apply` should use the `Server` as the context
+* each message has an unknown number of data elements
+* `route`, `error` and `send` expect each data element to be passed as a separate argument.
+
+_(ex: `Server.send( args[0], args[1], args[3], ... )` )_
+
+[zone name:script.js for:functions_call_apply syntax:javascript]
+Server.handle = function( type, message ) {
+  
+  // handle messages
+
+};
+
+[test source:test.js]

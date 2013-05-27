@@ -1,0 +1,17 @@
+
+[title]
+Operators: Arithmetic
+
+[execute index.html]
+[time 2]
+
+[explanation]
+## Declare 4 variables
+
+* _variable_ named `first` that equals **a plus b**
+* _variable_ named `second` that equals **b minus a**
+* _variable_ named `third` that equals **b divided by a**
+* _variable_ named `fourth` that equals **a multiplied by b**
+
+[zone name:script.js for:operators_arithmetic syntax:javascript]
+[test source:test.js]

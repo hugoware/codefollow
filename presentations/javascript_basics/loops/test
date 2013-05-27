@@ -1,13 +1,15 @@
 
-[title Using Loops]
+[title]
+Using Loops
+
 [execute index.html]
 [time 3]
 
-[explanation source:explanation.md]
+[explanation]
 
 ## Write two loops
 
-* Write a for loop that executes `add()` 100 times.
+* Write a for loop that executes `add()` 300 times.
 * Write a while loop that executes `read()` until it returns `cat`.
 
 [zone name:script.js for:loops syntax:javascript]

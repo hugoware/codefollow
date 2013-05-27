@@ -99,7 +99,7 @@ var $$class = module.exports = function Test( params, directory, expand ) {
 
           // the name of the test
           else if ( section.type == 'title' )
-            $title = section.value || '';
+            $title = ( section.value || section.content || '' ).toString().trim();
           
           // the time to show on the clock
           else if ( section.type == 'time' )

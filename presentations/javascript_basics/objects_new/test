@@ -1,16 +1,18 @@
 
-[title Declaring Variables]
+[title]
+Objects: New
+
 [execute index.html]
+[time 3]
 
-[explanation source:explanation.md]
+[explanation]
 
-## Declare 5 variables
+## Declare 4 variables with `new`
 
-* _variable_ named `a` with the value **3**
-* _variable_ named `b` with the value **false**
-* _variable_ named `c` with the value **'name'**
-* _array_ named `d` with the values **'a', 'b', and 'c'**
-* _object_ named `e` with a property **color** and the value **blue**
+* _declare_ a new `Object` named `obj` without any arguments
+* _declare_ a new `Array` named `collection` with 10 elements 
+* _declare_ a new `RegExp` named `match` with the expression **'^red$'**
+* _declare_ a new `Date` named `time` without any arguments
 
-[zone name:script.js for:script_variables syntax:javascript]
+[zone name:script.js for:objects_new syntax:javascript]
 [test source:test.js]

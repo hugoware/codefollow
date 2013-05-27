@@ -1,0 +1,34 @@
+
+[title]
+OOP: Inheritance
+
+[execute index.html]
+[time 3]
+
+[explanation]
+
+## Extend `Animal` to create a `Dog` class
+
+<pre class="code javascript" >
+// this function is available for this example
+Function.extend( ... )
+</pre>
+
+* `Animal` should _define_ a prototype property named `name` with the value **'animal'**
+* `Animal` should _define_ a prototype function named `eat` that returns **`this.name + ' eats'`**
+* `Dog` should _extend_ the `Animal` class
+* `Dog` should define it's own name as **'dog'**
+* `Dog` should include an _additional_ method called `bark` that returns **'woof'**
+
+[zone name:script.js for:oop_inheritance syntax:javascript]
+var Animal = Function.extend({
+  name: 'animal',
+  eat: function() { 
+    return this.name + ' eats';
+  }
+});
+
+// extend to create `Dog` class
+var Dog = // ...
+
+[test source:test.js]

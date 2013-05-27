@@ -1,11 +1,13 @@
 
-[title Try/Catch/Finally]
+[title]
+Try/Catch/Finally
+
 [execute index.html]
-[time 6]
+[time 4]
 
 [explanation]
 
-## Using the `database` object
+## Complete the following using the `database` object
 <pre class="code javascript" >
 var database = {
   connect: function() { ... },
@@ -15,20 +17,18 @@ var database = {
 };
 </pre>
 
-## Complete the following function
-
 * _call_ **read** to get the next database record
 * the **read** method will occasionally throw exceptions
 * _write_ all exception messages to **log**
-* `database` must call **open** before you can read a record
-* `database` must call **close** before calling **open**
-* only _one_ record can be read per open connection
+* `database` must call **connect** before you can read a record
+* `database` must call **disconnect** before calling **connect** again
+* only *one record* can be read *per open connection*
 
 _( yes, this is the world's worst database... )_
 
 [zone name:script.js for:try_catch syntax:javascript]
 function load( database ) {
-  
+
   // connect, read, and disconnect
   // log all errors
 

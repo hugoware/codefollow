@@ -1,15 +1,3 @@
-function load( database ) {
-  try {
-    database.connect()
-    database.read();
-  }
-  catch ( e ) {
-    database.log( e );
-  }
-  finally {
-    database.disconnect();
-  }
-}
 
 // run their code
 try {

@@ -1,0 +1,25 @@
+
+[title]
+Functions: Callbacks
+
+[execute index.html]
+[time 3]
+
+[explanation]
+
+User following functions to complete this test.
+
+<pre class="code javascript" >
+function download( callback ) { ... };
+function save( file ) { ... };
+</pre>
+
+## Write a callback
+
+* the callback should _accept_ an argument
+* _call_ `save` with the argument, but only when it is **not null**
+* finally, _call_ `download` with the `callback` as the argument
+
+[zone name:script.js for:function_callbacks syntax:javascript]
+download( /* callback */ )
+[test source:test.js]
