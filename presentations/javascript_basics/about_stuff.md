@@ -1,6 +1,8 @@
+<img class="extra" src="stuff.png" />
+
 # About Me
 ## Stuff I Like
 
-* Coding ( JavaScript, C#, Ruby, etc )
-* Gaming ( especially SNES )
+* Coding _( JavaScript, C#, Ruby, etc )_
+* Gaming _( especially SNES )_
 * Teaching

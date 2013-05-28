@@ -1,5 +1,6 @@
-# About This Presentation
-## Making It Interactive
+# This Presentation
+## For Those Following Along
 
-This presentation is highly interactive. You can follow along with your laptops.
-
+* Introduce a topic
+* Review some examples
+* Try it out what you've learned

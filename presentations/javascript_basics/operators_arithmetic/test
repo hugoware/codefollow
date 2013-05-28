@@ -8,10 +8,10 @@ Operators: Arithmetic
 [explanation]
 ## Declare 4 variables
 
-* _variable_ named `first` that equals **a plus b**
-* _variable_ named `second` that equals **b minus a**
-* _variable_ named `third` that equals **b divided by a**
-* _variable_ named `fourth` that equals **a multiplied by b**
+* _variable_ named `first` that equals **a + b**
+* _variable_ named `second` that equals **b - a**
+* _variable_ named `third` that equals **b / a**
+* _variable_ named `fourth` that equals **a * b**
 
 [zone name:script.js for:operators_arithmetic syntax:javascript]
 [test source:test.js]

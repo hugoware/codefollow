@@ -8,9 +8,9 @@ Operators: Comparison
 [explanation]
 ## Declare 3 variables
 
-* _variable_ named `first` that equals **a greater than b**
-* _variable_ named `second` that equals **a less than b**
-* _variable_ named `third` that equals **a equal to b**
+* _variable_ named `first` that equals **a > b**
+* _variable_ named `second` that equals **a < b**
+* _variable_ named `third` that equals **a === b**
 
 [zone name:script.js for:operators_comparison syntax:javascript]
 [test source:test.js]

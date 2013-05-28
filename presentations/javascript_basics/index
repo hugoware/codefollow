@@ -31,8 +31,8 @@ Follow along at **CodeFollow.net/${PRESENTATION_ID}**
 [slide operators_arithmetic/intro.md]
 [slide operators_arithmetic/add.md]
 [slide operators_arithmetic/subtract.md]
-[slide operators_arithmetic/multiply.md]
-[slide operators_arithmetic/divide.md]
+[slide operators_arithmetic/multiply_divide.md]
+[slide operators_arithmetic/increment.md]
 [slide operators_arithmetic/more.md]
 [test operators_arithmetic]
 [ranking]
@@ -42,9 +42,9 @@ Follow along at **CodeFollow.net/${PRESENTATION_ID}**
 [slide operators_comparison/basic.md]
 [slide operators_comparison/equal.md]
 [slide operators_comparison/not_equal.md]
-[slide operators_comparison/type_equal.md]
 [slide operators_comparison/falsy.md]
 [slide operators_comparison/with_assignment.md]
+[slide operators_comparison/type_equal.md]
 [test operators_comparison]
 [ranking]
 
@@ -56,6 +56,8 @@ Follow along at **CodeFollow.net/${PRESENTATION_ID}**
 [test function_basics]
 [ranking]
 
+[slide function_arguments/intro.md]
+[slide function_arguments/define.md]
 [slide function_arguments/passing_arguments.md]
 [slide function_arguments/multiple_arguments.md]
 [slide function_arguments/object_arguments.md]
@@ -71,7 +73,6 @@ Follow along at **CodeFollow.net/${PRESENTATION_ID}**
 [slide loops/while.md]
 [slide loops/break.md]
 [slide loops/continue.md]
-[slide loops/gotchas.md]
 [test loops]
 [ranking]
 
@@ -126,11 +127,11 @@ Follow along at **CodeFollow.net/${PRESENTATION_ID}**
 
 [slide oop_basics/intro.md]
 [slide oop_basics/setup.md]
-[slide oop_scoping/this.md]
+[slide oop_basics/this.md]
 [slide oop_basics/exposing_methods.md]
 [slide oop_basics/exposing_properties.md]
-[slide oop_scoping/this_reference.md]
-[slide oop_scoping/protected.md]
+[slide oop_basics/this_reference.md]
+[slide oop_basics/protected.md]
 [test oop_basics]
 [ranking]
 

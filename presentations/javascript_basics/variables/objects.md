@@ -1,8 +1,6 @@
 # Declaring Variables
 ## Objects
 
-You can create instances of classes or create simple objects.
-
 <pre class="code javascript" >
 //instantiate new objects
 var xml = new XMLHttpRequest();
@@ -13,3 +11,7 @@ var car = {
   wheels: 4
 };
 </pre>
+
+* Object are a very important part of JavaScript
+* Instantiate JavaScript classes using `new`
+* Use `var` and create simple objects

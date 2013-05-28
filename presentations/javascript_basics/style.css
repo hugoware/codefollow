@@ -52,13 +52,23 @@ html, body {
   left : 15px;
 }
 
+img.extra { 
+  position : absolute;
+  right : 20%;
+}
+
+img.right {
+  float : right; 
+  margin-left : 25px;
+}
+
 strong { font-weight: bold; font-family: 'basic-bold', 'basic', sans-serif; }
 em { font-style : italic; }
 code { font-family: 'mono', monospace; }
 
 h1 { font-size : 64px; padding : 0 0 20px 0; }
-h2 { font-size : 36px; padding : 0 0 15px 0; }
-#slide .content ul, #test .content ul { font-size : 24px; }
+h2 { font-size : 36px; padding : 0 0 25px 0; }
+#slide .content ul, #test .content ul, #slide .content ol, #test .content ol { font-size : 24px; }
 
 .user #test h1 { font-size : 42px; padding : 0 0 12px 0; }
 .user #test h2 { font-size : 24px; padding : 0 0 20px 0; }
@@ -287,16 +297,25 @@ h2 { color : #999; }
   margin-bottom : 35px;
 }
 
+#slide .content ol,
+#test .content ol,
 #slide .content ul,
 #test .content ul {
   list-style : disc;
-  padding : 10px 0 25px 0;
+  padding : 0 0 25px 0;
 }
 
+#slide .content ol,
+#test .content ol {
+  list-style : decimal;
+}
+
+#slide .content ol li,
+#test .content ol li,
 #slide .content ul li,
 #test .content ul li {
   margin : 0 0 0 40px;
-  padding : 10px 0 10px 5px;
+  padding : 0 0 15px 5px;
 }
 
 .code {

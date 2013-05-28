@@ -1,7 +1,6 @@
-# About This Presentation
-## Talking Is Boring
+# This Presentation
+## Interactive Learning
 
-I've never liked how most code presentations work.
-
-* Presenter talks about a lot of cool stuff
-* Participants must wait till they get home to try
+* A lot of material can be hard to digest
+* Difficult to have an audience participate
+* Too much time between learning and a chance to try it
