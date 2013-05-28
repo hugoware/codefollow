@@ -31,10 +31,14 @@ $(function() {
     // compiled templates for views
     , $templates = { }
 
+    // is this IE
+    , $ie = $('#ie').length > 0
+
     // common ui areas
     , $ui = {
       slide: $('#slide'),
       test: $('#test'),
+      editors: $('#editors'),
       results: $('#results'),
       rankings: $('#rankings'),
       preview: $('#preview'),
@@ -51,6 +55,10 @@ $(function() {
     _is_busy = function() { return $body.hasClass('busy'); }
     _busy = function( on ) { $body[ on ? 'addClass' : 'removeClass' ]('busy'); },
     _is_testing = function() { return $('.dialog:visible').length > 0; },
+    _focus = function() {
+      if ( !$ie ) return;
+      window.setTimeout( function() { $( document.body ).focus(); }, 0 );
+    },
 
     // handles a nice fade in
     _show = function( target ) {
@@ -78,7 +86,7 @@ $(function() {
 
     // grabs the first available tab
     _find_first_editor_tab = function() {
-      return $ui.test.find('.tabs :first-child')
+      return $ui.editors.find('.tabs :first-child')
     },
 
     // selects a new tab to view
@@ -91,8 +99,8 @@ $(function() {
       if ( !tab || !tab.length ) tab = _find_first_editor_tab();
 
       // reset the views
-      $ui.test.find('.tabs li').removeClass('selected');
-      $ui.test.find('.editors > div').addClass('hide');
+      $ui.editors.find('.tabs li').removeClass('selected');
+      $ui.editors.find('.editors > div').addClass('hide');
 
       // set the tab
       tab.addClass('selected');
@@ -100,7 +108,7 @@ $(function() {
       // show the new zone
       var target = tab.attr('for')
         , zone = '.editors > [for='+target+']';
-      $ui.test.find(zone).removeClass('hide');
+      $ui.editors.find(zone).removeClass('hide');
       
       // focus by default ( except the leader )
       if ( default_tab && $leader ) return;
@@ -127,6 +135,9 @@ $(function() {
       // show the new zone
       var target = '.'+view.text().toLowerCase();
       $ui.results.find(target).removeClass('hide');
+
+      // for IE
+      _focus();
 
     },
 
@@ -295,6 +306,8 @@ $(function() {
 
     // styles all code samples
     _apply_code_highlighting = function() {
+      if ( $ie ) return;
+
       $('pre.code').each( function() {
         var block = $(this)
           , code = $.trim( block.text() )
@@ -353,8 +366,12 @@ $(function() {
       $ui.test.html( markup );
       _show( $ui.test );
 
+      // shuffle
+      $ui.editors.empty();
+      $ui.test.find('#editor').appendTo( $ui.editors );
+
       // setup each editor
-      $ui.test.find('.editor')
+      $ui.editors.find('.editor')
         .each( function( i, element ) {
           var area = $( element )
             , target = area.attr('for')
@@ -436,7 +453,7 @@ $(function() {
 
       // grab the zones
       var submit = { at: $progress, preview: preview, zones: { } };
-      $ui.test.find('.editors > div')
+      $ui.editors.find('.editors > div')
         .each( function(i, v ) {
           var area = $(v)
             , target = area.attr('for')
@@ -453,8 +470,8 @@ $(function() {
     _tab_editor_right = function() { _tab_editor_by('next', 'first'); },
     _tab_editor_left = function() { _tab_editor_by('prev', 'last'); },
     _tab_editor_by = function( direction, fallback ) {
-      var change = $ui.test.find('.tabs .selected')[ direction ]();
-      if ( change.length == 0 ) change = $ui.test.find('.tabs li:'+fallback);
+      var change = $ui.editors.find('.tabs .selected')[ direction ]();
+      if ( change.length == 0 ) change = $ui.editors.find('.tabs li:'+fallback);
       _set_editor_tab( change );
     }
 
@@ -462,6 +479,7 @@ $(function() {
     _set_results_next = function() { _set_results_view_by( 1, 'first' ); },
     _set_results_previous = function() { _set_results_view_by( -1, 'last' ); },
     _set_results_view_by = function( direction, fallback ) {
+      _focus();
       
       // don't bother if hidden
       if ( !$ui.results.is(':visible') ) return;
@@ -483,7 +501,7 @@ $(function() {
       $ui.results.empty().hide();
 
       // restore the editor (if any)
-      var tab = $ui.test.find('.tabs .selected');
+      var tab = $ui.results.find('.tabs .selected');
       _set_editor_tab( tab );
 
       // blur stuff for the leader

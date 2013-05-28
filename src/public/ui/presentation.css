@@ -64,6 +64,7 @@
 /* reset */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; } /* HTML5 display-role reset for older browsers */ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; } body { line-height: 1; } ol, ul { list-style: none; } blockquote, q { quotes: none; } blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; } table { border-collapse: collapse; border-spacing: 0; }
 
+#ie .clear { clear : both; }
 
 html, body, input, button { font-family: 'basic', sans-serif; }
 h1, h2, h3, h4, h5 { font-family: 'title', sans-serif; font-weight : 300; }
@@ -71,11 +72,11 @@ textarea { font-family: 'mono', monospace !important; }
 strong { font-family: 'basic-bold', 'basic', sans-serif; }
 
 
-
-#test, #slide, #rankings, #results {
+#test, #slide, #rankings, #results, #editors {
   display : none; 
 }
 
+body.test #editors { display : block; }
 body.test #test { display : block; }
 body.slide #slide { display : block; }
 body.rankings #rankings { display : block; }
@@ -142,14 +143,25 @@ body.rankings #rankings { display : block; }
 }
 
 .user #editor {
-  float : right;
-  right : 0;
+  height : 100%;
+  position : relative;
+}
+
+#editors {
+  position : absolute;
   top : 0;
+  right : 0;
   height : 100%;
   width : 60%;
 }
 
+.leader #editors {
+  width : 100%;
+  left : 0;
+}
+
 .leader #editor {
+  position : absolute;
   bottom : 0;
   width : 100%;
   left : 0;
@@ -159,8 +171,8 @@ body.rankings #rankings { display : block; }
 
 .leader .editors,
 .leader .toolbar {
-  width : 70%;
   margin : 0 auto;
+  padding : 0 10%;
 }
 
 .leader #editor.focused {
@@ -174,6 +186,11 @@ body.rankings #rankings { display : block; }
 
 .toolbar {
   overflow : auto;
+}
+
+#ie .toolbar {
+  overflow : hidden;
+  height : 50px;
 }
 
 .toolbar .tabs {
@@ -297,7 +314,7 @@ body.rankings #rankings { display : block; }
   clear : both;
   font-size : 16px;
   padding : 7px 11px;
-  border-top : 1px solid rgba( 255,255,255, .05 );
+  border-top : 1px solid #eee;
   margin : 0 -10px 8px -10px;
 
   color : #999;
@@ -377,7 +394,7 @@ body.rankings #rankings { display : block; }
   float : left;
 }
 
-#results .summary .last { margin : 0; }
+#results .summary .end { margin : 0; }
 
 #results .summary li h4 {
   padding : 0 0 10px 0;
@@ -393,7 +410,7 @@ body.rankings #rankings { display : block; }
 #results .tests {
   overflow : auto;
   max-width : 100%;
-  max-height : 400px;
+  max-height : 350px;
 }
 
 #results .tests {
@@ -439,7 +456,7 @@ ul.grade {
   clear : right;
   float : right;
   border-radius: 11px;
-  margin : 9px 0 0 0;
+  margin : 9px 0 15px 0;
 }
 
 ul.grade li {

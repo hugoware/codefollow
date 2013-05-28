@@ -14,7 +14,7 @@ Type Checking
 * `is_array` that accepts an argument and returns if it's an **array**
 * `is_user` that accepts an argument and returns if it's a **User type**
 
-**`User` is a custom type for this demo.**
+_`User` is a custom type for this demo._
 
 [zone name:script.js for:types syntax:javascript]
 [test source:test.js]

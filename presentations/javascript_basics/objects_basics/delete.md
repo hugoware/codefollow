@@ -1,8 +1,6 @@
 # Working With Objects
 ## Removing Properties
 
-Using the `delete` command will allow you to completely remove properties from an object.
-
 <pre class="code javascript" >
 var user = { 
   name: 'fred' 
@@ -16,3 +14,6 @@ user.name = null;
 delete user.name;
 'name' in user; // false
 </pre>
+
+* Setting a property to `null` does not remove it from the object
+* Using the `delete` operator will completely remove a properties from an object

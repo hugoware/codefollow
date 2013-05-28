@@ -1,8 +1,6 @@
 # Working With Objects
 ## Basics
 
-JavaScript object are a very 
-
 <pre class="code javascript" >
 var car = {
   color: 'blue',
@@ -15,3 +13,6 @@ car.color = 'red';
 // add new properties
 car.plate = 'KM843P';
 </pre>
+
+* Objects are a very important part of JavaScript
+* Nearly everything in JavaScript is an object _(nearly...)_

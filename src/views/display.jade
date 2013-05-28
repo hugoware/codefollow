@@ -7,6 +7,11 @@ html
     
 
   body( class=( leader ? 'leader' : 'user' ) )
+    | <!--[if IE]><div id="ie" ><![endif]-->
+    | <!--[if IE 9]><div id="ie9" ><![endif]-->
+    | <!--[if IE 8]><div id="ie8" ><![endif]-->
+    | <!--[if IE 7]><div id="ie7" ><![endif]-->
+    | <!--[if IE 6]><div id="ie6" ><![endif]-->
 
     #container
       .content
@@ -16,6 +21,7 @@ html
         #extra-3
         #slide
         #test
+        #editors
         #results
         #time
         //- #preview
@@ -82,12 +88,13 @@ html
     |           <li class="rank-2" ></li>
     |           <li class="rank-3" ></li>
     |         </ul>
+    |         <div class="clear" ></div>
     |       </div>
     |       {{# if no_tests }}<div class="error" ><i>f</i> Uh oh! looks like your code failed to run! <strong>{{ error }}</strong></div>{{/ if }}
     |       <h3>Summary</h3>
     |       <div class="view summary" >
     |         <ul>
-    |           <li class="first" >
+    |           <li class="start" >
     |             <h4>{{ pass }}</h4>
     |             <div>Earned Points</div>
     |           </li>
@@ -95,11 +102,12 @@ html
     |             <h4>{{ attempts }}</h4>
     |             <div>Total Points</div>
     |           </li>
-    |           <li class="last" >
+    |           <li class="end" >
     |             <h4>{{ score }}</h4>
     |             <div>Score</div>
     |           </li>
     |         </ul>
+    |         <div class="clear" ></div>
     |       </div>
     | 
     |       <h3>Tests</h3>
@@ -168,6 +176,7 @@ html
     |                 <li>of</li>
     |                 <li>{{ attempts }}</li>
     |               </ul>
+    |               <div class="clear" ></div>
     |             </div>
     |           </li>
     |           {{/ each }}
@@ -188,8 +197,12 @@ html
     |       <h3>{{ name }}</h3>
     |       <h4>passed {{ pass }} of {{ attempts }}</h4>
     |     </div>
+    |     <div class="clear" ></div>
     |   </div>
     | </script>
+
+    | <!--[if gte IE 6]></div><![endif]-->
+    | <!--[if IE]></div><![endif]-->
 
     script( type='text/javascript', src='/scripts/jquery.js' )
     script( type='text/javascript', src='/codemirror/lib/codemirror.js' )
