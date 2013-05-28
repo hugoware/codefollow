@@ -147,6 +147,7 @@ Follow along at **CodeFollow.net/${PRESENTATION_ID}**
 [slide oop_basics/exposing_properties.md]
 [slide oop_basics/this_reference.md]
 [slide oop_basics/protected.md]
+[slide oop_basics/constructors.md]
 [test oop_basics]
 [ranking]
 
@@ -165,62 +166,34 @@ Follow along at **CodeFollow.net/${PRESENTATION_ID}**
 [ranking]
 
 
-[test browser_dom]
-[ranking]
+--[test browser_dom]
+--[ranking]
 
-[test browser_edit]
-[ranking]
+--[test browser_edit]
+--[ranking]
 
 -- use get element by ID
-[test jquery_basic]
-[ranking]
+--[test jquery_basic]
+--[ranking]
 
 -- move to better selectors
-[test jquery_selector]
+--[test jquery_selector]
+--[ranking]
+
+--[test jquery_edit]
+--[ranking]
+
+--[test jquery_create]
+--[ranking]
+
+--[test jquery_extend]
+--[ranking]
+
+--[test jquery_ajax]
+--[ranking]
+
+
+[slide end.md]
+
 [ranking]
-
-[test jquery_edit]
-[ranking]
-
-[test jquery_create]
-[ranking]
-
-[test jquery_extend]
-[ranking]
-
-[test jquery_ajax]
-[ranking]
-
-[test handlebars_basics]
-[ranking]
-
-[test handlebars_intermediate]
-[ranking]
-
-[test handlebars_advanced]
-[ranking]
-
-[test sugar_basics]
-[ranking]
-
-[test sugar_intermediate]
-[ranking]
-
-[test sugar_advanced]
-[ranking]
-
-[test underscore_basics]
-[ranking]
-
-[test underscore_intermediate]
-[ranking]
-
-[test underscore_advanced]
-[ranking]
-
-
---[slide]
-
---# Thanks!
---I hope you learned a lot!
 
