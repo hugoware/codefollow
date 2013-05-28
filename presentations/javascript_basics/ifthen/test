@@ -7,13 +7,25 @@ If/Then
 
 [explanation]
 
-## Declare 5 variables
+## Use the following, finish writing the `sort` function
 
-* _variable_ named `a` with the value **3**
-* _variable_ named `b` with the value **false**
-* _variable_ named `c` with the value **'name'**
-* _array_ named `d` with the values **'a', 'b', and 'c'**
-* _object_ named `e` with a property **color** and the value **blue**
+<pre class="code javascript" >
+function red(){ ... }
+function green(){ ... }
+function blue(){ ... }
+function unknown(){ ... }
+</pre>
+
+* if the argument `color` equals 'red', then call `red()`
+* if the argument `color` equals 'green', then call `green()`
+* if the argument `color` equals 'blue', then call `blue()`
+* for any other value, simply call `unknown()`
 
 [zone name:script.js for:if_then syntax:javascript]
+function sort( color ) {
+
+  // ...
+  
+}
+
 [test source:test.js]
