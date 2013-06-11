@@ -10,7 +10,7 @@ OOP: Inheritance
 ## Extend `Animal` to create a `Dog` class
 
 <pre class="code javascript" >
-// this function is available for this example
+// extend has already been defined
 Function.extend( ... )
 </pre>
 

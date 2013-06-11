@@ -22,10 +22,18 @@ $(function() {
 
     // updates the current view
     _update = function( result ) {
-      console.log( result );
       if ( result.current ) $current.text( result.current );
       if ( result.next ) {
-        if ( result.next.preview ) $content.text( result.next.preview );
+        if ( result.next.preview ){
+          try{
+            var markup = (new Markdown.Converter()).makeHtml( result.next.preview );
+            $content.html( markup );
+          }
+          catch( e ) {
+            $content.text( result.next.preview );
+          }
+
+        }
         if ( result.next.type ) $type.text( result.next.type );
       }
     },

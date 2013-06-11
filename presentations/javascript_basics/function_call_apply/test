@@ -7,7 +7,7 @@ Functions: Call/Apply
 
 [explanation]
 
-Use the following object to complete this test.
+# Complete the `handle` function using the following
 
 <pre class="code javascript" >
 Server.route( a1, a2, a3, ... );
@@ -17,14 +17,12 @@ Server.send( a1, a2, a3, ... );
 
 ## Assign a function called `handle` to `Server`
 
+* `route`, `error` and `send` expect each array element to be passed as a separate argument. _(hint: `apply`)_
 * `handle` should _accept_ two arguments: type _(string)_ and data _(array)_
-* `handle` use the _type_ and _data_ arguments to call the correct `Server` method
-* the _type_ on a message matches the function to call on `Server`
-* `call/apply` should use the `Server` as the context
+* `handle` should call the correct `function` on the `Server` object
+* the _type_ argument matches the name of the `function` to call on `Server`
+* When using `call/apply`, the context should always be the `Server` object
 * each message has an unknown number of data elements
-* `route`, `error` and `send` expect each data element to be passed as a separate argument.
-
-_(ex: `Server.send( args[0], args[1], args[3], ... )` )_
 
 [zone name:script.js for:functions_call_apply syntax:javascript]
 Server.handle = function( type, message ) {

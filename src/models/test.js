@@ -20,6 +20,7 @@ var $$class = module.exports = function Test( params, directory, expand ) {
     , $time
     , $explanation
     , $title
+    , $preview
     , $execute
     , $zones = [ ]
     , $tests = [ ]
@@ -35,6 +36,7 @@ var $$class = module.exports = function Test( params, directory, expand ) {
     _get_execute = function() { _expand(); return $execute; },
     _get_zones = function() { _expand(); return $zones; },
     _get_tests = function() { _expand(); return $tests; },
+    _get_preview = function() { _expand(); return $preview; },
     _get_directory = function() { return $directory; },
     _get_time = function() { return $time || 5; },
     _get_source = function() { return $source; },
@@ -106,6 +108,10 @@ var $$class = module.exports = function Test( params, directory, expand ) {
             $time = 0|section.value || 5;
 
           // the file that should be run
+          else if ( section.type == 'preview' )
+            $preview = true;
+
+          // the file that should be run
           else if ( section.type == 'execute' )
             $execute = section.value;
 
@@ -147,6 +153,7 @@ var $$class = module.exports = function Test( params, directory, expand ) {
 
   __define( $this, {
     type: { get: function() { return 'test' }, enumerable: true },
+    preview: { get: _get_preview, enumerable: true },
     time: { get: _get_time, enumerable: true },
     title: { get: _get_title, enumerable: true },
     explanation: { get: _get_explanation, enumerable: true },

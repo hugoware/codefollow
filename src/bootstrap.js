@@ -30,6 +30,7 @@ var includes = {
 
   // engines
   'HtmlJsEngine': './engines/htmljs_engine',
+  'RubyEngine': './engines/ruby_engine',
 
   // models
   'Slide': './models/slide',

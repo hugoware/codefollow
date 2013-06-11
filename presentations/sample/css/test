@@ -1,0 +1,13 @@
+[title Using CSS]
+[execute test.html]
+[time 3]
+[preview]
+[explanation]
+
+## Declare 3 Selectors
+
+* A selector for all `div`s that changes the `background` to *red*
+* A selector for ID `header` that sets the `background` to *black*
+* A selector for all elements with a class `alt` to *underlined test*
+
+[zone name:style.css for:css_sample syntax:css]

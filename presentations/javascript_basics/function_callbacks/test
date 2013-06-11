@@ -7,7 +7,7 @@ Functions: Callbacks
 
 [explanation]
 
-User following functions to complete this test.
+## Write a callback using the following two function
 
 <pre class="code javascript" >
 function download( callback ) { ... };
@@ -16,9 +16,9 @@ function save( file ) { ... };
 
 ## Write a callback
 
-* the callback should _accept_ an argument
-* _call_ `save` with the argument, but only when it is **not null**
-* finally, _call_ `download` with the `callback` as the argument
+*  _call_ `download` with the `callback` you create as the argument
+* the `callback` you write should _accept_ an argument _(a file name)_
+* use your `callback` to _call_ `save` with the file name, but only when it's **not null**
 
 [zone name:script.js for:function_callbacks syntax:javascript]
 download( /* callback */ )

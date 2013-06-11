@@ -4,6 +4,12 @@ $(function() {
   var $this = this
     , $pending_request
 
+    // style modes
+    , $modes = { 
+      'html': 'htmlembedded',
+      'csharp': 'clike'
+    }
+
     // configuration
     , $poll_interval = 3000
     , $last = 0
@@ -51,7 +57,7 @@ $(function() {
     _state = function( state ) { _hide_dialog(); _stop_timer(); $body.removeClass($states).addClass( $state = state ); },
     _delay = function( time, action ) { if (!action) action = time, time = 1; if ( time == 0 ) action(); else window.setTimeout( action, time ); },
     _markdown = function( str ) { return (new Markdown.Converter()).makeHtml( str ); },
-    _syntax = function( key ) { return({ 'html': 'htmlembedded' })[key] || key; },
+    _syntax = function( key ) { return( $modes )[key] || key; },
     _is_busy = function() { return $body.hasClass('busy'); }
     _busy = function( on ) { $body[ on ? 'addClass' : 'removeClass' ]('busy'); },
     _is_testing = function() { return $('.dialog:visible').length > 0; },
@@ -189,6 +195,7 @@ $(function() {
     // prepare the ui to handle events
     _setup_events = function( ) {
       $(document).on( 'click', '.submit', _submit_test )
+        .on( 'click', '.overlay', _hide_dialog )
         .on( 'click', '.preview', _preview_test )
         .on( 'click', '.tabs > li', _set_editor_tab )
         .on( 'click', '#results .dialog h3', _set_results_view )
@@ -203,9 +210,8 @@ $(function() {
       Mousetrap.bind( [ 'command+shift+,', 'ctrl+shift+,' ], _tab_editor_left );
       Mousetrap.bind( 'down', _set_results_next );
       Mousetrap.bind( 'up', _set_results_previous );
-
-      // later...
-      // Mousetrap.bind( [ 'command+?', 'ctrl+?' ], _preview_test );
+      Mousetrap.bind( [ 'command+shift+enter', 'ctrl+shift+enter' ], _preview_test );
+      
     },
 
     // allow CodeMirror to respond to mousetrap shortcuts
@@ -283,10 +289,8 @@ $(function() {
     },
 
     _handle_preview = function( preview ) {
-      _state('preview');
-
       var markup = $templates.preview( preview );
-      $ui.preview.html( markup );
+      $ui.preview.html( markup ).show();
     },
 
     // displays a content slide
@@ -306,37 +310,19 @@ $(function() {
 
     // styles all code samples
     _apply_code_highlighting = function() {
-      if ( $ie ) return;
 
-      $('pre.code').each( function() {
+      $('pre.code').each(function() {
         var block = $(this)
           , code = $.trim( block.text() )
-          , syntax = $.trim( block.attr('class').replace(/code/g, '') )
-          , params = { value: code, mode: syntax, readOnly: true, showCursorWhenSelecting: false }
-          , display = $('<div/>').addClass('CodeMirror cm-s-default');
+          , container = $('<pre/>')
+              .addClass('code cm-s-default');
 
-        // load the formatted content
-        block.empty();
-        var container = new CodeMirror( this, params );
-        CodeMirror.autoLoadMode( container, syntax );
-
-        // only show the editor
-        var editor = block.find('>')
-          .addClass('code-readonly');
-
-        // shuffle around
-        editor.insertBefore( block );
+        // add styling
+        container.insertBefore( block );
+        CodeMirror.runMode( code, "javascript", container[0] );
         block.remove();
-
-        // handle overriding styles
-        editor.find('.CodeMirror-scroll > div')
-          .addClass('scroll-area');
-
-        // no scrolling ( just for view )
-        editor.find('textarea, .CodeMirror-hscrollbar, .CodeMirror-vscrollbar')
-          .remove();
-  
       });
+
     },
 
     // handles displaying the editor window for leaders
@@ -365,6 +351,9 @@ $(function() {
       var markup = $templates.test( test );
       $ui.test.html( markup );
       _show( $ui.test );
+
+      // toggle preview visiblity
+      $('.preview')[ test.preview ? 'show' : 'hide' ]();
 
       // shuffle
       $ui.editors.empty();
@@ -414,6 +403,9 @@ $(function() {
       // update template
       var markup = $templates.results( results );
       $ui.results.append( markup ).show();
+
+      // hiding
+      $ui.results.find('.overlay').click( _hide_dialog );
 
       // update the default view
       _set_results_view();
@@ -497,6 +489,11 @@ $(function() {
 
     // hides the results dialog
     _hide_dialog = function() {
+
+      // hide the prevew area if needed
+      if ( $ui.preview.is(':visible') )
+        $ui.preview.hide();
+
       $testing = false;
       $ui.results.empty().hide();
 
@@ -519,4 +516,9 @@ $(function() {
   // start the polling
   _poll( true );
 
+  // specific for presentation
+
+
 });
+
+

@@ -1,0 +1,19 @@
+[title Using jQuery]
+[execute test.html]
+[preview]
+[time 3]
+[explanation]
+
+## Use jQuery to...
+
+* Set the `h3` element to **'Fred Smith'**
+* Append a `p` element to the **.customer**
+* Set the `p` element to **'Software Engineer'**
+
+[zone name:customer.html for:html_sample_html syntax:html]
+<div class="customer" >
+  <h3></h3>
+</div>
+
+[zone name:script.js for:html_sample_script syntax:javascript]
+[test source:test.js]

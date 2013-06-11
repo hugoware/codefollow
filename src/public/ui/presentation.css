@@ -64,7 +64,7 @@
 /* reset */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video { margin: 0; padding: 0; border: 0; font-size: 100%; font: inherit; vertical-align: baseline; } /* HTML5 display-role reset for older browsers */ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; } body { line-height: 1; } ol, ul { list-style: none; } blockquote, q { quotes: none; } blockquote:before, blockquote:after, q:before, q:after { content: ''; content: none; } table { border-collapse: collapse; border-spacing: 0; }
 
-#ie .clear { clear : both; }
+.clear { clear : both; }
 
 html, body, input, button { font-family: 'basic', sans-serif; }
 h1, h2, h3, h4, h5 { font-family: 'title', sans-serif; font-weight : 300; }
@@ -72,8 +72,29 @@ textarea { font-family: 'mono', monospace !important; }
 strong { font-family: 'basic-bold', 'basic', sans-serif; }
 
 
-#test, #slide, #rankings, #results, #editors {
+#test, #slide, #rankings, #results, #editors, #preview {
   display : none; 
+}
+
+#preview {
+  position: absolute;
+  height : 100%;
+  width : 100%;
+  top : 0;
+  left : 0;
+  z-index : 100;
+}
+
+#preview iframe {
+  display : block;
+  width : 100%;
+  height : 380px;
+}
+
+#preview a {
+  float : right;
+  color : #777;
+  display : block;
 }
 
 body.test #editors { display : block; }
@@ -101,8 +122,6 @@ body.rankings #rankings { display : block; }
   width : 100%;
   top : 0;
   left : 0;
-
-  background : rgba( 0,0,0, .4 );
 }
 
 #remote {
@@ -271,10 +290,25 @@ body.rankings #rankings { display : block; }
   border-color : #4CA4F7;
 }
 
+.overlay {
+  position : absolute;
+  top : 0;
+  left : 0;
+  height : 100%;
+  width : 100%;
+  background : rgba( 0,0,0, .5 );
+  z-index : 0;
+}
+
+#ie .overlay {
+  background : url( overlay.png );
+}
+
 .dialog {
   position : absolute;
   top : 15%;
   left : 50%;
+  z-index : 1;
 
   width : 600px;
   margin : 0 0 0 -300px;
@@ -347,6 +381,10 @@ body.rankings #rankings { display : block; }
   max-height : 300px;
 }
 
+#ie .dialog .console { 
+  height : 300px;
+}
+
 #results .tests div,
 .dialog .console pre {
   padding : 15px;
@@ -411,6 +449,10 @@ body.rankings #rankings { display : block; }
   overflow : auto;
   max-width : 100%;
   max-height : 350px;
+}
+
+#ie #results .tests {
+  height : 350px;
 }
 
 #results .tests {

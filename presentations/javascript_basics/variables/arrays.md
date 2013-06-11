@@ -11,4 +11,4 @@ var fruit = [ 'apple', 'pear', 'orange' ];
 
 * Arrays can be created using `square brackets`
 * Use comma separated values to set the default value
-* JavaScript has an Array object, but not typically needed
+* JavaScript has an Array class, but not typically needed

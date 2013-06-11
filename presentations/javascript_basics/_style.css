@@ -17,9 +17,17 @@ html, body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );*/
 }
 
+a, a:hover, a:visited {
+  color : #087DD6;
+}
+
 #container {
   padding : 10% 10% 0 10%;
 }
+
+/*.leader #container {
+  padding : 6% 10% 0 10% !important;
+}*/
 
 #header {
   position : absolute;
@@ -45,12 +53,6 @@ html, body {
   text-shadow: 0 1px 3px rgba( 0,0,0, .9 );
 
   font-size : 16px;
-}
-
-#header:before {
-  content : 'JavaScript Deep Dive';
-  position : relative;
-  left : 15px;
 }
 
 img.extra { 
@@ -126,8 +128,8 @@ h2 { color : #999; }
 }
 
 .test-entry .grade {
-  margin : 0;
-  clear : none;
+  margin : 0 !important;
+  float : right;
 }
 
 .test-entry .grade li {
@@ -139,6 +141,14 @@ h2 { color : #999; }
   float : left;
   font-size : 16px;
   padding : 2px 0 0 0;
+}
+
+#ie .test-entry h4 {
+  margin-right : 10px;
+}
+
+#ie .test-entry .grade {
+  position : absolute;
 }
 
 .test-entry .count {
@@ -296,6 +306,7 @@ h2 { color : #999; }
 .code {
   background : #333;
   padding : 10px;
+  font-size : 26px;
 }
 
 .code-readonly {

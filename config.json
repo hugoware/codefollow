@@ -15,6 +15,7 @@
   "max_unique_id_attempts": 20,
 
   "browser_execution_script": "/Users/hugoware/projects/codefollow/engines/htmljs/execute.js",
+  "ruby_execution_script": "/Users/hugoware/projects/codefollow/engines/ruby/execute.rb",
 
   "presentation_directory": "/Users/hugoware/projects/codefollow/presentations/",
 

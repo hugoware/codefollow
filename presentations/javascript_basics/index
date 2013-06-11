@@ -18,7 +18,13 @@ Follow along at **CodeFollow.net/${PRESENTATION_ID}**
 [slide some_of_you.md]
 [slide get_started.md]
 
-[slide variables/intro.md]
+[slide intro/negative.md]
+[slide intro/history.md]
+[slide intro/flexible.md]
+[slide intro/ecma.md]
+[slide intro/dynamic.md]
+
+
 [slide variables/basic.md]
 [slide variables/multiple.md]
 [slide variables/empty.md]

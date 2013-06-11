@@ -16,6 +16,7 @@ html
     #container
       .content
         #header
+          #title= presentation.title
         #extra-1
         #extra-2
         #extra-3
@@ -24,7 +25,10 @@ html
         #editors
         #results
         #time
-        //- #preview
+        #preview
+          .overlay
+          .dialog
+            .container
         #rankings
 
     #footer
@@ -39,9 +43,13 @@ html
 
     //- a preview result
     | <script id="template_preview" type="text/template" >
-    |   <div class="content" >
-    |     <a href="{{ url }}" target="_blank" >Open in new window</a>
-    |     <iframe src="{{ url }}" ></iframe>
+    |   <div class="overlay" ></div>
+    |   <div class="dialog preview-dialog" >
+    |     <div class="container" >
+    |       <iframe src="{{ url }}" ></iframe>
+    |       <a href="{{ url }}" target="_blank" >Open in new window</a>
+    |       <div class="clear" ></div>
+    |     </div>
     |   </div>
     | </script>
 
@@ -63,7 +71,7 @@ html
     | 
     |       <div class="actions" >
     |         <button class="submit" >Submit</button>
-    //- |         <button class="preview" >Preview</button>
+    |         <button class="preview" >Preview</button>
     |       </div>
     |     </div>
     | 
@@ -78,6 +86,7 @@ html
 
     //- participant results for tests
     | <script id="template_results" type="text/template">
+    |   <div class="overlay" ></div>
     |   <div class="dialog" >
     |     <div class="container" >
     |       <div class="detail" >
@@ -207,6 +216,7 @@ html
     script( type='text/javascript', src='/scripts/jquery.js' )
     script( type='text/javascript', src='/codemirror/lib/codemirror.js' )
     script( type='text/javascript', src='/codemirror/addon/runmode/runmode.js' )
+    script( type='text/javascript', src='/codemirror/mode/javascript/javascript.js' )
     script( type='text/javascript', src='/scripts/handlebars.js' )
     script( type='text/javascript', src='/scripts/markdown.js' )
     script( type='text/javascript', src='/scripts/mousetrap.js' )

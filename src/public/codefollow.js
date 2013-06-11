@@ -4,6 +4,7 @@ var ___external_eval = function( script ) {
   try { window.eval( script ); }
   catch( e ) { console.log( 'Error:', e ); }
 };
+
 (function() {
 
   // handles executing the tests
@@ -117,7 +118,7 @@ var ___external_eval = function( script ) {
       apply_user_content();
 
       // check for a console output area
-      $output = document.getElementById('__output');
+      $output = document.getElementById('OUTPUT') || document.getElementById('__output');
 
       // lastly, load each of the test
       for (var t in $test.test) load_test( $test.test[t] );
@@ -195,7 +196,7 @@ var ___external_eval = function( script ) {
       // find and update the target
       var target = document.getElementById( zone['for'] )
       if ( target == null ) return;
-      if (zone.remove_id) target.id = null;
+      if (zone.remove_id) delete target.id;
 
       // load content if required
       if ( !zone.data && zone.source )
@@ -249,11 +250,6 @@ var ___external_eval = function( script ) {
       get( source, {
         load: function(data) {
           setTimeout( data, 0 );
-
-          // var element = document.createElement('script');
-          // element.type = 'text/javascript';
-          // element.innerHTML = data;
-          // document.body.appendChild( element );
         }
       });
     },
@@ -300,7 +296,7 @@ var ___external_eval = function( script ) {
 
       // if an output area
       if ( !$test_attempt && $output && $output.outerHTML ) {
-        $output.outerHTML = [ '<pre>', result, '</pre>' ].join('') ;
+        $output.outerHTML = [ '<pre id="OUTPUT" >', result, '</pre>' ].join('') ;
     }
 
     };

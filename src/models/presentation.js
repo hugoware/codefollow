@@ -84,6 +84,22 @@ var $$class = module.exports = function Presentation( key, params ) {
       // does nothing now, may eventually setup a socket.io connection
     },
 
+    // send out a message with URLs for the remote
+    _send_remote = function() {
+
+      // only send if they have an email
+      if ( _.trim( $leader.email ) == '' ) return;
+
+      // create the message
+      var message = new RemoteUrlMessage({
+        to: $leader.email,
+        presentation: $this
+      });
+
+      // send off the message
+      message.send();
+    },
+
     // slide navigation
     _next = function() { _set_index( $index + 1 ); },
     _previous = function() { _set_index( $index - 1 ); },
@@ -166,6 +182,7 @@ var $$class = module.exports = function Presentation( key, params ) {
     is_leader: _is_leader,
 
     // navigation
+    send_remote: _send_remote,
     next: _next,
     previous: _previous,
     peek: _peek,

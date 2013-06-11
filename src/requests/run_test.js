@@ -34,6 +34,8 @@ var $$class = module.exports = function RunTestRequest( request, response ) {
     _identify_engine = function( test ) {
       if ( /\.html$/i.test( $test.execute ) )
         return new HtmlJsEngine( test );
+      else if ( /\.rb$/i.test( $test.execute ) )
+        return new RubyEngine( test );
     },
 
     // is this an actual presentation

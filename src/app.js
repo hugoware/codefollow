@@ -9,10 +9,11 @@ require( './bootstrap' );
 
 
 // don't go completely down
-process.addListener('uncaughtException', function ( err ) {
-  console.log('ex:', err );
-  console.trace();
-});
+if ( !$$config.dev )
+  process.addListener('uncaughtException', function ( err ) {
+    console.log('ex:', err );
+    console.trace();
+  });
 
 
 // load the app configuration

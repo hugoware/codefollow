@@ -1,8 +1,9 @@
 
 [title Declaring Variables]
 [execute index.html]
+[time 4]
 
-[explanation source:explanation.md]
+[explanation]
 
 ## Declare 5 variables
 

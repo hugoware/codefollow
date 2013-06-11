@@ -63,6 +63,10 @@ module.exports = $$class = function StartPresentationRequest( request, response 
       // successfully created and added presentation
       $model.presentation = $presentation = presentation;
 
+      // send a message to the leader for
+      // the remote control
+      setTimeout( $presentation.send_remote, 1000 );
+
       // send to the correct location
       $response.redirect( '/{1}/'.assign( $presentation.identity ) );
 

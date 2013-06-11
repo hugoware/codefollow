@@ -19,7 +19,7 @@ var $$class = module.exports = function Summary( view ) {
       if ( $view.title )
         $preview = $view.title;
       else if ( $view.content )
-        $preview = _.trim( $view.content ).substr( 0, 50 );
+        $preview = _.trim( $view.content ) //.substr( 0, 50 );
       else
         $preview = 'Unknown';
 
