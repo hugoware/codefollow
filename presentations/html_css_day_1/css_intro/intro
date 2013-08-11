@@ -1,0 +1,152 @@
+[slide]
+# CSS
+## Introduction
+
+0. **CSS** stands for *Cascading Style Sheets*.
+0. CSS defines the appearance and formatting of a web page.
+
+
+
+[slide]
+# CSS
+## Introduction
+
+CSS gets a bad reputation for being difficult to use...
+
+![CSS Example](./css.gif)
+
+
+[slide]
+# CSS
+## Introduction
+
+... but it's actually quite powerful!
+
+0. <a href="http://www.bchanx.com/logos-in-pure-css-demo" target="css-example" >Logos</a>
+0. <a href="http://www.paulrhayes.com/experiments/cube/multiCubes.html" target="css-example" >3D Cubes</a>
+0. <a href="http://devfiles.myopera.com/articles/1041/image-gallery.html" target="css-example" >Image Gallery</a>
+0. <a href="http://www.romancortes.com/blog/pure-css-coke-can/" target="css-example" >3D Coke can</a>
+0. <a href="http://designlovr.com/examples/dynamic_stack_of_index_cards/" target="css-example" >Stacking Cards</a>
+0. <a href="http://anthonycalzadilla.com/css3-ATAT/index-bones.html" target="css-example" >StarWars ATAT</a>
+0. <a href="http://jsdo.it/GeckoTang/4rXg" target="css-example" >Whack-a-Gator Game</a>
+
+_All links use pure CSS in their demos_
+
+
+
+[slide]
+# CSS
+## Introduction
+
+Before CSS, styles were created by adding extra elements to a page.
+
+||code html||
+<p>
+	<font size="10" color="#FF0000"
+		face="Arial, sans-serif">
+	 	Welcome To The Site!
+	</font>
+	<font size="4" color="#000000"
+		face="Courier New, monospace">
+	 	Lorem ipsum dolor sit amet, consectetur
+	 	elit. Aenean ornare arcu sed dui interdum.
+	</font>
+	<img src="./logo.png" align="right" />
+</p>
+||code||
+
+
+
+[slide]
+# CSS
+## Introduction
+
+This became problematic if you needed to make changes since you had to find and update *everywhere* formatting had been added.
+
+CSS decouples presentation from markup which makes it much easier to maintain.
+
+
+
+[slide]
+# CSS
+## Using CSS
+
+CSS can be applied using the `style` attribute. It's very unlikely you should ever need to do this, but there are times it might make sense. (but super rare)
+
+||code html||
+<div style="font: 16px sans-serif; color: #f00;" >
+	This isn't any better than a FONT tag
+</div>
+||code||
+
+<div class="output" >
+<div style="font: 16px sans-serif; color: #f00;" >
+	This isn't any better than a FONT tag
+</div>
+</div>
+
+
+
+[slide]
+# CSS
+## Using CSS
+
+Using a `style` tag will apply the styles to the current page. This better than using inline styles (and useful when generating styles at runtime).
+
+||code html||
+<style type="text/css" >
+	div { 
+		font: 16px sans-serif;
+		color: #0c0;
+	}
+</style>
+<div>
+	This a little better than before
+</div>
+||code||
+
+<div class="output" >
+<div>
+	This a little better than before
+</div>
+</div>
+
+<style type="text/css" >
+	.output div { font: 16px sans-serif; color: #0c0; }
+</style>
+
+
+
+[slide]
+# CSS
+## Using CSS
+
+Using a `link` tag you can include an external stylesheet. This means that the same styles can be shared across the site!
+
+||code html||
+<link rel="stylesheet" type="text/css"
+	href="/stylesheet.css" />
+<div>
+	This is much better!
+</div>
+||code||
+
+<div class="output" >
+<div>
+	This is much better!
+</div>
+</div>
+
+<style type="text/css" >
+	.output div { font: 16px sans-serif; color: #00f; }
+</style>
+
+
+
+[slide]
+# CSS
+## Using CSS
+
+Previously, wrapping elements with styles made it easy to identify the target for styling. CSS uses **Selectors** to identify target elements.
+
+CSS Selectors

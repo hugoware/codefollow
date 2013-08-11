@@ -1,0 +1,152 @@
+[slide]
+# HTML
+## Setup An HTML Page
+
+0. Create a new file called index.html
+0. Open that file in your web browser
+
+
+[slide]
+# HTML
+## DOCTYPE
+
+The DOCTYPE is used to identify itself to a browser. DOCType is a unique `void` element _(no closing slash)_.
+
+||code html||
+
+<!-- HTML 5 -->
+<!DOCTYPE html>
+
+<!-- Other DOCTYPEs -->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+	"http://www.w3.org/TR/html4/strict.dtd">
+
+<!DOCTYPE HTML PUBLIC
+	"-//W3C//DTD HTML 4.01 Transitional//EN"
+	"http://www.w3.org/TR/html4/loose.dtd">
+
+||code||
+
+
+
+[slide]
+# HTML
+## html
+
+`HTML` is a `normal` element and should wrap all other elements. The DOCTYPE `html` refers to it being the `top-level` element.
+
+||code html||
+<!DOCTYPE html>
+<html>
+	...
+</html>
+||code||
+
+
+
+[slide]
+# HTML
+## head
+
+`HEAD` is a `normal` element that is not visible to users. It primarily contains special instructions and meta data.
+
+||code html||
+<!DOCTYPE html>
+<html>
+	<head>
+		...
+	</head>
+</html>
+||code||
+
+
+[slide]
+# HTML
+## title
+
+`TITLE` is a `normal` element that sets the title of the page. In a web browser, this is what appears in the title bar of the tab or window.
+
+||code html||
+<head>
+	<title>Hello, World</title>
+</head>
+||code||
+
+
+[slide]
+# HTML
+## meta
+
+`META` tags are void elements with special instructions. 
+
+||code html||
+<head>
+	<title>Hello, World</title>
+	<meta name="..." content="..." />
+</head>
+||code||
+
+
+
+[slide]
+# HTML
+## meta / `description`
+
+Some `META` tags simply provide more information about the page.
+
+||code html||
+<head>
+	<title>Hello, World</title>
+	<meta name="description"
+				content="info about this page" />
+</head>
+||code||
+
+
+
+[slide]
+# HTML
+## meta / `expires`
+
+Some `META` tags tell the the browser how it should treat a page.
+
+||code html||
+<head>
+	<title>Hello, World</title>
+	<meta name="expires"
+				content="Fri, 30 Aug 2013" />
+</head>
+||code||
+
+
+
+[slide]
+# HTML
+## meta / `robots`
+
+Some `META` tags tell `crawlers` how they should treat a page.
+
+||code html||
+<head>
+	<title>Hello, World</title>
+	<meta name="robots" content="noindex" />
+</head>
+||code||
+
+
+
+[slide]
+# HTML
+## meta / `refresh`
+
+Some `META` tags tell the the browser something it should do.
+
+||code html||
+<head>
+	<title>Hello, World</title>
+	<meta name="refresh" content="30" />
+</head>
+||code||
+
+
+

@@ -1,0 +1,68 @@
+
+.selector-example {
+  padding : 10px;
+  font-size : 20px;
+  margin : -25px 0 20px 0;
+  background : #ffc;
+
+  position: relative;
+
+  border : 1px dashed #cc9;
+
+  font-family: monospace;
+  border-radius: 7px;
+}
+
+.css-example-1 span,
+.css-example-2 .item-2,
+.css-example-3 #second,
+.css-example-4 div.block,
+.css-example-5 div#input,
+.css-example-6 p a,
+.css-example-7 div > a,
+.css-example-8 *,
+.css-example-9 h3 + p,
+.css-example-10 h3 ~ p,
+.css-example-11 div[title],
+.css-example-12 div[title=main],
+.css-example-13 div[title*=nate],
+.css-example-14 a[href^=https],
+.css-example-15 a[href$=mp3],
+.css-example-16 #department,
+.css-example-16 .hours,
+.css-example-16 div > a {
+	background : rgba( 255,0,0, .25 );
+}
+
+.css-example span,
+.css-example a {
+	display : inline-block;
+}
+
+.output h2 {
+  color : #000;
+  margin : 0;
+  padding : 0 0 15px 0;
+  font-size : 24px;
+}
+
+.output h3 {
+  margin : 0;
+  padding : 0 0 10px 0;
+  font-size : 20px;
+}
+
+.output p {
+  margin : 0;
+  padding : 0;
+  font-size : 16px;
+}
+
+.output input,
+.output button {
+  font-size : 14px;
+}
+
+.output.no-text:after {
+  content : '';
+}

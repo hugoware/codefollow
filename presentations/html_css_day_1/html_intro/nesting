@@ -1,0 +1,31 @@
+[slide]
+# HTML
+## Nested Elements
+
+Most Normal Elements allow for child elements to be nested within.
+
+||code html||
+<parent>
+	<child />
+	<child />
+</parent>
+||code||
+
+
+
+[slide]
+# HTML
+## Nested Elements
+
+Some Normal Elements have specific requirements of their child elements.
+
+||code html||
+<table>
+	<tbody>
+		<tr>
+			<td> ... </td>
+			<td> ... </td>
+		</tr>
+	</tbody>
+</table>
+||code||

@@ -1,13 +1,35 @@
 [title Using CSS]
-[execute test.html]
+[execute index.html]
 [time 3]
 [preview]
+
 [explanation]
 
 ## Declare 3 Selectors
 
-* A selector for all `div`s that changes the `background` to *red*
-* A selector for ID `header` that sets the `background` to *black*
-* A selector for all elements with a class `alt` to *underlined test*
+* Set the `class` for the `dl` to use `.profile`
+* A selector for `.profile` to set images to **70px height**
+* A selector for `.profile` to set images to **70px width**
+* A selector for `.profile` to float both `dt` and `dd` elements **left**
+* A selector for `.profile` to set `h3` tags to **a font size of 32px**
+* A selector for `.profile` to set `p` tags to **a font size of 16px**
+* A selector for `.profile` to set `p` tags to **italic**
 
-[zone name:style.css for:css_sample syntax:css]
+[zone name:style.css for:css_style syntax:css]
+/* Complete the required CSS */
+.profile {
+  
+}
+
+[zone name:markup.html for:css_markup syntax:html]
+<dl class="..." >
+  <dt>
+    <img src="./avatar.jpg" />
+  </dt>
+  <dd>
+    <h3>CSS Sensei</h3>
+    <p>Master of CSS-Fu</p>
+  </dd>
+</dl>
+
+[test source:test.js]

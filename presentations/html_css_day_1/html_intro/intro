@@ -1,0 +1,130 @@
+[slide]
+# HTML
+## What is HTML?
+
+0. `HTML` stands for _HyperText Markup Language_
+0. `HTML` is used for creating web pages
+0. `HTML` uses *tags* to create a document structure _(similar to XML)_
+0. Web browsers use markup to determine how to display a page
+
+
+
+[slide]
+# HTML
+## Browsers
+
+There are hundreds of web browsers, but only a handful of popular ones.
+
+0. Chrome
+0. Firefox
+0. Internet Explorer
+0. Safari
+0. Opera
+
+
+
+[slide]
+# HTML
+## Browsers
+
+Most browsers come with powerful web developer tools.
+
+<img src="./tools.png" style="width:100%" />
+
+
+
+[slide]
+# HTML
+## View Source
+
+Viewing the markup for a page is one of the best ways to learn how to do new things.
+
+<img src="./source.png" style="width:100%" />
+
+
+
+[slide]
+# Exercise
+## Browser Tools
+
+0. Locate browser tools
+0. Determine what you can do
+0. Identify elements on a page
+
+<div class="output no-text" >
+<p><em>Check out</em> the <u>image</u> <strong>below</strong>!</p>
+<hr />
+
+<div style="display: inline-block; padding: 30px; background: #f00; float: right;" >
+	Inspect me!
+</div>
+
+<img src="http://lorempixel.com/200/100/nature" />
+<script type="text/javascript" >
+	(function() {
+		console.log( 'Hello, World!' );
+		console.log( 'This was written from JavaScript' );
+		console.log( "If you're checking the 'Console' tab, then you'll see it" );
+		console.log( "\n\n" );
+	})();
+</script>
+</div>
+
+
+
+
+
+
+
+
+[slide]
+# HTML
+## Text
+
+Most text will appear as normal when entered into HTML
+
+<pre class="code html" >
+Hello, World!
+</pre>
+
+<div class="output" >
+Hello, World!
+</div>
+
+
+[slide]
+# HTML
+## Newlines
+
+Newlines will not cause line breaks.
+
+<pre class="code html" >
+Hello,
+
+
+World!
+</pre>
+
+<div class="output" >
+Hello,
+
+
+World!
+</div>
+
+
+
+[slide]
+# HTML
+## Spaces
+
+Multiple spaces in a row are ignored.
+
+<pre class="code html" >
+Hello,           World!
+</pre>
+
+<div class="output" >
+Hello,           World!
+</div>
+

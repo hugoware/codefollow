@@ -1,0 +1,46 @@
+[slide]
+# HTML
+## Entities
+
+Characters with special meaninings require entities to display.
+
+||code html||
+|               | &nbsp;&nbsp;&nbsp;&nbsp; |
+||code||
+
+<div class="output" >
+|               | &nbsp;&nbsp;&nbsp;&nbsp; |
+</div>
+
+
+
+[slide]
+# HTML
+## Entities
+
+Characters with special meaninings require entities to display.
+
+||code html||
+&lt; &gt; &amp;
+||code||
+
+<div class="output" >
+&lt; &gt; &amp;
+</div>
+
+
+
+[slide]
+# HTML
+## Entities
+
+Entities can be used to display special symbols and characters
+
+||code html||
+&copy; &hearts; &diams;
+&clubs; &spades;
+||code||
+
+<div class="output" >
+&copy; &hearts; &diams; &clubs; &spades;
+</div>

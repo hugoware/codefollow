@@ -1,4 +1,4 @@
-# CodeFollow
-## Introduction
+# Welcome
+## Join This Presentation
 
-* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ornare arcu sed dui interdum ac faucibus risus tincidunt.
+Follow along at **CodeFollow.net/${PRESENTATION_ID}**

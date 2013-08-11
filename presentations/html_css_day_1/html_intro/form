@@ -1,0 +1,49 @@
+[slide]
+# HTML Forms
+## Introduction
+
+The `FORM` is one of the most basic ways to submit information to a separate URL.
+
+||code html||
+<!DOCTYPE html>
+<html>
+	<head> ... </head>
+	<body>
+		...
+	</body>
+</html>
+||code||
+
+
+[slide]
+# HTML Forms
+## Introduction
+
+The `FORM` is one of the most basic ways to submit information to a separate URL.
+
+||code html||
+<form action="/target" method="POST" >
+	<input type="text" />
+</form>
+||code||
+
+[slide]
+Identify values sent
+
+[slide]
+Handling multiple values
+
+[slide]
+limiting selection (radio, drop down)
+
+[slide]
+using labels
+
+
+[slide]
+# HTML Forms
+# Building a Form
+
+0. Create a form
+0. Submit info to server
+0. make sure data is correct

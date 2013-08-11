@@ -1,0 +1,12 @@
+[title Ruby Splat]
+[execute test.rb]
+[time 3]
+[explanation]
+
+## Update the `Calculator` class
+
+* Change `add` to use a splat and accept *any number of arguments*
+* `add` should add (+) and return the provided values together
+* if nothing is provided, `nil` should be returned
+
+[zone name:class.rb for:ruby_class syntax:ruby]

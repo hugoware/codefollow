@@ -80,7 +80,7 @@ var $$class = module.exports = function Test( params, directory, expand ) {
 
     // grabs the content for the slides
     _expand = function() {
-      if ( $expanded ) return;
+      if ( $expanded && !$$config.dev ) return;
       $expanded = true;
       
       // read in all content

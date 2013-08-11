@@ -1,0 +1,243 @@
+[slide]
+# HTML
+## body
+
+The `BODY` tag is a normal element that contains page content. This area contains mostly visible content.
+
+||code html||
+<!DOCTYPE html>
+<html>
+	<head> ... </head>
+	<body>
+		...
+	</body>
+</html>
+||code||
+
+
+
+[slide]
+# HTML
+## h1
+
+The `H1` tag is a normal, block element that can contain content.
+
+||code html||
+<body>
+	<h1>Hello, World!</h1>
+</body>
+||code||
+
+<div class="output" >
+<h1>Hello, World</h1>
+</div>
+
+
+
+[slide]
+# HTML
+## Block Elements
+
+A `block` element will stack on top of each other. This can be redefined with CSS, but by default, `H1` is a block element.
+
+||code html||
+<body>
+	<h1>Top</h1>
+	<h1>Bottom</h1>
+</body>
+||code||
+
+<div class="output" >
+<h1>Top</h1>
+<h1>Bottom</h1>
+</div>
+
+
+
+[slide]
+# HTML
+## span
+
+The `SPAN` tag is a normal, inline element that can contain content.
+
+||code html||
+<body>
+	<span>Hello, World!</span>
+</body>
+||code||
+
+<div class="output" >
+<span>Hello, World</span>
+</div>
+
+
+
+
+[slide]
+# HTML
+## Inline Elements
+
+An `inline` element will stack next to each other. This can be redefined with CSS, but by default, `SPAN` is an inline element.
+
+||code html||
+<body>
+	<span>First</span>
+	<span>Second</span>
+	<span>Third</span>
+</body>
+||code||
+
+<div class="output" >
+<span>First</span>
+<span>Second</span>
+<span>Third</span>
+</div>
+
+
+
+[slide]
+# HTML
+## div
+
+The `DIV` is a normal, block element that can contain content.
+
+||code html||
+<body>
+	<div>content</div>
+</body>
+||code||
+
+<div class="output" >
+<div>content</div>
+</div>
+
+
+
+[slide]
+# HTML
+## ul
+
+The `UL` is a normal, block element that can contain `LI` elements. It is use to create unordered lists _(bullets)_
+
+||code html||
+<body>
+	<ul>
+		<li>First</li>
+		<li>Second</li>
+		<li>Third</li>
+	</ul>
+</body>
+||code||
+
+<div class="output" >
+<ul>
+	<li>First</li>
+	<li>Second</li>
+	<li>Third</li>
+</ul>
+</div>
+
+
+
+[slide]
+# HTML
+## ol
+
+The `OL` is a normal, block element that can contain `LI` elements. It is use to create ordered lists _(numbered)_
+
+||code html||
+<body>
+	<ol>
+		<li>First</li>
+		<li>Second</li>
+		<li>Third</li>
+	</ol>
+</body>
+||code||
+
+<div class="output" >
+<ol>
+	<li>First</li>
+	<li>Second</li>
+	<li>Third</li>
+</ol>
+</div>
+
+
+
+[slide]
+# HTML
+## table
+
+The `TABLE` is a normal, inline element that is used to display tabular data.
+
+||code html||
+<table>
+	<tbody>
+		<tr>
+			<td>1</td> <td>First</td>
+		</tr>
+		<tr>
+			<td>2</td> <td>Second</td>
+		</tr>
+	</tbody>
+</table>
+||code||
+
+<div class="output" >
+<table>
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td>First</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>Second</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+
+
+
+[slide]
+# HTML
+## a
+
+The `A` tag _(Anchor)_ is a normal, inline element that is used to navigate to new urls or act as a target.
+
+||code html||
+<body>
+	<a href="http://google.com" >
+		Google.com
+	</a>
+</body>
+||code||
+
+<div class="output" >
+<a href="http://google.com" >
+	Google.com
+</a>
+</div>
+
+
+
+[slide]
+# HTML
+## img
+
+The `IMG` is a void, inline element that is used to display images.
+
+||code html||
+<body>
+	<img src="./html-logo.png" />
+	<img src="http://lorempixel.com/100/100/food" />
+</body>
+||code||
+
+<div class="output" >
+<img src="./html-logo.png" />
+<img src="http://lorempixel.com/100/100/food" />
+</div>

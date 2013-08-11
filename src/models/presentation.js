@@ -41,6 +41,7 @@ var $$class = module.exports = function Presentation( key, params ) {
     _get_leader = function() { return $leader; },
     _get_title = function() { return $reader.title; },
     _get_views = function() { return $reader.views; },
+    _get_stylesheets = function() { return $reader.stylesheets; },
     _get_slides = function() { return _.select( $reader.views, function( view ) { return view instanceof Slide; }); },
     _get_tests = function() { return _.select( $reader.views, function( view ) { return view instanceof Test; }); },
 
@@ -75,7 +76,11 @@ var $$class = module.exports = function Presentation( key, params ) {
 
     // loads a presentation as required
     _init = function() {
-      if ( !$key ) return;
+      if ( $key ) _reload();
+    },
+
+    // loads in content for the presentation
+    _reload = function() {
       $reader = new PresentationReader( $key, $params, $this );
     },
 
@@ -180,6 +185,7 @@ var $$class = module.exports = function Presentation( key, params ) {
     is_member: _is_member,
     is_user: _is_user,
     is_leader: _is_leader,
+    reload: _reload,
 
     // navigation
     send_remote: _send_remote,
@@ -196,7 +202,8 @@ var $$class = module.exports = function Presentation( key, params ) {
     slides: { get: _get_slides },
     tests: { get: _get_tests },
     directory: { get: _get_directory },
-    stylesheet: { get: _get_stylesheet }
+    stylesheet: { get: _get_stylesheet },
+    stylesheets: { get: _get_stylesheets }
     
   });
 

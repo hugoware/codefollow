@@ -1,0 +1,25 @@
+[title Using Sugar]
+[execute index.html]
+[time 3]
+[explanation]
+
+## With the following array
+
+<pre class="code javascript" >
+var fruits = [
+  { name: 'cherry', count: 12 },
+  ...
+];
+</pre>
+
+### Use `Sugar` framework to...
+
+* use `sortBy` with `fruits` to sort the **count** in **descending** order
+* use `forEach` with the sorted results to ...
+* ... use `assign` to write the message 'total <fruit> count is <count>'
+* ... write each result using `console.log`
+
+*No need to declare the array, it's already provided as part of the test*
+
+[zone name:script.js for:sugar_sample syntax:javascript]
+[test source:test.js]

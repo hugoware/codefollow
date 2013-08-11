@@ -23,6 +23,9 @@ var $$class = module.exports = function Slide( params, directory, expand ) {
     // grabs the content for the slides
     _expand = function() {
 
+      // always reload in dev
+      if ( $$config.dev ) $content = null;
+
       // if already cached, use it
       if ( $content )
         return _format( $content );

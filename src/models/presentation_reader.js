@@ -19,6 +19,7 @@ module.exports = $$class = function PresentationReader( source, params, presenta
     , $description
     , $tags
     , $views = [ ]
+    , $stylesheets = [ ]
     ,
 
     // getters
@@ -28,6 +29,7 @@ module.exports = $$class = function PresentationReader( source, params, presenta
     _get_description = function() { return $description || ''; },
     _get_tags = function() { return $tags || [ ]; },
     _get_views = function() { return $views; },
+    _get_stylesheets = function() { return $stylesheets; },
     
 
     // starts reading the content 
@@ -40,10 +42,13 @@ module.exports = $$class = function PresentationReader( source, params, presenta
 
       // read in the file contents
       var file = $$fs.readFileSync( $index )
-        , content = file.toString()
-        , reader = new Reader( content );
+        , content = file.toString();
 
-      // figure out what to do with each section
+      // preprocess special tags
+      content = _preprocess( content );
+
+      // process the file
+      var reader = new Reader( content );
       _.each( reader.sections, function( i, section ) {
         _add( section );
       });
@@ -51,6 +56,24 @@ module.exports = $$class = function PresentationReader( source, params, presenta
       // checks for a stylesheet
       if ( $params.expand )
         _detect_stylesheet();
+
+    },
+
+    // process content before the reader
+    _preprocess = function( content ) {
+
+      // find all 'merge' tags
+      return content.replace( /\[merge [^\]]+\]/gi, function( match ) {
+
+        // replace with file content from match
+        var file = match.replace( /^\[merge|\]$/g, '' ).trim()
+          , path = $$path.join( $directory, file )
+          , exists = $$fs.existsSync( path )
+          , content = exists && $$fs.readFileSync( path ).toString() || '';
+
+        // include new lines just in case
+        return '\n' + content + '\n';
+      });
 
     },
 
@@ -72,6 +95,10 @@ module.exports = $$class = function PresentationReader( source, params, presenta
 
       else if ( section.type == 'tags' )
         $tags = _.trim( _.trim( section.value ) + ' ' + _.trim( section.content ) ).split(/\s?,\s?/g);
+
+      // includes an extra stylesheet
+      else if ( section.type == 'stylesheet' )
+        $stylesheets.push( _.trim( section.value ) );
 
       // slides
       else if ( section.type == 'slide' )
@@ -99,6 +126,7 @@ module.exports = $$class = function PresentationReader( source, params, presenta
     description: { get: _get_description },
     tags: { get: _get_tags },
     views: { get: _get_views },
+    stylesheets: { get: _get_stylesheets },
     exists: { get: _get_exists },
     stylesheet: { get: _get_stylesheet }
 

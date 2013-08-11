@@ -4,6 +4,10 @@ html
     link( rel='stylesheet', type='text/css', href='/ui/presentation.css' ) 
     link( rel='stylesheet', type='text/css', href=stylesheet ) 
     link( rel='stylesheet', type='text/css', href='/codemirror/lib/codemirror.css' )
+
+    //- optional stylesheets
+    - for( stylesheet in presentation.stylesheets )
+      link( rel='stylesheet', type='text/css', href=presentation.stylesheets[ stylesheet ] )
     
 
   body( class=( leader ? 'leader' : 'user' ) )
@@ -217,6 +221,11 @@ html
     script( type='text/javascript', src='/codemirror/lib/codemirror.js' )
     script( type='text/javascript', src='/codemirror/addon/runmode/runmode.js' )
     script( type='text/javascript', src='/codemirror/mode/javascript/javascript.js' )
+    script( type='text/javascript', src='/codemirror/mode/xml/xml.js' )
+    script( type='text/javascript', src='/codemirror/mode/css/css.js' )
+    script( type='text/javascript', src='/codemirror/mode/ruby/ruby.js' )
+    script( type='text/javascript', src='/codemirror/mode/htmlmixed/htmlmixed.js' )
+    script( type='text/javascript', src='/codemirror/mode/htmlembedded/htmlembedded.js' )
     script( type='text/javascript', src='/scripts/handlebars.js' )
     script( type='text/javascript', src='/scripts/markdown.js' )
     script( type='text/javascript', src='/scripts/mousetrap.js' )

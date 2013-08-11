@@ -1,31 +1,42 @@
 [title CodeFollow]
 
-[test ruby]
-
 [slide intro.md]
+[slide explain.md]
+[slide interactive.md]
+[slide testing.md]
+[slide join.md]
 
-[slide html/intro.md]
-[test html]
-[ranking]
-
-
+-- testing with JavaScript
 [slide javascript/intro.md]
 [test javascript]
 [ranking]
 
+-- testing with frameworks
+[slide sugar/intro.md]
+[test sugar]
+[ranking]
 
+-- works with the DOM
+[slide html/intro.md]
+[test html]
+[ranking]
+
+-- works for non-code concepts like CSS
 [slide css/intro.md]
 [test css]
 [ranking]
 
-
-[slide ruby/intro.md]
-[test ruby]
+-- works with other languages
+[slide ruby_variables/intro.md]
+[test ruby_variables]
 [ranking]
 
+[slide ruby_class/intro.md]
+[test ruby_class]
+[ranking]
 
-[slide csharp/intro.md]
-[test csharp]
+[slide ruby_splat/intro.md]
+[test ruby_splat]
 [ranking]
 
 [slide end.md]

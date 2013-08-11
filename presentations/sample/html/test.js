@@ -1,12 +1,18 @@
 
 describe( '`customer` element', function() {
-  it( 'should exist', function() { expect ( $('.customer').length ).toBe( 1 ); });
+  it( 'should exist', function() { expect ( __has_customer ).toBe( true ); });
 });
 
-describe( 'within `customer`', function() {
-  it( 'should have an `h3` element', function() { expect ( $('.customer h3').length ).toBe( 1 ); }) ; 
-  it( 'and equal `fred`', function() { expect ( $('.customer h3').text() ).toBe( 'Fred Smith' ); });
+describe( '`h3` within `customer`', function() {
+  it( 'should exist', function() { expect ( __has_h3 ).toBe( true ); }) ; 
+  it( 'and equal `Fred Smith`', function() { expect ( __h3_set_correctly ).toBe( true ); });
+  it( 'and set using jQuery', function() { expect ( __h3_not_pre_set ).toBe( true ); });
+  it( 'and should only affect within `customer`', function() { expect ( __h3_limited_scope ).toBe( true ); });
+});
 
-  it( 'should have a `p` element', function() { expect ( $('.customer p').length ).toBe( 1 ); });
-  it( 'and equal `fred`', function() { expect ( $('.customer p').text() ).toBe( 'Software Engineer' ); });
+describe( '`p` within `customer`', function() {
+  it( 'should exist', function() { expect ( __has_p ).toBe( true ); }); 
+  it( 'be added using jQuery', function() { expect ( __p_added_via_script ).toBe( true ); }); 
+  it( 'and equal `Developer`', function() { expect ( __p_set_correctly ).toBe( true ); });
+  it( 'and should only affect within `customer`', function() { expect ( __p_limited_scope ).toBe( true ); });
 });

@@ -1,0 +1,39 @@
+[slide]
+# HTML
+## Normal Elements
+
+Normal elements have an opening and closing tag.
+
+||code html||
+<div> </div>
+||code||
+
+
+[slide]
+# HTML
+## Normal Elements
+
+Normal elements typically contain content or other tags
+
+||code html||
+<div>
+	Hello, <strong>World</strong>
+</div>
+||code||
+
+
+[slide]
+# HTML
+## Void Elements
+
+Void elements close themselves and do not contain content
+
+||code html||
+<void />
+
+<!-- HTML5 -->
+<void>
+
+<!-- supposedly allowed -->
+<void/
+||code||

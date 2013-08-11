@@ -1,0 +1,375 @@
+[slide]
+# CSS
+## Selectors
+
+Selector using an `element` name
+
+<div class="selector-example" >span</div>
+
+||code html||
+<p>Hello <span>World</span></p>
+||code||
+
+<div class="css-example-1 css-example output" >
+<p>Hello <span>World</span></p>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using an element `class`
+
+<div class="selector-example" >.item-2</div>
+
+||code html||
+<div class="item-1" >Item #1</div>
+<div class="item-2" >Item #2</div>
+<div class="item-3" >Item #3</div>
+||code||
+
+<div class="css-example-2 css-example output" >
+<div class="item-1" >Item #1</div>
+<div class="item-2" >Item #2</div>
+<div class="item-3" >Item #3</div>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using an element `id`
+
+<div class="selector-example" >#second</div>
+
+||code html||
+<div id="first" >First</div>
+<div id="second" >Second</div>
+||code||
+
+<div class="css-example-3 css-example output" >
+<div id="first" >First</div>
+<div id="second" >Second</div>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using `element` and a `class`
+
+<div class="selector-example" >div.block</div>
+
+||code html||
+<h2 class="block" >Hello H2</h2>
+<div class="block" >Hello DIV</div>
+<p class="block" >Hello P</p>
+||code||
+
+<div class="css-example-4 css-example output" >
+<h2 class="block" >Hello H2</h2>
+<div class="block" >Hello DIV</div>
+<p class="block" >Hello P</p>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+You can use multiple selectors as part of a single CSS rule
+
+<div class="selector-example" >#department, .hours, div > a</div>
+
+||code html||
+<div>
+	<h3 id="department" >Support</h3>
+	<p>
+		Hours <span class="hours" >9AM to 5PM</span>
+	</p>
+	<div>
+		Help? <a href="/help" >Contact us!</a>
+	</div>
+</div>
+||code||
+
+<div class="css-example-16 css-example output" >
+<div>
+	<h3 id="department" >Support</h3>
+	<p>
+		Hours <span class="hours" >9AM to 5PM</span>
+	</p>
+	<div>
+		Help? <a href="/help" >Contact us!</a>
+	</div>
+</div>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using `element` and an `id`
+
+<div class="selector-example" >div#first</div>
+
+||code html||
+<div id="input" >Input</div>
+<div id="output" >Output</div>
+||code||
+
+<div class="css-example-5 css-example output" >
+<div id="input" >Input</div>
+<div id="output" >Output</div>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using a parent and child `element`
+
+<div class="selector-example" >p a</div>
+
+||code html||
+<div>
+	This is a <a href="#" >link</a>
+</div>
+<p>
+	This is a <a href="#" >link</a>
+</p>
+||code||
+
+<div class="css-example-6 css-example output" >
+<div> This is a <a href="#" >link</a></div>
+<p> This is a <a href="#" >link</a></p>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using a parent and direct descendant `element`
+
+<div class="selector-example" >div > a</div>
+
+||code html||
+<div>
+	<a href="#" >Link</a>
+</div>
+<div>
+	<p>
+		<a href="#" >Other Link</a>
+	</p>
+</div>
+||code||
+
+<div class="css-example-7 css-example output" >
+<div>
+	<a href="#" >Link</a>
+</div>
+<div>
+	<p>
+		<a href="#" >Other Link</a>
+	</p>
+</div>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using a `wildcard` match
+
+<div class="selector-example" >*</div>
+
+||code html||
+<div>
+	A message <span>and a span</span>
+	<p>And another message</p>
+</div>
+||code||
+
+<div class="css-example-8 css-example output" >
+<div>
+	A message <span>and a span</span>
+	<p>And another message</p>
+</div>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using a `adjacent sibling` selector
+
+<div class="selector-example" >h3 + p</div>
+
+||code html||
+<h3>Header</h3>
+<p>First</p>
+<p>Second</p>
+||code||
+
+<div class="css-example-9 css-example output" >
+<h3>Header</h3>
+<p>First</p>
+<p>Second</p>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using a `general sibling` selector
+
+<div class="selector-example" >h3 ~ p</div>
+
+||code html||
+<h3>Header</h3>
+<hr />
+<p>First</p>
+<p>Second</p>
+<div>
+	<p>Third</p>
+</div>
+||code||
+
+<div class="css-example-10 css-example output" >
+<h3>Header</h3>
+<hr />
+<p>First</p>
+<p>Second</p>
+<div>
+	<p>Third</p>
+</div>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using an `attribute` selector
+
+<div class="selector-example" >[title]</div>
+
+||code html||
+<div title="main">Main</div>
+<div title="alternate">Alternate</div>
+||code||
+
+<div class="css-example-11 css-example output" >
+<div title="main">Main</div>
+<div title="alternate">Alternate</div>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using an `attribute match` selector
+
+<div class="selector-example" >[title=main]</div>
+
+||code html||
+<div title="main">Main</div>
+<div title="alternate">Alternate</div>
+||code||
+
+<div class="css-example-12 css-example output" >
+<div title="main">Main</div>
+<div title="alternate">Alternate</div>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using an `attribute contains` selector
+
+<div class="selector-example" >[title*=ter]</div>
+
+||code html||
+<div title="main">Main</div>
+<div title="alternate">Alternate</div>
+||code||
+
+<div class="css-example-13 css-example output" >
+<div title="main">Main</div>
+<div title="alternate">Alternate</div>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using an `attribute starts with` selector
+
+<div class="selector-example" >[href^=https]</div>
+
+||code html||
+<a href="http://google.com" >Google</a>
+<a href="https://google.com" >Google (HTTPS)</a>
+||code||
+
+<div class="css-example-14 css-example output" >
+<a href="http://google.com" >Google</a>
+<a href="https://google.com" >Google (HTTPS)</a>
+</div>
+
+
+
+[slide]
+# CSS
+## Selectors
+
+Selector using an `attribute ends with` selector
+
+<div class="selector-example" >[href$=mp3]</div>
+
+||code html||
+<a href="./music.mp3" >MP3</a>
+<a href="./video.mp4" >MP4</a>
+||code||
+
+<div class="css-example-15 css-example output" >
+<a href="./music.mp3" >MP3</a>
+<a href="./video.mp4" >MP4</a>
+</div>
+
+
+[slide]
+# CSS
+## Try It Out
+
+0. http://jsfiddle.net/wVGzR/
+0. Open URL <a href="./css_selectors.txt" target="css-selectors" >Open file</a>
+0. Complete each CSS selector
+

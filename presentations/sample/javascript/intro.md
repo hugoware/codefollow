@@ -1,4 +1,11 @@
 # CodeFollow
 ## Using JavaScript
 
-* Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean ornare arcu sed dui interdum ac faucibus risus tincidunt.
+JavaScript allows you to declare variables that can be used to store values.
+
+<pre class="code javascript" >
+// declaring a handful of variables
+var name = 'susan';
+var age = 33;
+var is_admin = true;
+</pre>

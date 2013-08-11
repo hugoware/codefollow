@@ -1,0 +1,12 @@
+[title Ruby Variables]
+[execute test.rb]
+[time 3]
+[explanation]
+
+## Declare 3 Variables
+
+* A variable named `a` with the value "fred"
+* A variable named `b` with the value false
+* A variable named `c` with the value 33
+
+[zone name:variables.rb for:ruby_variables syntax:ruby]

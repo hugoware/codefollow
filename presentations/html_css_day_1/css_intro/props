@@ -1,0 +1,178 @@
+[slide]
+# CSS
+## Declarations
+
+Declarions define how a selected element should behave.
+
+||code css||
+div {
+	color : #f00;
+}
+||code||
+
+
+
+
+[slide]
+# CSS
+## Declarations
+
+A CSS rule can contain many declarations.
+
+||code css||
+span {
+	font-size : 16px;
+	font-family : sans-serif;
+	font-weight : bold;
+	border-width : 1px;
+	border-color : #f00;
+	border-style : solid;
+}
+||code||
+
+<div class="output" >
+	<span>Styled CSS result</span>
+</div>
+
+<style type="text/css" >
+.output span { font-size : 16px; font-family : sans-serif; font-weight : bold; border-width : 1px; border-color : #f00; border-style : solid; }
+</style>
+
+
+
+[slide]
+# CSS
+## Declarations
+
+Some CSS properties can be expressed in shorthand by entering multiple values in one declaration.
+
+||code css||
+span {
+	font : bold 16px sans-serif;
+	border : 1px solid #f00;
+}
+||code||
+
+<div class="output" >
+	<span>Styled CSS result</span>
+</div>
+
+<style type="text/css" >
+	.output span { font : bold 16px sans-serif; border : 1px solid #f00; }
+</style>
+
+
+
+[slide]
+# CSS
+## Declarations
+
+Some shorthand values can be inferred based on previous input.
+
+||code css||
+.block-1 { padding: 10px 30px 10px 30px; }
+.block-2 { padding: 10px 30px; }
+||code||
+
+<div class="output" >
+<div class="block-1" >Block #1</div>
+<div class="block-2" >Block #2</div>
+</div>
+
+<style type="text/css" >
+	.block-1 { padding: 10px 30px 10px 30px; }
+	.block-2 { padding: 10px 30px !important; }
+	.block-1, .block-2 { background: #6f6; display: inline-block; }
+	.block-1 { margin-bottom: 20px; }
+</style>
+
+
+
+
+[slide]
+# CSS
+## `!important`
+
+Using the `!important` operator can force a declaration to apply.
+
+||code css||
+#box div { color : red; }
+.block-1 { color : green; }
+.block-2 { color : blue !important; }
+||code||
+
+<div class="output" >
+<div id="box" >
+	<div class="block-1" >Block #1</div>
+	<div class="block-2" >Block #2</div>
+</div>
+</div>
+<style type="text/css" >
+	#box div { color: red; }
+	.block-1 { color: green; }
+	.block-2 { color: blue !important; }
+</style>
+
+
+
+
+[slide]
+# CSS
+## Multiple Values
+
+Some CSS declarations can be defined multiple times by separating each value with a comma.
+
+||code css||
+#rainbow {
+	width : 250px;
+	height : 25px;
+	box-shadow : 0 0 0 3px red, 0 0 0 6px orange
+		, 0 0 0 9px yellow, 0 0 0 12px green
+		, 0 0 0 15px blue, 0 0 0 18px purple;
+}
+||code||
+
+<div class="output" >
+<div id="rainbow" ></div>
+</div>
+<style type="text/css" >
+	.output { padding : 40px; }
+	#rainbow {
+		width : 250px;
+		height : 25px;
+		background : #fff;
+		-moz-box-shadow : 0 0 0 3px red, 0 0 0 6px orange, 0 0 0 9px yellow, 0 0 0 12px green, 0 0 0 15px blue, 0 0 0 18px purple;
+		-webkit-box-shadow : 0 0 0 3px red, 0 0 0 6px orange, 0 0 0 9px yellow, 0 0 0 12px green, 0 0 0 15px blue, 0 0 0 18px purple;
+		-o-box-shadow : 0 0 0 3px red, 0 0 0 6px orange, 0 0 0 9px yellow, 0 0 0 12px green, 0 0 0 15px blue, 0 0 0 18px purple;
+		box-shadow : 0 0 0 3px red, 0 0 0 6px orange, 0 0 0 9px yellow, 0 0 0 12px green, 0 0 0 15px blue, 0 0 0 18px purple;
+	}
+</style>
+
+
+
+[slide]
+# CSS
+## Vendor Prefixes
+
+Vendor prefixes are used to apply styles that aren't completely available in all browsers.
+
+||code css||
+.description {
+	-moz-text-shadow : 0 1px 3px black;
+	-webkit-text-shadow : 0 1px 3px black;
+	-o-text-shadow : 0 1px 3px black;
+	-ms-text-shadow : 0 1px 3px black;
+	text-shadow : 0 1px 3px black;
+}
+||code||
+
+
+
+[slide]
+# CSS
+## CSS Zen Garden
+
+0. Browse CSS Zen Garden
+0. Find a design you like
+0. Examine the CSS used
+0. Share with the group what you find

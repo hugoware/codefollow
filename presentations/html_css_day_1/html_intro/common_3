@@ -1,0 +1,64 @@
+[slide]
+# HTML
+## form
+
+The `FORM` is a normal, block element that is used to submit user input to a url.
+
+||code html||
+<body>
+	<form action="/save" method="POST" >
+		...
+	</form>
+</body>
+||code||
+
+
+
+[slide]
+# HTML
+## input
+
+The `INPUT` tag is a void, inline element that can accept user input. The `type` attribute determines its behavior.
+
+||code html||
+<body>
+	<input type="text" />
+	<input type="checkbox" />
+	<input type="submit" />
+</body>
+||code||
+
+<div class="output" >
+<input type="text" />
+<input type="checkbox" />
+<input type="submit" />
+</div>
+
+
+
+[slide]
+# HTML
+## button
+
+The `BUTTON` tag is a normal, inline element that can also work with a `FORM`. The `type` attribute determines its behavior.
+
+||code html||
+<body>
+	<button type="submit" >Save</button>
+</body>
+||code||
+
+<div class="output" >
+<button type="submit" >Save</button>
+</div>
+
+
+[slide]
+# HTML
+## Input Research
+
+0. Research and find HTML5 unique Input Elements
+0. Put them in your browser and try
+0. figure out which ones work
+0. write notes for each
+0. Share with the group what you found

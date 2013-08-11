@@ -1,5 +1,5 @@
 [title Using JavaScript]
-[execute test.cs]
+[execute index.html]
 [time 3]
 [explanation]
 
@@ -9,4 +9,5 @@
 * A variable named `b` with the value false
 * A variable named `c` with the value 33
 
-[zone name:script.js for:javascript_sample syntax:javascript]
+[zone name:variables.js for:javascript_sample syntax:javascript]
+[test source:test.js]

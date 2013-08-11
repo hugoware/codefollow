@@ -1,0 +1,141 @@
+[slide]
+# HTML5 Elements
+## audio
+
+The `AUDIO` tag allows for music and sound to be played within the browser.
+
+||code html||
+<audio controls>
+  <source src="./music.mp3" type="audio/mpeg">
+  Sorry, audio is not supported!
+</audio>
+||code||
+
+<div class="output" >
+<audio controls>
+  <source src="./music.mp3" type="audio/mpeg">
+  Sorry, audio is not supported!
+</audio>
+</div>
+
+
+
+[slide]
+# HTML5 Elements
+## video
+
+The `VIDEO` tag allows for video (with or without sound) to be played within the browser.
+
+||code html||
+<video controls >
+  <source src="./video.mp4" type="audio/mp4">
+  Sorry, video is not supported!
+</video>
+||code||
+
+<div class="output" >
+<video controls muted="true" >
+  <source src="./video.mp4" type="video/mp4">
+  Sorry, video is not supported!
+</video>
+</div>
+
+
+
+[slide]
+# HTML5 Elements
+## canvas
+
+The `CANVAS` allows you to create drawings in the browser.
+
+||code html||
+<canvas id="canvas" >
+	Your browser does not support the Canvas tag
+</canvas>
+<script type="text/javascript" >
+	// canvas drawing code...
+</script>
+||code||
+
+<div class="output" >
+<canvas id="canvas" height="100px" >
+	Your browser does not support the Canvas tag
+</canvas>
+<script src="./canvas_example.js" type="text/javascript" ></script>
+</div>
+
+
+
+[slide]
+# HTML5 Elements
+## input / `type`
+
+The `INPUT` has several new types that can replace the need for JavaScript powered controls.
+
+||code html||
+<input type="date" />
+<input type="color" />
+<input type="number" />
+<input type="range" />
+||code||
+
+<div class="output" >
+<input type="date" />
+<input type="color" />
+<input type="number" />
+<input type="range" />
+</div>
+
+
+
+[slide]
+# HTML5 Elements
+## progress
+
+The `PROGRESS` tag can display a configurable progress bar.
+
+||code html||
+<progress value="75" max="100">75%</progress>
+||code||
+
+<div class="output" >
+<progress value="75" max="100">75%</progress>
+</div>
+
+
+
+
+[slide]
+# HTML5 Elements
+## output
+
+The `OUTPUT` identifies an area that should display a result.
+
+||code html||
+<form oninput=
+	"out.value=last.value+', '+first.value" >
+	<input placeholder="first" name="first" />
+	<input placeholder="last" name="last" />
+	<br />
+	Name: <output name="out">???</output>
+</form>
+||code||
+
+<div class="output" >
+<form oninput="out.value=last.value+', '+first.value" >
+	<input placeholder="first" name="first" />
+	<input placeholder="last" name="last" />
+	<br />
+	Name: <output name="out">???</output>
+</form>
+</div>
+
+
+
+[slide]
+# HTML Research
+https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5/HTML5_element_list
+
+0. Find 3 interesting elements
+0. try them out
+0. share with the group your favorite

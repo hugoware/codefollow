@@ -6,14 +6,17 @@ $(function() {
 
     // style modes
     , $modes = { 
-      'html': 'htmlembedded',
+      'html': 'htmlmixed',
       'csharp': 'clike'
     }
 
     // configuration
-    , $poll_interval = 3000
+    , $poll_interval = 1000
     , $last = 0
     , $states = 'slide test rankings'
+    , $expressions = {
+      code_block: /\|{2}code \w+\|{2}(.|\n)*\|{2}code\|{2}/gi
+    }
 
     , $body = $(document.body)
     , $leader = $body.hasClass('leader')
@@ -58,7 +61,7 @@ $(function() {
     _delay = function( time, action ) { if (!action) action = time, time = 1; if ( time == 0 ) action(); else window.setTimeout( action, time ); },
     _markdown = function( str ) { return (new Markdown.Converter()).makeHtml( str ); },
     _syntax = function( key ) { return( $modes )[key] || key; },
-    _is_busy = function() { return $body.hasClass('busy'); }
+    _is_busy = function() { return $body.hasClass('busy'); },
     _busy = function( on ) { $body[ on ? 'addClass' : 'removeClass' ]('busy'); },
     _is_testing = function() { return $('.dialog:visible').length > 0; },
     _focus = function() {
@@ -75,6 +78,20 @@ $(function() {
 
     // slides in an editor
     _slide = function( target ) { },
+
+    // helper for html escaping
+    _escape_html = function( content ) {
+      return content.replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    },
+
+    // helper for HTML unescaping
+    _unescape_html = function( content ) {
+      return content.replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&amp;/g, '&');
+    },
     
     // wires up all templates on the page
     _find_templates = function() {
@@ -92,7 +109,7 @@ $(function() {
 
     // grabs the first available tab
     _find_first_editor_tab = function() {
-      return $ui.editors.find('.tabs :first-child')
+      return $ui.editors.find('.tabs :first-child');
     },
 
     // selects a new tab to view
@@ -296,10 +313,27 @@ $(function() {
     // displays a content slide
     _handle_slide = function( slide ) {
       _state('slide');
-      
-      // update the content
+
+      // escape 'pre' content
+      slide.content = slide.content.replace( $expressions.code_block, function( match ) {
+        
+        // basic HTML entities removed
+        match = _escape_html( match )
+
+          // convert to a PRE block
+          .replace(/\t/g, '  ')
+          .replace(/\|{2}code\|{2}$/, '</pre>')
+          .replace(/^\|{2}code/, '<pre class="code ')
+          .replace(/^(.*)\|{2}/, '$1">');
+
+        return match;
+      });
+
+      // generate html content
       slide.content = _markdown( slide.content );
       var markup = $templates.slide( slide );
+
+      // update the slide view
       $ui.slide.html( markup )
         .addClass('hide');
 
@@ -311,15 +345,22 @@ $(function() {
     // styles all code samples
     _apply_code_highlighting = function() {
 
-      $('pre.code').each(function() {
+      $('.code').each(function() {
         var block = $(this)
-          , code = $.trim( block.text() )
+          , style = $.trim( block.removeClass('code').attr('class') )
+          , code = $.trim( block.html() )
           , container = $('<pre/>')
               .addClass('code cm-s-default');
 
+        // unescape the mess
+        code = _unescape_html( code );
+
+        // lookup the style
+        style = $modes[ style ] || style;
+
         // add styling
         container.insertBefore( block );
-        CodeMirror.runMode( code, "javascript", container[0] );
+        CodeMirror.runMode( code, style, container[0] );
         block.remove();
       });
 
@@ -388,7 +429,7 @@ $(function() {
       _busy( false );
 
       // figure out all passses
-      results.no_tests = !results.tests || results.tests.length == 0
+      results.no_tests = !results.tests || results.tests.length == 0;
       for (var t in results.tests)
         for (var r in results.tests[t].tests) {
           var pass = results.tests[t].pass = results.tests[t].tests[r].pass;
@@ -425,12 +466,14 @@ $(function() {
 
       // add scoring
       $ui.rankings.find('.leaders .ranking').each( function( i, v ) {
-        var number = ( i + 1 )
+        var element = $( this )
+          , number = ( i + 1 )
           , style = [ 'first' ][ i ]
           , place = [ 'st', 'nd', 'rd' ][ i ] || 'th'
-          , element = $('<div class="place" >' + number + '<span>' + place + '</span></div>');
-        $( this ).append( element )
-          .addClass( style )
+          , display = $('<div class="place" >' + number + '<span>' + place + '</span></div>')
+          , after = element.find('.detail');
+        display.insertAfter( after );
+        element.addClass( style );
       });
     },
 
@@ -465,7 +508,7 @@ $(function() {
       var change = $ui.editors.find('.tabs .selected')[ direction ]();
       if ( change.length == 0 ) change = $ui.editors.find('.tabs li:'+fallback);
       _set_editor_tab( change );
-    }
+    },
 
     // changes the test results view
     _set_results_next = function() { _set_results_view_by( 1, 'first' ); },
@@ -515,8 +558,6 @@ $(function() {
 
   // start the polling
   _poll( true );
-
-  // specific for presentation
 
 
 });

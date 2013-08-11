@@ -71,6 +71,9 @@ h1, h2, h3, h4, h5 { font-family: 'title', sans-serif; font-weight : 300; }
 textarea { font-family: 'mono', monospace !important; }
 strong { font-family: 'basic-bold', 'basic', sans-serif; }
 
+.user #test pre {
+  font-size : 16px;
+}
 
 #test, #slide, #rankings, #results, #editors, #preview {
   display : none; 
@@ -107,6 +110,7 @@ body.rankings #rankings { display : block; }
 .hide { 
   position : absolute;
   left : -9999px;
+  top : -9999px;
 }
 
 .show {
@@ -607,4 +611,47 @@ ul.rank-3 li.rank-3 {
 
 .code-readonly .scroll-area {
   padding-bottom : 25px;
+}
+
+.output {
+  padding : 15px;
+  border-radius : 7px;
+  background : #f6f6f6;
+  border : 1px dashed #c6c6c6;
+  position : relative;
+}
+
+.output:after {
+  content : 'output';
+  position : absolute;
+  right : 15px;
+  top : 10px;
+
+  font-size : 18px;
+  color : #aaa;
+
+  -webkit-text-shadow: 0 1px 1px #fff;
+  -moz-text-shadow: 0 1px 1px #fff;
+  -o-text-shadow: 0 1px 1px #fff;
+  text-shadow: 0 1px 1px #fff;
+}
+
+#slide .content .output > p:last-child,
+#slide .content .output > div:last-child,
+#slide .content .output > ol:last-child,
+#slide .content .output > ul:last-child,
+#slide .content .output > ol:last-child > li:last-child,
+#slide .content .output > ul:last-child > li:last-child {
+  padding-bottom : 0;
+  margin-bottom : 0;
+}
+
+#slide .content .output ol li,
+#slide .content .output ul li {
+  font-size : 16px;
+  padding : 0 0 5px 0;
+}
+
+#slide .content .output td {
+  padding : 5px;
 }

@@ -1,0 +1,25 @@
+[title HTML/CSS - Day One]
+[stylesheet ./presentation.css]
+
+
+[slide]
+Introduction
+
+
+[merge html_intro/intro]
+[merge html_intro/entities]
+[merge html_intro/elements]
+[merge html_intro/attributes]
+[merge html_intro/nesting]
+[merge html_intro/common_1]
+[merge html_intro/common_2]
+[merge html_intro/common_3]
+[merge html_intro/form]
+[merge html_intro/html5]
+
+
+[merge css_intro/intro]
+[merge css_intro/basic]
+[merge css_intro/adding]
+[merge css_intro/examples]
+[merge css_intro/props]

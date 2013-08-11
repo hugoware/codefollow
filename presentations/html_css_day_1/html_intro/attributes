@@ -1,0 +1,21 @@
+[slide]
+# HTML
+## Attributes
+
+Attributes tell elements how to behave, but are not visible.
+
+||code html||
+<normal id="container" >
+	...
+</normal>
+||code||
+
+[slide]
+# HTML
+## Attributes
+
+Both Normal and Void elements can have attributes assigned to them.
+
+||code html||
+<void attr="set" />
+||code||

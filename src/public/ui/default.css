@@ -5,16 +5,6 @@
 
 html, body {
   background : #fff;
-  /*min-height : 100%;
-
-  background: #eaeaea;
-  background: -moz-linear-gradient(top, #ffffff 0%, #eaeaea 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#eaeaea));
-  background: -webkit-linear-gradient(top, #ffffff 0%,#eaeaea 100%);
-  background: -o-linear-gradient(top, #ffffff 0%,#eaeaea 100%);
-  background: -ms-linear-gradient(top, #ffffff 0%,#eaeaea 100%);
-  background: linear-gradient(to bottom, #ffffff 0%,#eaeaea 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#eaeaea',GradientType=0 );*/
 }
 
 a, a:hover, a:visited {
@@ -76,6 +66,7 @@ code { font-family: 'mono', monospace; }
 
 h1 { font-size : 64px; padding : 0 0 20px 0; }
 h2 { font-size : 36px; padding : 0 0 25px 0; }
+h3 { font-size : 28px; padding : 15px 0 25px 0; font-weight : bold; }
 #slide .content ul, #test .content ul, #slide .content ol, #test .content ol { font-size : 24px; }
 
 .user #test h1 { font-size : 42px; padding : 0 0 12px 0; }
@@ -241,10 +232,11 @@ h2 { color : #999; }
 
 .ranking h3 {
   font-size : 44px;
+  padding : 10px 0 5px 0;
 }
 
 .ranking h4 {
-  padding : 8px 0 0 2px;
+  padding : 0 0 10px 2px;
   font-size : 21px;
   color : #777;
 }

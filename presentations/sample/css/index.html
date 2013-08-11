@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Using CSS</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../lib/reset.css" />
+
+  </head>
+  <body>
+    <img id="test_img" class="validate" src="./avatar.jpg" />
+    <h3 id="test_h3" class="validate" ></h3> 
+    <p id="test_p" class="validate" ></p> 
+
+    <div id="test" >
+      <div id="css_markup" ></div>
+    </div>
+
+    <style type="text/css" >
+
+      .validate { 
+        visibility : hidden;
+        position : absolute;
+      }
+
+      p { font-size : 12px; }
+
+      #test .profile {
+        font-family : sans-serif;
+        border : 1px solid #999;
+        background: #dddddd;
+        background: -moz-linear-gradient(top, #f4f4f4 0%, #dddddd 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f4f4f4), color-stop(100%, #dddddd));
+        background: -webkit-linear-gradient(top, #f4f4f4 0%, #dddddd 100%);
+        background: -o-linear-gradient(top, #f4f4f4 0%, #dddddd 100%);
+        background: -ms-linear-gradient(top, #f4f4f4 0%, #dddddd 100%);
+        background: linear-gradient(to bottom, #f4f4f4 0%, #dddddd 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f4f4f4', endColorstr='#dddddd',GradientType=0 );
+
+        -webkit-box-shadow: 0 1px 7px rgba( 0,0,0, .2 ), inset 0 0 0 1px #fff;
+        -moz-box-shadow: 0 1px 7px rgba( 0,0,0, .2 ), inset 0 0 0 1px #fff;
+        -o-box-shadow: 0 1px 7px rgba( 0,0,0, .2 ), inset 0 0 0 1px #fff;
+        box-shadow: 0 1px 7px rgba( 0,0,0, .2 ), inset 0 0 0 1px #fff;
+
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -o-border-radius: 5px;
+        border-radius: 5px;
+
+        -webkit-text-shadow: 0 1px 0 #fff;
+        -moz-text-shadow: 0 1px 0 #fff;
+        -o-text-shadow: 0 1px 0 #fff;
+        text-shadow: 0 1px 0 #fff;
+
+        overflow : auto;
+
+        padding : 15px;
+        margin : 15px;
+      }
+
+      #test .profile img {
+        border : 1px solid #777;
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -o-border-radius: 4px;
+        border-radius: 4px;
+
+        -webkit-box-shadow: 0 1px 0 #fff;
+        -moz-box-shadow: 0 1px 0 #fff;
+        -o-box-shadow: 0 1px 0 #fff;
+        box-shadow: 0 1px 0 #fff;
+      }
+
+      #test .profile dt,
+      #test .profile dd {
+        margin-right : 15px;
+      }
+
+      #test .profile h3 {
+        margin : 5px 0;
+      }
+
+      #test .profile p {
+        color : #555;
+      }
+
+    </style>
+
+    <style type="text/css" id="css_style" >
+    </style>
+
+    <script type="text/javascript" src="./setup.js" ></script>
+    <script type="text/javascript" src="../lib/sizzle.js" ></script>
+    <script type="text/javascript" src="/codefollow.js" ></script>
+
+  </body>
+</html>

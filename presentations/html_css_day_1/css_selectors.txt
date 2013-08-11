@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>CSS Practice</title>
+    <style type="text/css" >
+
+      
+      /* all links on the page */
+      ___ { color: #f00; }
+
+      
+      /* spans that are inside of paragraphs */
+      ___ { color: #f0f; }
+
+
+      /* every other row inside of tables */
+      ___ { background: #ffc; }
+
+
+      /* links that are direct descendants of elements with the ID header */
+      ___ { background: #ccc; display : block; padding : 22px; font-size: 32px; text-decoration: none; color : #000; }
+
+      
+      /* elements with the ID header, content and footer ( same selector ) */
+      ___ { width: 700px; margin: 0 auto; font: 15px sans-serif; position: relative; }
+
+
+      /* elements with the TD footer */
+      ___ { text-align: center; padding: 30px; }
+
+
+      /* links inside of tables */
+      ___ { background: #9f9; }
+
+
+      /* any link when the mouse is over it */
+      ___ { color: #0f0; }
+
+
+      /* any element with a title attribute */
+      ___ { border: 1px solid #f00; background: #fee; }
+
+
+      /* the last paragraph in content */
+      ___ { color: #999; font-style: italic; }
+
+
+      /* the first row in tables */
+      ___ { font-size: 24px; }
+
+
+      /* unordered lists with the class nav */
+      ___ { list-style: none; right: 15px; top : 0; position: absolute; }
+
+
+      /* li elements within an element with the class nav */
+      ___ { float : left; padding : 10px; }
+
+
+    </style>
+
+  </head>
+  <body>
+
+    <!-- top header -->
+    <div id="header" >
+
+      <!-- site id -->
+      <a href="/" >Business Corp.</a>
+
+      <!-- navigation -->
+      <ul class="nav" >
+        <li><a href="/home" >Home</a></li>
+        <li><a href="/about" >About Us</a></li>
+        <li><a href="/contact" >Contact</a></li>
+      </ul>
+
+    </div>
+
+    <!-- page content -->
+    <div id="content" >
+
+      <!-- general text -->
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam quae placeat
+        molestias dolorem <span title="leading" >officia vitae</span> aperiam.
+      </p>
+      <p>
+        Culpa, iste, <span>voluptatem dolores</span> nisi sapiente dignissimos recusandae
+        reiciendis quam doloremque assumenda consectetur.
+      </p>
+
+
+      <!-- table of stats and info -->
+      <table>
+        <tr>
+          <td>#1</td>
+          <td>First Place</td>
+          <td><a href="/1" title="view the stats!" >View</td>
+        </tr>
+        <tr>
+          <td>#2</td>
+          <td>Second Place</td>
+          <td><a href="/2" >View</td>
+        </tr>
+        <tr>
+          <td>#3</td>
+          <td>Third Place</td>
+          <td><a href="/3" >View</td>
+        </tr>
+        <tr>
+          <td>#4</td>
+          <td>Fourth Place</td>
+          <td><a href="/4" >View</td>
+        </tr>
+        <tr>
+          <td title="Fifth!" >#5</td>
+          <td>Fifth Place</td>
+          <td><a href="/5" >View</td>
+        </tr>
+      </table>
+
+
+      <!-- summary paragraph -->
+      <p>
+        Culpa, iste, <span>voluptatem dolores</span> nisi sapiente dignissimos recusandae
+        reiciendis quam doloremque assumenda consectetur.
+      </p>
+    
+    </div>
+
+
+    <!-- copyright footer -->
+    <div id="footer" > &copy; 2013 </div>
+
+
+  </body>
+</html>

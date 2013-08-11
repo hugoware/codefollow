@@ -1,0 +1,12 @@
+[title Ruby Classes]
+[execute test.rb]
+[time 3]
+[explanation]
+
+## Declare 3 Variables
+
+* A class named `Calculator`
+* define a method named `add` that accepts **two arguments**
+* `add` should add (+) and return the provided values together
+
+[zone name:class.rb for:ruby_class syntax:ruby]

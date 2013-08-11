@@ -19,6 +19,7 @@ var includes = {
   'IndexRequest': './requests/index',
   'DisplayPresentationRequest': './requests/display_presentation',
   'DisplayRemoteRequest': './requests/display_remote',
+  'ResetPresentationRequest': './requests/reset_presentation',
   'StartPresentationRequest': './requests/start_presentation',
   'JoinPresentationRequest': './requests/join_presentation',
   'NavigatePresentationRequest': './requests/navigate_presentation',

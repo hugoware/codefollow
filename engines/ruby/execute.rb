@@ -64,6 +64,15 @@ class TestHelper__999999
     @@current.push [ message, condition ]
   end
 
+  # simple assertion test
+  def TestHelper__999999.attempt message, &block
+    begin
+      @@current.push [ message, !!block.call ]
+    rescue
+      @@current.push [ message, false ]
+    end
+  end
+
 end
 
 # grab all console messages
