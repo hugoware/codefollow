@@ -2,6 +2,7 @@
 module.exports = [
   
   [ 'all', '/', IndexRequest ],
+  [ 'all', '/echo', EchoRequest ],
   [ 'all', '/join/:presentation_id(\\d{3}\\-?\\d{3}\\-?\\d{3})/?', JoinPresentationRequest ],
   [ 'all', '/start', StartPresentationRequest ],
   [ 'all', '/join', JoinPresentationRequest ],

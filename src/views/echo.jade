@@ -1,0 +1,28 @@
+extends layout
+
+block title
+  | Echo / CodeFollow
+
+block content
+  #echo
+    h2= method
+
+    //- if anything in the query
+    - if ( query )
+      h3 Query
+      dl
+        - for( var p in query )
+          dt= p
+          dd= query[p].join(', ')
+
+    //- if this was a post
+    - if ( body )
+      h3 Body
+      dl
+        - for( var p in body )
+          dt= p
+          dd= body[p].join(', ')
+
+    - if (!( body || query ))
+      .error Nothing was posted!
+

@@ -28,6 +28,7 @@ var includes = {
   'ServeTestRequest': './requests/serve_test',
   'ServeDirectoryRequest': './requests/serve_directory',
   'MissingRequest': './requests/missing',
+  'EchoRequest': './requests/echo',
 
   // engines
   'HtmlJsEngine': './engines/htmljs_engine',

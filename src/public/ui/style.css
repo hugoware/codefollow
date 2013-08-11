@@ -198,3 +198,66 @@ form button {
 .active a {
   color : #27413b;
 }
+
+#echo {
+  width : 800px;
+  margin : 30px auto 0 auto;
+  background : #fff;
+  padding : 20px 0;
+
+  -webkit-box-shadow: 0 1px 3px rgba( 0,0,0, .7 );
+  -moz-box-shadow: 0 1px 3px rgba( 0,0,0, .7 );
+  -o-box-shadow: 0 1px 3px rgba( 0,0,0, .7 );
+  box-shadow: 0 1px 3px rgba( 0,0,0, .7 );
+
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+
+  overflow : auto;
+}
+
+#echo h2 {
+  font-size : 56px;
+  color : #999;
+  float : right;
+  margin : 0 25px 0 0;
+}
+
+#echo h3 {
+  font-size : 26px;
+  padding : 0 0 15px 25px;
+}
+
+#echo dl {
+  overflow : auto;
+  padding : 0 30px 40px 30px;
+}
+
+#echo dl:last-child {
+  padding-bottom : 5px;
+}
+
+#echo dl dt {
+  clear : both;
+  float : left;
+
+  font-weight : bold;
+  min-width : 120px;
+  padding-bottom : 10px;
+  margin-right : 25px;
+  border-right : 1px solid #ccc;
+
+  font-size : 16px;
+}
+
+#echo dl dd {
+  float : left;
+  padding-bottom : 10px;
+}
+
+#echo dl dt:last-child,
+#echo dl dd:last-child {
+  padding-bottom : 0;
+}
